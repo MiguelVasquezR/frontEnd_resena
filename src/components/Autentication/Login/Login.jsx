@@ -1,7 +1,7 @@
 import styles from './Login.module.css';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { getPersona } from '../../../hooks/Aut';
+import { addPersonne } from '../../../hooks/Aut';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -22,7 +22,7 @@ function Login() {
         window.localStorage.setItem(
           'localUserStorage', JSON.stringify(user)
         );      
-        getPersona();              
+        addPersonne();              
         navigate("/");
       } else {
         setBand(true);

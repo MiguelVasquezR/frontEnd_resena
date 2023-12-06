@@ -1,16 +1,16 @@
-export const logOut = () => {
-  const u = window.localStorage.getItem('localUserStorage');
-  const nu = JSON.parse(u);  
-}
-
 export const getUser = () =>{  
   const localStorage = window.localStorage.getItem('localUserStorage');  
   const usuario = JSON.parse(localStorage);      
   return usuario;
 }
 
-export const getPersona = () =>{  
+export const getPersona = () =>{    
+    const localStorage = window.localStorage.getItem('localPersonneStorage');  
+    const persona = JSON.parse(localStorage);      
+    return persona;  
+}
 
+export const addPersonne = () =>{
   const fetchEvent = async () =>{
     try{
       const user = getUser();
@@ -21,12 +21,10 @@ export const getPersona = () =>{
       console.log(error);
     }
   }
-
   fetchEvent();
-  
 }
-
 
 export const logout = () =>{
   window.localStorage.removeItem('localUserStorage');  
+  window.localStorage.removeItem('localPersonneStorage');
 }
