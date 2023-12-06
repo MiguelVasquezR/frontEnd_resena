@@ -5,17 +5,24 @@ export const logOut = () => {
 
 export const getUser = () =>{  
   const localStorage = window.localStorage.getItem('localUserStorage');  
-  const usuario = JSON.parse(localStorage);  
-
-  // const res = fetch(`http://localhost:4567/personas?IDPersona=${usuario.IDPersona}`);
-  // const persona = res.json();
-  // console.log(persona);
-
-
+  const usuario = JSON.parse(localStorage);      
   return usuario;
 }
 
-export const getPersona = () =>{
+export const getPersona = () =>{  
+
+  const fetchEvent = async () =>{
+    try{
+      const user = getUser();
+      const res = await fetch(`http://localhost:4567/persona?id=${user.IDPersona}`);  
+      const persona = await res.json();
+      window.localStorage.setItem('localPersonneStorage', JSON.stringify(persona));
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+  fetchEvent();
   
 }
 
