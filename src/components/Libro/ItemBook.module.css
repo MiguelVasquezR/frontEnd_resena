@@ -1,0 +1,42 @@
+@import '../../index.css';
+
+.bookContainer, .bookContainer>*, .imgContainer{
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+}
+
+.bookContainer{
+    margin: 10px auto;
+    background-color: var(--colorW1);
+    width: 95%;
+    border-radius: 20px;
+    flex-direction: row;
+}
+
+.optionInformation{
+    margin-top: 8px;
+    font-size: 14px;
+    color: white;
+    text-align: center;    
+}
+
+.derecho{        
+    width: 100%;
+}
+
+.img{
+    width: 80px;
+    margin: 10px 0px;
+}
+
+.izquierdo{        
+    border-radius: 20px;
+    margin: 10px 10px;
+    flex-direction: column;
+    text-align: center;
+}
+
+.derecho{
+    flex-direction: column;    
+}

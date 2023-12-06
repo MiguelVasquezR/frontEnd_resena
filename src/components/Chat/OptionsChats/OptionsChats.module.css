@@ -1,0 +1,21 @@
+@import '../../../index.css';
+
+.optionChat{        
+    width: 85px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+    border: 1px solid var(--colorB3);
+}
+
+.h2{
+    font-size: 18px;
+}

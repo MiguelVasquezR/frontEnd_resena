@@ -1,0 +1,73 @@
+@import '../../index.css';
+
+.informationContainer{
+    margin-top: 20px;
+}
+
+.informationContainer > h2{
+    margin-left: 15px;
+}
+
+.redesContainer, .temaContainer{    
+    margin-top: 20px;
+    padding: 0 20px;
+}
+
+.btnsPlus{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnPlus{
+    background-color: var(--colorW1);
+    border: none;
+    border-radius: 50px;    
+    color: white;
+    font-size: 20px;
+    width: 30%;
+    height: 50px;
+    margin: 15px 0px;
+    transition: all 1s ease;
+}
+
+.btnPlus:hover{    
+    width: 40%;
+}
+
+.optionTema{
+    margin: 20px auto;
+    width: 70%;    
+    border-radius: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+}
+
+.form{    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input{
+    border: none;
+    border-bottom: 1px solid #000;
+    margin: 15px 0;
+    width: 30%;
+    padding: 8px;
+    font-size: 20px;
+    outline: none;
+}
+
+.contNewRed{
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}

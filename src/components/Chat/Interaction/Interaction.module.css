@@ -1,0 +1,38 @@
+@import '../../../index.css';
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;    
+    color: #fff;
+    text-align: center;
+    padding: 10px;    
+}
+
+.container>*{
+    background-color: var(--colorW3);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.input{
+    border: none;
+    outline: none;
+    padding: 5px;
+    margin: 5px;
+    width: 85%;
+    border-radius: 10px;
+    outline: none;
+
+    min-height: 50px;
+    max-height: 100px;
+}

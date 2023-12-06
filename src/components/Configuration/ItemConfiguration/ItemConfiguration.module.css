@@ -1,0 +1,30 @@
+@import '../../../index.css';
+
+.itemContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 12px 0;
+}
+
+
+.itemSubmit{
+    width: 90px;    
+    height: 35px;
+    font-size: 15px;
+
+    background-color: var(--colorW1);
+    border: none;
+    border-radius: 20px;
+    color: white;
+}
+
+.itemTX{    
+    border: none;
+    border-bottom: 1px solid #000;
+    margin: 0px 10px;
+    width: 250px;
+    padding: 5px;
+    outline: none;
+}

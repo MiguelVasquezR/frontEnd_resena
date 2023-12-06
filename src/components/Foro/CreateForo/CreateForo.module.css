@@ -1,0 +1,28 @@
+@import '../../../index.css';
+
+.container{    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo{
+    margin: 16px 0;
+}
+
+.select{
+    width: 60%;
+    height: 32px;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+}
+
+.formContainer{
+    text-align: center;
+    color: white;
+    background-color: var(--colorW1);
+    margin-top: 20px;
+    width: 100%;    
+}

@@ -1,0 +1,35 @@
+@import '../../index.css';
+
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo{
+    margin: 15px 0;
+    width: 130px;
+}
+
+.ul{
+    margin-top: 15px;
+    width: 100%;
+    background-color: var(--colorW3);
+    color: white;
+    font-size: 20px;
+    list-style: none;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.li{
+    padding: 15px 10px;
+}
+
+.container{
+    width: 100%;
+}

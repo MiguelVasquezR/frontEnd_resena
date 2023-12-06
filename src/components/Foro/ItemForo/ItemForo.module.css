@@ -1,0 +1,54 @@
+.container{
+    background-color: var(--colorW2);
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    width: 95%;
+    margin: 20px auto;
+
+}
+
+
+.superior{    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.img{
+    width: 60px;
+    height: 80px;
+    border-radius: 10px;
+    background-color: #fff;    
+}
+
+.infoContainer{    
+    color: white;
+    text-align: center; 
+    padding: 10px;     
+}
+
+.titulo{
+    font-size: 20px;
+}
+
+.cant{
+    font-size: 14px;    
+}
+
+.descripcion{
+    font-size: 15;
+    text-align: justify;
+}
+
+.titulo, .cant, .descripcion{
+    margin-top: 5px;
+}
+
+.izquierda{
+    color: white;    
+    margin-left: 5px;
+}

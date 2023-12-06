@@ -1,0 +1,80 @@
+
+
+.form, .form > *{    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo{
+    text-align: start;
+    margin-left: 10%;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.fotoPerfil{
+    width: 70px;
+    height: 70px;    
+    border-radius: 50px;
+    border: 2px solid #fff;
+}
+
+.perfil{    
+    width: 80%;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+
+.btnPerfil{
+    background-color: var(--colorW3);
+    border: none;
+    border-radius: 20px;
+    width: 100px;
+    padding: 5px;
+    color: white;
+    border: 1px solid #fff;
+}
+
+.camposTXS{
+    width: 100%;
+}
+
+.camposTX{
+    border: none;
+    border-bottom: 1px solid #fff;
+    margin: 10px 0;
+    padding: 5px;
+    width: 80%;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    font-size: 15px;
+}
+
+.camposTX::placeholder, .description::placeholder{
+    color: white;
+}
+
+.description{
+    width: 80%;
+    padding: 5px;
+    resize: none;
+    overflow: scroll;
+    background-color: transparent;
+    border: 1px solid #fff;
+    margin: 10px 0;
+}
+
+.btnCrear{
+    width: 50%;
+    height: 32px;
+    border-radius: 50px;
+    border: 1px solid #fff;
+    background-color: var(--colorW3);
+    color: white;
+    font-size: 15px;
+    margin: 10px 0 30px 0;
+}

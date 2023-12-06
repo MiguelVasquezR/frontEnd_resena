@@ -1,0 +1,30 @@
+@import '../../../index.css';
+
+.autorsContainer > *{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;    
+    flex-wrap: nowrap;
+}
+
+.autorsContainer{        
+    padding: 10px;
+    background-color: var(--colorW3);
+    width: 95%;        
+    margin: 0px auto;
+    border-radius: 10px;
+}
+
+.ul{    
+    text-align: center;  
+    margin: 30px auto;  
+}
+
+.ul > li{
+    margin-left: 30px;
+}
+
+.ul > li > h2{
+    font-size: 20px;
+}

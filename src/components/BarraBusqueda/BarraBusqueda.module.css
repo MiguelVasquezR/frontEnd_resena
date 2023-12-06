@@ -1,0 +1,31 @@
+@import '../../index.css';
+
+.busquedaContainer{
+    background-color: var(--colorW1);
+    width: 60%;    
+    height: 50px;
+    margin: 20px auto;
+    border-radius: 50px;
+    padding: 5px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;    
+}
+
+.input{    
+    background-color: transparent;
+    width: 98%;
+    height: 100%;
+    border: none;
+    border-radius: 50px;    
+    padding: 0px 15px;
+    font-size: 18px;
+    outline: none;
+    color: white;
+}
+
+.input::placeholder{
+    color: white;
+}

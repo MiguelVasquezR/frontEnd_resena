@@ -1,0 +1,47 @@
+@import '../../../index.css';
+
+.itemChat, .icos, .contImg{
+    display: flex;
+    align-items: center;
+}
+
+.itemChat{
+    background-color: var(--colorW1);
+    flex-direction: row;
+    justify-content: center;
+    width: 95%;     
+    margin-top: 12px;
+    border-radius: 20px;
+}
+
+.contImg{
+    width: 20%;    
+    justify-content: center;
+}
+
+.img{
+    width: 55px;
+    height: 52px;
+    border-radius: 50px;
+    border: 1px solid var(--colorW3);
+}
+
+.icos{
+    flex-direction: column;    
+    width: 10%;    
+}
+
+.content{
+    width: 65%;    
+    color: white;
+}
+
+.h2{
+    font-size: 18px;    
+}
+
+.p{
+    font-size: 12px;
+    margin-top: 5px;    
+}
+

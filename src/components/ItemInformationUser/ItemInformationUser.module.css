@@ -1,0 +1,25 @@
+.informationContainer{    
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;    
+}
+
+.img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    margin: 10px 5px;
+}
+
+.h3_nombre{
+    font-size: 14px;
+    color: white;
+}
+
+.h3_usuario{
+    color: rgba(255, 255, 255, .8);
+    font-size: 12px;
+    margin-top: 3px;
+}

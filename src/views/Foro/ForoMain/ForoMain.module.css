@@ -1,0 +1,72 @@
+.infoContainer {
+    border: 3px solid var(--colorW1);
+    width: 95%;
+    border-radius: 10px;
+    margin: 10px auto;
+    padding: 5px;
+    text-align: center;
+}
+
+.titulo {
+    margin: 10px 0;
+    font-size: 30px;
+}
+
+.cant {
+    text-decoration: underline;
+    color: rgba(0, 0, 0, .5);
+    margin: 5px 0;
+    font-size: 15px;
+}
+
+.descripcion {
+    line-height: 22px;
+    text-align: justify;
+}
+
+
+.publicationContainer {
+    width: 95%;
+    margin: 10px auto;
+    margin-bottom: 20px;
+
+    background-color: var(--colorW1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tx {
+    padding: 5px;
+    margin: 10px 0;
+    width: 90%;
+    height: 100px;
+    overflow: scroll;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+.btnPublica {
+    width: 100px;
+    height: 32px;
+    background-color: var(--colorW3);
+    color: white;
+    border-radius: 20px;
+    border: 1px solid #fff;
+    margin: 10px 0;
+}
+
+.btn {
+    width: 100px;
+    height: 32px;
+    border-radius: 20px;
+    border: none;
+    background-color: var(--colorW1);
+    color: white;
+    font-size: 15px;
+    position: absolute;             
+    margin-left: 55px;    
+}

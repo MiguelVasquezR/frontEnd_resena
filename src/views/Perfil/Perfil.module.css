@@ -1,0 +1,148 @@
+@import '../../index.css';
+
+
+.userConteiner, .follow, .bibliography, .generos, .socialRedes{
+    width: 95%;
+    margin: 0 auto;
+}
+
+
+.userConteiner{    
+    background-color: var(--colorW1);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;    
+}
+
+.btnFollow{
+    background-color: var(--colorW3);
+    border: none;
+    border-radius: 20px;
+    width: 100px;
+    height: 30px;
+    color: white;
+    margin: 0px 20px;
+    font-size: 16px;
+    border: 1px solid #fff;
+}
+
+.follow{    
+    margin-top: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.bibliography{
+    background-color: var(--colorW1);
+    color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+    text-align: justify;
+    line-height: 22px;    
+    margin-top: 12px;
+}
+
+.h2, .p{
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.tituloBli{
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.generos{
+    margin-top: 10px;
+}
+
+.generos>*{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    list-style: none;       
+}
+
+.h2Generos{
+    font-size: 20px;
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+.ul{
+    margin-left: 20px
+}
+
+.li{
+    margin: 5px 10px;
+    padding: 5px 10px;
+    color: white;
+    background-color: var(--colorW1);
+    border-radius: 20px;
+}
+
+.socialRedes{
+    background-color: var(--colorW1);    
+    margin-top: 10px;
+    padding: 18px 0px;
+    border-radius: 20px;
+}
+
+.h2Red{
+    color: white;
+    margin-left: 20px;
+}
+
+.ulRed{
+    display: flex;
+    list-style: none;
+    margin-left: 20px;    
+}
+
+.liRed{
+    border-radius: 50px;
+    margin: 5px 10px;
+    color: white;
+}
+
+
+.contenidoContainer{    
+    flex-direction: column;    
+    margin-top: 20px;    
+}
+
+.contenidoContainer, .contenidoContainer>ul{    
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+    list-style: none;        
+}
+
+.ulContenido{
+    background-color: var(--colorW1);    
+    width: 95%;
+    border-radius: 10px;
+}
+
+.ulContenido>li{
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    color: white;
+    font-size: 20px;    
+}
+
+.ulContenido>li::selection{
+    border: 1px solid #000;
+}
+
+.listasContiner{
+    width: 95%;    
+}

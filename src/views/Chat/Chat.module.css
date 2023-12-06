@@ -1,0 +1,15 @@
+.options, .chats{
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+    overflow: scroll;
+}
+
+.options{
+    flex-direction: row;
+}
+
+.chats{
+    margin-top: 20px;
+    flex-direction: column;
+}

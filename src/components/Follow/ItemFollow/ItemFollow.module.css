@@ -1,0 +1,24 @@
+.container{
+    background-color: var(--colorW1);
+    margin: 10px 0;
+    padding: 10px 0;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgContainer{
+    background-color: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    margin: 0 1px;
+}
+
+.infoContainer{    
+    color: white;
+    margin-left: 10px;
+    margin-right: 52px;    
+}

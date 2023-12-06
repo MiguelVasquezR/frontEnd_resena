@@ -1,0 +1,14 @@
+@import '../../index.css';
+
+.post{
+    background-color: var(--colorW3);
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 28px;
+}
+
+.information{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #fff;
+}

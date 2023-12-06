@@ -1,0 +1,42 @@
+
+.publicacionForo{
+    background-color: var(--colorW1);
+}
+
+.img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    border: 1px solid #fff;
+    margin-left: 10px;
+}
+
+.informationContainer{
+    display: flex;
+    flex-direction: row;    
+    align-items: center;    
+    padding: 10px;
+    color: white;    
+}
+
+.infoContainer{
+    margin-left: 12px;
+}
+
+.descriptionContainer{
+    width: 90%;
+    margin: 10px auto;    
+    background-color: #fff;
+    padding: 7px;
+    text-align: justify;
+}
+
+.h2{
+    font-size: 20px;
+}
+
+.h3{
+    margin: 5px 0;
+    font-size: 12px;
+    color: rgba(255, 255, 255, .7);
+}

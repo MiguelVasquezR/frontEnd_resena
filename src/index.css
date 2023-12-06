@@ -1,0 +1,15 @@
+:root{
+  --colorW1: #20a8ff;
+  --colorW2: #006edf;
+  --colorW3: #008dff;
+
+  --colorB1: #0057b4;  
+  --colorB2: #004a94;
+  --colorB3: #003366;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
