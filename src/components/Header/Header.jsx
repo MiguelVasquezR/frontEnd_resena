@@ -13,8 +13,7 @@ import { getUser, logout } from "../../hooks/Aut";
 
 function Header() {
     const navigate = useNavigate();
-    const [open, setOpen] = useState(false);    
-    console.log(getUser());
+    const [open, setOpen] = useState(false);        
     const lasOption = getUser() ? "LogOut" : "Login";            
     const options = ["Perfil", "Ajustes", "Foros", "Tema", "Ayuda", lasOption];
 

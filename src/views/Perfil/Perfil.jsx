@@ -5,11 +5,13 @@ import { useState } from 'react';
 import Publicacion from '../../components/Publicacion/Publicacion';
 import Lista from '../../components/Lista/Lista';
 import { useNavigate } from 'react-router-dom';
+import { getPersona } from '../../hooks/Aut';
 
 function Perfil() {
     const redes = ["Facebook", "Instagram", "Git Hub"];
     const generos = ["Novela", "Cuento"];
     const [option, setOption] = useState(true);
+    const persona = getPersona();
 
     const handleClicOption = (e) =>{
         if (e.target.id === "resena"){
@@ -46,7 +48,7 @@ function Perfil() {
 
             <div className={styles.bibliography}>
                 <h2 className={styles.tituloBli}>Bibliografia</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Praesentium minus nostrum alias harum. Ratione aperiam similique minus a commodi ab ea temporibus quaerat molestias praesentium, magnam omnis, sit facilis quos.</p>
+                <p>{persona.biografia ? persona.biografia : "Aún no hay información sobre el usuario"}</p>
             </div>
 
             <div className={styles.generos}>

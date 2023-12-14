@@ -6,7 +6,7 @@ export const getUser = () =>{
 
 export const getPersona = () =>{    
     const localStorage = window.localStorage.getItem('localPersonneStorage');  
-    const persona = JSON.parse(localStorage);      
+    const persona = JSON.parse(localStorage);          
     return persona;  
 }
 
@@ -16,9 +16,10 @@ export const addPersonne = () =>{
       const user = getUser();
       const res = await fetch(`http://localhost:4567/persona?id=${user.IDPersona}`);  
       const persona = await res.json();
-      window.localStorage.setItem('localPersonneStorage', JSON.stringify(persona));
+      console.log(persona);
+      window.localStorage.setItem('localPersonneStorage', JSON.stringify(persona));      
     }catch(error){
-      console.log(error);
+      console.log("Erro obtener persona" , error);
     }
   }
   fetchEvent();
