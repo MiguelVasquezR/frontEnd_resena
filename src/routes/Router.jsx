@@ -14,6 +14,7 @@ import InteractionMessage from "../views/Chat/InteractionMessage/InteractionMess
 import CreateForo from '../components/Foro/CreateForo/CreateForo'
 import ForoMain from "../views/Foro/ForoMain/ForoMain";
 import Follow from '../views/Follow/Follow';
+import CrearLista from '../views/Lista/CrearLista/CrearLista'
 import E404 from "../views/Error/E404.JSX";
 
 
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
     {
         path: "/follows",
         element: <Follow />,
+    },
+    {
+        path: "/crear-lista",
+        element: <CrearLista />,
     },
 
 ]);

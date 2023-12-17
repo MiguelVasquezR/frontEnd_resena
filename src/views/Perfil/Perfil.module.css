@@ -146,3 +146,21 @@
 .listasContiner{
     width: 95%;    
 }
+
+.urls{
+    margin: 0px 10px;
+    list-style: none;
+    text-decoration: none;
+}
+
+.optionRedesContainer{
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.select{
+    background-color: var(--colorW3);
+    border-radius: 10px;
+}

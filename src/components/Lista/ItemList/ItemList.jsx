@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import styles from './ItemList.module.css'
 import {FaHeart} from 'react-icons/fa';
+import {MdDelete } from 'react-icons/md';
 
 function ItemList(props){
+
     const {urlPortada, nombre, cantidad, visibilidad} = props;
     const [band, setBand] = useState(false);
     const [color, setColor] = useState('white');
@@ -17,7 +19,7 @@ function ItemList(props){
             setColor('white');
             setBand(false);
         }
-    }
+    } 
 
     const handleClicList = () =>{
         alert("Entrar a lista");
@@ -32,7 +34,7 @@ function ItemList(props){
                 <h2 className={styles.h2}>{cantidad + " Libros"}</h2>
                 <h2 className={styles.h2}>{visibilidad}</h2>
             </section>
-            <FaHeart size={30} onClick={handleLike} color={color}/>
+            <MdDelete  size={30} onClick={handleLike} color={color}/>
         </div>
     )
 }

@@ -3,7 +3,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;        
+    justify-content: center;  
+    padding: 15px 0;      
 }
 
 .img{
@@ -13,8 +14,12 @@
     margin: 10px 5px;
 }
 
+.imgContainer{
+    margin: 0 10px;
+}
+
 .h3_nombre{
-    font-size: 14px;
+    font-size: 25px;
     color: white;
 }
 

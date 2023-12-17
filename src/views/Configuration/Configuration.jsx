@@ -1,22 +1,25 @@
 import Header from "../../components/Header/Header";
 import styles from './Configuration.module.css';
-import { RiMoonClearLine, RiMoonClearFill } from 'react-icons/ri';
-import { IoAddCircleOutline, IoEyeOutline } from 'react-icons/io5';
-import { useEffect, useState } from "react";
-import { getUser } from "../../hooks/Aut";
 import UpdateUserForm from "./UpdateUser/UpdateUserForm";
 import UpdatePersona from "./UpdatePersona/UpdatePersona";
 import axios from "axios";
+
+import { RiMoonClearLine, RiMoonClearFill } from 'react-icons/ri';
+import { IoAddCircleOutline, IoEyeOutline } from 'react-icons/io5';
+import { useEffect, useState } from "react";
+import { logout, getUser } from "../../hooks/Aut";
 import {FaSquareXTwitter,FaGithub} from 'react-icons/fa6'
 import {IoLogoLinkedin} from 'react-icons/io'
 import { FaInstagram, FaFacebook} from 'react-icons/fa'
 import {TiSocialAtCircular} from 'react-icons/ti';
+import { useNavigate } from "react-router-dom";
 
 function Configuration() {    
     const [open, setOpen] = useState(false);
     const [option, setOption] = useState(false);    
     const [url, setUrl] = useState('');    
     const [redes, setRedes] = useState([]);
+    const navigate = useNavigate();        
 
     const handleRenderAddRed = () => {
         setOpen(!open);
@@ -68,10 +71,14 @@ function Configuration() {
         GetRedSocial();
     }, [GetRedSocial])
 
+    const handleLogout = () =>{        
+        logout();
+        navigate("/");
+    }    
+
     const selectLogo = (url) => {
         const lowercaseUrl = url.toLowerCase();
         const tam = 50;
-    
         if (lowercaseUrl.includes('github')) {
             return <FaGithub size={tam} color="#4183C4"/>;
         } else if (lowercaseUrl.includes('twitter')) {
@@ -85,7 +92,7 @@ function Configuration() {
         } else {            
             return <TiSocialAtCircular size={tam} />
         }
-    };
+    };    
 
     return (
         <>
@@ -104,6 +111,7 @@ function Configuration() {
             </div>
 
             <div className={styles.redesContainer}>
+
                 <h2 style={{ fontSize: 30, margin: "5px 0" }}>Redes Sociales</h2>
                 
                 <div className={styles.optionRedesContainer}>
@@ -119,6 +127,7 @@ function Configuration() {
                         </form>
                     </div>
                 }
+
             </div>
 
             {/* <div className={styles.temaContainer}>
@@ -131,7 +140,7 @@ function Configuration() {
 
             <div className={styles.btnsPlus}>
                 <button className={styles.btns}>Ayuda</button>
-                <button className={styles.btnLogOut}>Cerrar Sesión</button>
+                <button className={styles.btnLogOut} onClick={handleLogout}>Cerrar Sesión</button>
             </div>
 
         </>
