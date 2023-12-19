@@ -3,6 +3,7 @@ import styles from './Configuration.module.css';
 import UpdateUserForm from "./UpdateUser/UpdateUserForm";
 import UpdatePersona from "./UpdatePersona/UpdatePersona";
 import axios from "axios";
+import PhotoPerfil from "../../components/SelectPerfilPhoto/PhotoPerfil";
 
 import { RiMoonClearLine, RiMoonClearFill } from 'react-icons/ri';
 import { IoAddCircleOutline, IoEyeOutline } from 'react-icons/io5';
@@ -55,6 +56,8 @@ function Configuration() {
             }
         }            
         fetchAddRed();
+
+        setUrl('');
     }
 
     const GetRedSocial = () =>{        
@@ -69,7 +72,7 @@ function Configuration() {
 
     useEffect(() => {
         GetRedSocial();
-    }, [GetRedSocial])
+    }, [])
 
     const handleLogout = () =>{        
         logout();
@@ -99,6 +102,12 @@ function Configuration() {
             <Header />
 
             <div className={styles.informationContainer}>
+            <h2 style={{ fontSize: 30 }}>Cambiar tu foto</h2>
+                <br />
+                <PhotoPerfil />
+            </div>
+
+            <div className={styles.informationContainer}>
                 <h2 style={{ fontSize: 30 }}>Información</h2>
                 <ul className={styles.ulContainer}>
                     <li className={styles.btns} id="dPersonales" onClick={handleChoseOption}>Datos Personales</li>
@@ -122,7 +131,7 @@ function Configuration() {
                 {open === true &&
                     <div>
                         <form action="" onSubmit={handleAddRed} className={styles.form}>
-                            <input type="text" placeholder="Ingresa URL de tu red" className={styles.input} onChange={handleChangeRedSocial} />
+                            <input value={url}  type="text" placeholder="Ingresa URL de tu red" className={styles.input} onChange={handleChangeRedSocial} />
                             <button type="submit" className={styles.btns}>Agregar</button>
                         </form>
                     </div>

@@ -1,44 +1,34 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from './PhotoPerfil.module.css';
 import { MdOutlinePhotoCamera } from 'react-icons/md';
-import axios from "axios";
 
-
-function PhotoPerfil() {
-    const [selectedFile, setSelectedFile] = useState(null);
+function PhotoPerfil() {    
     const [imageUrl, setImageUrl] = useState(null);
-    const fileInputRef = useRef(null);
-
-    const handleFileChange = (e) => {
+    const fileInputRef = useRef(null);   
+    
+    const handleUploadImage = (e) =>{
+        e.stopPropagation();
+        e.preventDefault();    
         const file = e.target.files[0];
-        setSelectedFile(file);
-        const objectUrl = URL.createObjectURL(file);
-        setImageUrl(objectUrl);        
-
-        const procesarImagen = async (selectedFile) => {
-            if (selectedFile) {
-                try {
-                    const blob = await fetch(imageUrl).then((response) => response.blob());
-                    const formData = new FormData();
-                    formData.append('imagen', blob, selectedFile.name);
-                    const response = await axios.post('http://localhost:4567/create-lista-img', formData);
-                    console.log('Respuesta del backend:', response.data);
-                } catch (error) {
-                    console.error('Error al cargar la imagen al backend:', error);
-                }
-            }
+        const URLfile = URL.createObjectURL(file);
+        setImageUrl(URLfile);                
+        const formData = new FormData();
+        formData.set('image', file);            
+        const fetchUploadImage = async () =>{            
+            const res = await fetch('http://localhost:9000/image/post', {method: 'POST', body: formData});                        
+            const respuesta = await res.json();            
+            window.localStorage.setItem('IDImagen', respuesta.IDImagen);
         }
-
-        // procesarImagen(selectedFile);
+        fetchUploadImage();
     }
+    
 
     return (
         <div className={styles.selectContainer}>
             {imageUrl ? <img className={styles.imgPerfil} src={imageUrl} alt="Vista previa" /> : <div className={`${styles.imgPerfil} ${styles.containerFalseImg}`}><MdOutlinePhotoCamera size={60} /></div>}
-            <input type="file" onChange={handleFileChange} style={{ display: 'none' }} ref={fileInputRef} />
+            <input name="image" type="file" onChange={handleUploadImage} style={{ display: 'none' }} ref={fileInputRef} />
             <button className={styles.btnPerfil} onClick={(e) => { e.preventDefault(); fileInputRef.current.click() }}>Seleccionar Imagen</button>
         </div>
-
     );
 }
 

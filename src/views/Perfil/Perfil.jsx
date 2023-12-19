@@ -14,6 +14,9 @@ import {FaSquareXTwitter,FaGithub} from 'react-icons/fa6'
 import {IoLogoLinkedin} from 'react-icons/io'
 import { FaInstagram, FaFacebook} from 'react-icons/fa'
 import {TiSocialAtCircular} from 'react-icons/ti';
+import {ImPencil2} from 'react-icons/im'
+import {FiSave} from 'react-icons/fi'
+import { id } from 'date-fns/locale';
 
 function Perfil() {    
     const generos = ["Novela", "Cuento"];
@@ -21,6 +24,8 @@ function Perfil() {
     const persona = getPersona();    
     const [redes, setRedes] = useState([]);       
     const [select, setSelect] = useState(true);
+    const [isEditing, setIsEditing] = useState(false);
+    const [isFollow, setIsFollow] = useState(false);    
 
     const handleClicOption = (e) =>{
         if (e.target.id === "resena"){
@@ -30,6 +35,11 @@ function Perfil() {
             setOption(false);
             setSelect(false);
         }
+    }
+
+    const handleSaveBiografia = () =>{
+        console.log("Guardado");
+        setIsEditing(false);
     }
 
     const navigate = useNavigate();
@@ -64,9 +74,13 @@ function Perfil() {
         }
     };    
 
+    const handleBiografiaEdit = () =>{
+        setIsEditing(!isEditing);
+    }
+
     useEffect(() => {
         GetRedSocial();
-    }, [GetRedSocial])
+    }, [])
 
     return (
         <>
@@ -89,8 +103,11 @@ function Perfil() {
             </div>
 
             <div className={styles.bibliography}>
-                <h2 className={styles.tituloBli}>Bibliografia</h2>
-                <p>{persona.biografia ? persona.biografia : "Aún no hay información sobre el usuario"}</p>
+                <div className={styles.headerBiografia}>
+                    <h2 className={styles.tituloBli}>Bibliografia</h2>                
+                    {isEditing ? <FiSave size={25} onClick={handleSaveBiografia}/> : <ImPencil2 size={20} onClick={handleBiografiaEdit}/>}
+                </div>                            
+                {isEditing ? <textarea placeholder='Escribe tu biografia' className={styles.edtiBiografia}/> : <p>{persona.biografia ? persona.biografia : "Aún no hay información sobre el usuario"}</p>}
             </div>
 
             <div className={styles.generos}>

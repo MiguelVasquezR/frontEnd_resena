@@ -2,16 +2,16 @@
     background-color: var(--colorW1);
     color: white;
 
-    width: 100%;    
+    width: 90%;    
     height: 130px;
-    border-radius: 8px;
-    margin: 10px 0;
+    border-radius: 12px;
+    margin: 10px auto;
 }
 
 .container, .containerImg{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 

@@ -16,6 +16,7 @@ import ForoMain from "../views/Foro/ForoMain/ForoMain";
 import Follow from '../views/Follow/Follow';
 import CrearLista from '../views/Lista/CrearLista/CrearLista'
 import E404 from "../views/Error/E404.JSX";
+import ChoseBook from '../views/Lista/CrearLista/ChoseBook';
 
 
 const router = createBrowserRouter([
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
         path: "/crear-lista",
         element: <CrearLista />,
     },
+    {
+        path: "/seleccion-libros",
+        element: <ChoseBook />
+    }
 
 ]);
 
