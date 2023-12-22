@@ -3,17 +3,21 @@ import ItemInformationUser from '../ItemInformationUser/ItemInformationUser';
 import ItemInformationBook from '../ItemInformationBook/ItemInformationBook';
 import Interacciones from './Interacciones/Interacciones';
 import InformationContainer from './InformationContainer/InformationContainer';
+import { MdOutlinePlaylistAdd } from 'react-icons/md';
 
-function Publicacion(){
-    return(
+function Publicacion(props) {
+    const { contenido, titulo, autor, editorial, foto } = props;
+
+    return (
         <div className={styles.post}>
             <div className={styles.information}>
                 <ItemInformationUser />
-                <ItemInformationBook />
+                <ItemInformationBook titulo={titulo} autor={autor} editorial={editorial} urlImg={foto}/>
             </div>
-            <InformationContainer contenido="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero iure impedit aperiam vel alias eius dignissimos. Mollitia reiciendis accusantium sapiente architecto accusamus excepturi voluptate perspiciatis saepe similique magnam. Corrupti, aspernatur." />
-            <Interacciones />            
+            <InformationContainer contenido= {contenido} />
+            <Interacciones />           
         </div>
+
     )
 }
 

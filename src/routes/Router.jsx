@@ -17,6 +17,7 @@ import Follow from '../views/Follow/Follow';
 import CrearLista from '../views/Lista/CrearLista/CrearLista'
 import E404 from "../views/Error/E404.JSX";
 import ChoseBook from '../views/Lista/CrearLista/ChoseBook';
+import Autor from "../views/Autor/Autor";
 
 
 const router = createBrowserRouter([
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/autor",
-        element: <Genero />,        
+        element: <Autor />,        
     },
     {
         path: "/perfil",

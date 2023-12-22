@@ -10,12 +10,12 @@ export const getPersona = () =>{
     return persona;  
 }
 
-export const addPersonne = () =>{
+export const addPersonne = () =>{  
   const fetchEvent = async () =>{
     try{
       const user = getUser();
-      const res = await fetch(`http://localhost:4567/persona?id=${user.IDPersona}`);  
-      const persona = await res.json();
+      const res = await fetch(`http://192.168.1.67:4567/persona?id=${user.IDPersona}`, {method: 'GET'});  
+      const persona = await res.json();           
       console.log(persona);
       window.localStorage.setItem('localPersonneStorage', JSON.stringify(persona));      
     }catch(error){
@@ -25,7 +25,25 @@ export const addPersonne = () =>{
   fetchEvent();
 }
 
+export const upload = () =>{  
+  const fetchEvent = async () =>{
+    try{
+      const user = getUser();
+      const res = await fetch(`http://192.168.1.67:4567/persona?id=${user.IDPersona}`, {method: 'GET'});  
+      const persona = await res.json();                             
+      let localData = window.localStorage.getItem('localPersonneStorage');                  
+      let existingData = localData ? JSON.parse(localData) : {};      
+      Object.assign(existingData, persona);
+      console.log(existingData)      
+      window.localStorage.setItem('localPersonneStorage', JSON.stringify(existingData));
+    }catch(error){
+      console.log("Erro obtener persona" , error);
+    }
+  }
+  fetchEvent();
+}
+
+
 export const logout = () =>{
-  window.localStorage.removeItem('localUserStorage');  
-  window.localStorage.removeItem('localPersonneStorage');
+  window.localStorage.clear();  
 }

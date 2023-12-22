@@ -30,18 +30,18 @@ function Lista() {
     }, []);
 
     const getImages = async (ID) =>{        
-        const res = await fetch(`http://localhost:9000/image/get/${ID}`);
+        const res = await fetch(`http://192.168.1.67:9000/image/get/${ID}`);
         const data = await res.json();                
         setImagenes(data);                      
     }
 
     const handleDeleteList = (listID, IDImangen) => {        
         const fetchDeleteList = async () => {
-            await fetch(`http://localhost:4567/eliminar-lista?id=${listID}`, { method: 'DELETE' });            
+            await fetch(`http://192.168.1.67:4567/eliminar-lista?id=${listID}`, { method: 'DELETE' });            
         }
         fetchDeleteList();
         const fetchDeleteImage = async () => {
-            await fetch(`http://localhost:9000/image/delete/${IDImangen}`, { method: 'DELETE' });            
+            await fetch(`http://192.168.1.67:9000/image/delete/${IDImangen}`, { method: 'DELETE' });            
         }
         fetchDeleteImage();
         setLista(prevLista => prevLista.filter(lista => lista.ID !== listID));

@@ -1,5 +1,50 @@
 @import '../../index.css';
 
-.autorContainer{
-    background-color: var(--colorW3);
+.informationContainer{
+    background-color: var(--colorW1);    
+
+    margin: 20px auto;
+    padding: 10px;
+    width: 90%;
+    border-radius: 16px;
+}
+
+.img{
+    width: 130px;
+    height: 130px;
+    border-radius: 100px;
+}
+
+.superior, .imgContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
+}
+
+.imgContainer{
+    padding: 10px;
+}
+
+.superior > *{
+    width: 50%;
+}
+
+.datos{
+    font-size: 16px;
+    color: white;
+    margin: 8px 0;
+    text-align: center;
+}
+
+.biografiaContainer{
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.biografia{
+    font-size: 18px;
+    text-align: justify;
+    margin-top: 5px;
 }

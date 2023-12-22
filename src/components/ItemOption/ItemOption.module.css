@@ -1,23 +1,23 @@
 .img{
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;    
+    border-radius: 10px;
 }
 
 .li{
     list-style: none;
-    width: 52px;    
-    height: 80px;
+    width: 40px;    
+    height: 60px;
     margin: 20px 30px;
-    
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center;    
 }
 
 .h2{    
     margin-top: 4px;
-    font-size: 12px;
+    font-size: 14px;
     color: white;    
     text-align: center;
 }

@@ -1,0 +1,45 @@
+.generos{
+    margin-top: 10px;
+}
+
+.generos>*{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    list-style: none;       
+}
+
+.h2Generos{
+    font-size: 20px;
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+.ul{
+    margin-left: 20px
+}
+
+.li{
+    margin: 5px 10px;
+    padding: 5px 10px;
+    color: white;
+    background-color: var(--colorW1);
+    border-radius: 20px;
+}
+
+.img{
+    width: 60px;
+    padding: 10px;
+}
+
+.containerGenerosFav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;    
+    width: 60px;
+    flex-wrap: nowrap;
+    margin: 0 4px;
+}

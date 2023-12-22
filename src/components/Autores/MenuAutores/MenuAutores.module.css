@@ -1,30 +1,25 @@
 @import '../../../index.css';
 
-.autorsContainer > *{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;    
-    flex-wrap: nowrap;
-}
-
-.autorsContainer{        
+.autorsContainer {
     padding: 10px;
     background-color: var(--colorW3);
-    width: 95%;        
-    margin: 0px auto;
+    width: 95%;
+    margin: 0 auto;
     border-radius: 10px;
+    text-align: center;
 }
 
-.ul{    
-    text-align: center;  
-    margin: 30px auto;  
+.title {
+    font-size: 40px;
+    color: white;
 }
 
-.ul > li{
-    margin-left: 30px;
+.slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.ul > li > h2{
-    font-size: 20px;
+.carrusel{
+    margin: 10px 0;
 }

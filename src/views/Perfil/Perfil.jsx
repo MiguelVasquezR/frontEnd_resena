@@ -10,22 +10,22 @@ import InformacionPerfil from '../../components/Perfil/InformacionPerfil'
 import { useEffect } from 'react';
 import axios from 'axios';
 
-import {FaSquareXTwitter,FaGithub} from 'react-icons/fa6'
-import {IoLogoLinkedin} from 'react-icons/io'
-import { FaInstagram, FaFacebook} from 'react-icons/fa'
-import {TiSocialAtCircular} from 'react-icons/ti';
-import {ImPencil2} from 'react-icons/im'
-import {FiSave} from 'react-icons/fi'
-import { id } from 'date-fns/locale';
 
-function Perfil() {    
-    const generos = ["Novela", "Cuento"];
-    const [option, setOption] = useState(true);
-    const persona = getPersona();    
-    const [redes, setRedes] = useState([]);       
-    const [select, setSelect] = useState(true);
-    const [isEditing, setIsEditing] = useState(false);
+
+import { id } from 'date-fns/locale';
+import RedSocial from './RedSocial/RedSocial';
+import Generos from './GeneroComponent/Generos';
+import Biografia from './Biografia/Biografia';
+
+function Perfil() {        
+    const [option, setOption] = useState(true);    
+    const [select, setSelect] = useState(true);    
     const [isFollow, setIsFollow] = useState(false);    
+    const [resenas, setResenas] = useState([]);
+
+    useEffect(() => {
+        getPublications();
+    }, [])
 
     const handleClicOption = (e) =>{
         if (e.target.id === "resena"){
@@ -35,56 +35,33 @@ function Perfil() {
             setOption(false);
             setSelect(false);
         }
-    }
-
-    const handleSaveBiografia = () =>{
-        console.log("Guardado");
-        setIsEditing(false);
-    }
+    }    
 
     const navigate = useNavigate();
     const handleClicFollow = () =>{
         navigate('/follows')
     }
 
-    const GetRedSocial = () =>{        
-        const fetchGetRed = async () =>{
-            const user = getUser();
-            const res = await axios.get('http://localhost:4567/red-social', {params: user});
-            setRedes(res.data);                 
+
+    const getPublications = () => {
+
+        const user = getUser();
+
+        const fetchPublication = async () => {
+            const res = await fetch(`http://192.168.1.67:4567/get-resenas?IDUsuario=${user.IDUsuario}`, {method: 'GET'});
+            const data = await res.json();
+            setResenas(data);
         }
-        fetchGetRed();
+
+        fetchPublication();    
+
     }
 
-    const selectLogo = (url) => {
-        const lowercaseUrl = url.toLowerCase();
-        const tam = 50;
-        if (lowercaseUrl.includes('github')) {
-            return <FaGithub size={tam} color="#4183C4"/>;
-        } else if (lowercaseUrl.includes('twitter')) {
-            return <FaSquareXTwitter size={tam} color="#1DA1F2"/>;
-        } else if (lowercaseUrl.includes('linkedin')) {
-            return <IoLogoLinkedin size={tam} color="#0077B5"/>;
-        } else if (lowercaseUrl.includes('instagram')) {
-            return <FaInstagram size={tam} color="#C13584"/>;
-        } else if (lowercaseUrl.includes('facebook')) {
-            return <FaFacebook size={tam} color="#1879F2"/>;
-        } else {            
-            return <TiSocialAtCircular size={tam} />
-        }
-    };    
-
-    const handleBiografiaEdit = () =>{
-        setIsEditing(!isEditing);
-    }
-
-    useEffect(() => {
-        GetRedSocial();
-    }, [])
 
     return (
         <>
             <Header />
+
             <div className={styles.userConteiner}>
                 < InformacionPerfil />
                 <button className={styles.btnFollow}>Seguir</button>
@@ -93,41 +70,21 @@ function Perfil() {
             <div className={styles.follow} onClick={handleClicFollow}>
                 <div>
                     <h2 className={styles.h2}>Seguidores</h2>
-                    <p className={styles.p}>1,200</p>
+                    <p className={styles.p}>30,130,200</p>
                 </div>
-
                 <div>
                     <h2 className={styles.h2}>Seguidos</h2>
                     <p className={styles.p}>456</p>
                 </div>
             </div>
 
-            <div className={styles.bibliography}>
-                <div className={styles.headerBiografia}>
-                    <h2 className={styles.tituloBli}>Bibliografia</h2>                
-                    {isEditing ? <FiSave size={25} onClick={handleSaveBiografia}/> : <ImPencil2 size={20} onClick={handleBiografiaEdit}/>}
-                </div>                            
-                {isEditing ? <textarea placeholder='Escribe tu biografia' className={styles.edtiBiografia}/> : <p>{persona.biografia ? persona.biografia : "Aún no hay información sobre el usuario"}</p>}
-            </div>
+            
 
-            <div className={styles.generos}>
-                <h2 className={styles.h2Generos}>Géneros Favoritos</h2>
-                <ul className={styles.ul}>
-                    {generos.map((titulo) => {
-                       return(<li className={styles.li}>{titulo}</li>);
-                    })}                
-                </ul>
-            </div>
+            <Biografia />
+            <Generos />
+            <RedSocial />
 
-            <div className={styles.socialRedes}>
-
-                <h2 className={styles.h2Red}>Redes Sociales</h2>
-
-                <div className={styles.optionRedesContainer}>
-                    {redes ? <div>{ redes.map((red) => {return <a target="_blank" key={red.URL} href={red.URL} className={styles.urls}> {selectLogo(red.URL)} </a>})}</div> : ''}                    
-                </div>
-
-            </div>
+            
 
             <div className={styles.contenidoContainer}>
 
@@ -137,7 +94,13 @@ function Perfil() {
                     </ul>
 
                     <div className={styles.listasContiner}>
-                        {option === true && <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}><Publicacion /><Publicacion /><Publicacion /></div>}
+                        {option === true && <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+                            
+                            {resenas.map((resena) => {
+                                return <Publicacion contenido={resena.contenido} titulo={resena.nombreLibro} autor={resena.nombreAutor} editorial={resena.editorial} foto={resena.FotoID}/>
+                            })}
+
+                        </div>}
                         {option === false && <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}><Lista /></div>}
                     </div>
             </div>

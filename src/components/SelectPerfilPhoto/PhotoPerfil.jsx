@@ -2,9 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import styles from './PhotoPerfil.module.css';
 import { MdOutlinePhotoCamera } from 'react-icons/md';
 
-function PhotoPerfil() {    
+function PhotoPerfil({onClick}) {    
     const [imageUrl, setImageUrl] = useState(null);
-    const fileInputRef = useRef(null);   
+    const fileInputRef = useRef(null);       
     
     const handleUploadImage = (e) =>{
         e.stopPropagation();
@@ -15,12 +15,14 @@ function PhotoPerfil() {
         const formData = new FormData();
         formData.set('image', file);            
         const fetchUploadImage = async () =>{            
-            const res = await fetch('http://localhost:9000/image/post', {method: 'POST', body: formData});                        
+            const res = await fetch('http://192.168.1.67:9000/image/post', {method: 'POST', body: formData});                        
             const respuesta = await res.json();            
             window.localStorage.setItem('IDImagen', respuesta.IDImagen);
         }
         fetchUploadImage();
     }
+
+
     
 
     return (

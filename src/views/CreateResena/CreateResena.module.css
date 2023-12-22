@@ -4,83 +4,6 @@
     align-items: center;
 }
 
-
-.fotoContainer{    
-    flex-direction: column;
-}
-
-.img{    
-    width: 150px;
-    height: 150px;
-    border-radius: 75px;
-    margin: 10px 0;
-    border: 1px solid #000;
-}
-
-.btnFoto{    
-    margin: 20px 0;
-    width: 30%;
-    padding: 10px;
-    border-radius: 50px;
-    border: none;
-    background-color: var(--colorW1);
-    color: white;
-    font-size: 20px;
-}
-
-.form{        
-    flex-direction: column;
-    margin: 20px 0;
-}
-
-.input{
-    font-size: 20px;
-    width: 50%;
-    margin: 20px 0;
-    padding: 5px;
-    border: none;
-    border-bottom: 1px solid #000;
-    background-color: transparent;
-    outline: none;
-}
-
-.calificationContainer{
-    flex-direction: column;
-}
-
-.resenaContainer{
-    margin: 20px auto;
-    width: 80%;
-    flex-direction: column;
-    background-color: var(--colorW1);
-    color: white;
-    text-align: center;
-}
-
-.writingContainer{    
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.optionResena{
-    width: 100%;
-    height: 30px;    
-}
-
-.textResena{
-    width: 90%;
-    height: 400px;
-    resize: none;
-    overflow: none;
-    padding: 20px;
-    margin: 10px 0 50px 0;
-    font-size: 20px;
-    font-family: 'Georgia';
-}
-
 .btnPublicar{
     width: 40%;
     padding: 10px;
@@ -97,9 +20,4 @@
     justify-content: end;
 }
 
-.ul{
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-}
 

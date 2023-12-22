@@ -1,0 +1,33 @@
+
+.optionRedesContainer{
+    margin: 10px 12px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.socialRedes{
+    background-color: var(--colorW1);    
+    margin-top: 10px;
+    padding: 18px 0px;
+    border-radius: 20px;
+    width: 95%;
+    margin: 10px auto;
+}
+
+.h2Red{
+    color: white;
+    margin-left: 20px;
+}
+
+.ulRed{
+    display: flex;
+    list-style: none;
+    margin-left: 20px;    
+}
+
+.liRed{
+    border-radius: 50px;
+    margin: 5px 10px;
+    color: white;
+}

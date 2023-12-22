@@ -1,0 +1,45 @@
+
+.bibliography{
+    background-color: var(--colorW1);
+    color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+    text-align: justify;
+    line-height: 22px;    
+    margin-top: 12px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.h2, .p{
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.tituloBli{
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.headerBiografia{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;    
+}
+
+.edtiBiografia{
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    padding: 10px;
+    height: 100px;
+    color: white;
+    outline: none;
+    font-size: 16px;
+}
+
+.edtiBiografia::placeholder{
+    color: white;
+}

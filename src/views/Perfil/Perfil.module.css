@@ -1,7 +1,7 @@
 @import '../../index.css';
 
 
-.userConteiner, .follow, .bibliography, .generos, .socialRedes{
+.userConteiner, .follow, .generos{
     width: 95%;
     margin: 0 auto;
 }
@@ -30,7 +30,7 @@
 }
 
 .follow{    
-    margin-top: 12px;
+    margin: 12px 0;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -38,84 +38,10 @@
     text-align: center;
 }
 
-.bibliography{
-    background-color: var(--colorW1);
-    color: white;
-    border-radius: 20px;
-    padding: 10px 20px;
-    text-align: justify;
-    line-height: 22px;    
-    margin-top: 12px;
-}
-
-.h2, .p{
-    font-size: 16px;
-    line-height: 20px;
-}
-
-.tituloBli{
-    margin: 10px 0;
-    font-size: 20px;
-}
-
-.generos{
-    margin-top: 10px;
-}
-
-.generos>*{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-    list-style: none;       
-}
-
-.h2Generos{
-    font-size: 20px;
-    margin-left: 20px;
-    margin-bottom: 5px;
-}
-
-.ul{
-    margin-left: 20px
-}
-
-.li{
-    margin: 5px 10px;
-    padding: 5px 10px;
-    color: white;
-    background-color: var(--colorW1);
-    border-radius: 20px;
-}
-
-.socialRedes{
-    background-color: var(--colorW1);    
-    margin-top: 10px;
-    padding: 18px 0px;
-    border-radius: 20px;
-}
-
-.h2Red{
-    color: white;
-    margin-left: 20px;
-}
-
-.ulRed{
-    display: flex;
-    list-style: none;
-    margin-left: 20px;    
-}
-
-.liRed{
-    border-radius: 50px;
-    margin: 5px 10px;
-    color: white;
-}
-
 
 .contenidoContainer{    
-    flex-direction: column;    
-    margin-top: 20px;    
+    flex-direction: column;        
+    margin: 20px 0;
 }
 
 .contenidoContainer, .contenidoContainer>ul{    
@@ -153,37 +79,7 @@
     text-decoration: none;
 }
 
-.optionRedesContainer{
-    margin: 10px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .select{
     background-color: var(--colorW3);
     border-radius: 10px;
-}
-
-.headerBiografia{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;    
-}
-
-.edtiBiografia{
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid #fff;
-    background-color: transparent;
-    padding: 10px;
-    height: 100px;
-    color: white;
-    outline: none;
-    font-size: 16px;
-}
-
-.edtiBiografia::placeholder{
-    color: white;
 }
