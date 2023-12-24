@@ -13,7 +13,7 @@ function RedSocial() {
     const GetRedSocial = () => {
         const fetchGetRed = async () => {
             const user = getUser();
-            const res = await axios.get('http://192.168.1.67:4567/red-social', { params: user });
+            const res = await axios.get('http://192.168.100.6:4567/red-social', { params: user });
             setRedes(res.data);
         }
         fetchGetRed();

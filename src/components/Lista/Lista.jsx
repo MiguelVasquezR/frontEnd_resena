@@ -30,11 +30,11 @@ function Lista() {
 
     const handleDeleteList = (listID, IDImangen) => {        
         const fetchDeleteList = async () => {
-            await fetch(`http://192.168.1.67:4567/eliminar-lista?id=${listID}`, { method: 'DELETE' });            
+            await fetch(`http://192.168.100.6:4567/eliminar-lista?id=${listID}`, { method: 'DELETE' });            
         }
         fetchDeleteList();
         const fetchDeleteImage = async () => {
-            await fetch(`http://192.168.1.67:9000/image/delete/${IDImangen}`, { method: 'DELETE' });            
+            await fetch(`http://192.168.100.6:9000/image/delete/${IDImangen}`, { method: 'DELETE' });            
         }
         fetchDeleteImage();
         setLista(prevLista => prevLista.filter(lista => lista.ID !== listID));

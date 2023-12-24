@@ -31,9 +31,9 @@ function SelectGenero() {
 
     const handleRegister = async () => {
         if(seleccionados.length === 0){
-            await axios.post('http://192.168.1.67:4567/usuario-genero', "Sin genero");    
+            await axios.post('http://192.168.100.6:4567/usuario-genero', "Sin genero");    
         }else{
-            await axios.post('http://192.168.1.67:4567/usuario-genero', seleccionados);
+            await axios.post('http://192.168.100.6:4567/usuario-genero', seleccionados);
         }        
         window.location.reload();
     }

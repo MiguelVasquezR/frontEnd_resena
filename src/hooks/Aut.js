@@ -42,7 +42,7 @@ export const upload = () =>{
   const fetchEvent = async () =>{
     try{
       const user = getUser();
-      const res = await fetch(`http://192.168.1.67:4567/persona?id=${user.IDPersona}`, {method: 'GET'});  
+      const res = await fetch(`http://192.168.100.6:4567/persona?id=${user.IDPersona}`, {method: 'GET'});  
       const persona = await res.json();                             
       let localData = window.localStorage.getItem('localPersonneStorage');                  
       let existingData = localData ? JSON.parse(localData) : {};      
