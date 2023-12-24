@@ -26,7 +26,7 @@ function Generos() {
     const handleGetGeneros = () =>{
         const user = getUser();
         const fetchGeneros = async () =>{
-            const res = await fetch(`http://192.168.1.67:4567/generos-usuario?IDUsuario=${user.IDUsuario}`);
+            const res = await fetch(`http://192.168.100.6:4567/generos-usuario?IDUsuario=${user.IDUsuario}`);
             const data = await res.json();        
             console.log(data);    
             setGeneros(data);

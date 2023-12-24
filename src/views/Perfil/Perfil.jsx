@@ -48,7 +48,7 @@ function Perfil() {
         const user = getUser();
 
         const fetchPublication = async () => {
-            const res = await fetch(`http://192.168.1.67:4567/get-resenas?IDUsuario=${user.IDUsuario}`, {method: 'GET'});
+            const res = await fetch(`http://192.168.100.6:4567/get-resenas?IDUsuario=${user.IDUsuario}`, {method: 'GET'});
             const data = await res.json();
             setResenas(data);
         }

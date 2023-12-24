@@ -15,7 +15,7 @@ function PhotoPerfil({onClick}) {
         const formData = new FormData();
         formData.set('image', file);            
         const fetchUploadImage = async () =>{            
-            const res = await fetch('http://192.168.1.67:9000/image/post', {method: 'POST', body: formData});                        
+            const res = await fetch('http://192.168.100.6:9000/image/post', {method: 'POST', body: formData});                        
             const respuesta = await res.json();            
             window.localStorage.setItem('IDImagen', respuesta.IDImagen);
         }

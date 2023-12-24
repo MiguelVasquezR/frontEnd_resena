@@ -17,7 +17,7 @@ function Login() {
 
     const useLogin = async (datos) => {
       try {
-        const res = await fetch('http://192.168.1.67:4567/usuario', {
+        const res = await fetch('http://192.168.100.6:4567/usuario', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(datos)

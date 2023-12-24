@@ -19,7 +19,7 @@ function Genero() {
 
     const handleGetLibros = () => {
         const fetchBook = async () => {
-            const res = await fetch(`http://192.168.1.67:4567/libros/genero?genero=${genero}`);
+            const res = await fetch(`http://192.168.100.6:4567/libros/genero?genero=${genero}`);
             const data = await res.json();
             setLibros(data);
         }
@@ -27,7 +27,7 @@ function Genero() {
     }
 
     const getNombre = async (id) =>{        
-        const res = await fetch(`http://192.168.1.67:4567/nombre-autores?id=${id}`);
+        const res = await fetch(`http://192.168.100.6:4567/nombre-autores?id=${id}`);
         const data = await res.json();        
         return data;
     }

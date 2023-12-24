@@ -16,7 +16,7 @@ function ItemsBook({libro, nombre}) {
 
 
             <div className={styles.izquierdo}>
-                <img src={'http://192.168.1.67:9900/'+ foto + ".png"} alt={foto} className={styles.img} />
+                <img src={'http://192.168.100.6:9900/'+ foto + ".png"} alt={foto} className={styles.img} />
                 
                 <div>
                     <h3 style={{color:'white'}} >Calificación</h3>

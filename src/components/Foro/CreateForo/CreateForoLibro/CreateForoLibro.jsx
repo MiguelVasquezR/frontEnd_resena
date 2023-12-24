@@ -1,18 +1,30 @@
 import styles from './CreateForoLibro.module.css';
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import axios from 'axios';
 
 function CreateFotoLibro(){
+    const { register, handleSubmit, formState: { erros } } = useForm();
+    const [error, setError] = useState(false);
 
-    const placeHolder = ["Titulo Libro", "Nombre Autor", "Género", "Idioma", "Editorial"];
+    const placeHolder = ["Nombre Autor", "Género", "Idioma", "Editorial"];
+
+    const handleClic = async (data) => {
+        await axios.post('http://192.168.100.6:4567/foro-crear', data);
+        window.location.reload(false);
+    }
 
     return(
         <div>
             <h2 className={styles.titulo}>Datos</h2>
-            <form action="" className={styles.form}>
+            <form action="" className={styles.form} onSubmit={handleSubmit(handleClic)}>
+                <input className={styles.camposTX} type="hidden" value={ 'Libro' } {...register('Opcion', { required: true })}/>
                 <div className={styles.perfil}>
                     <div className={styles.fotoPerfil}></div>
-                    <input className={styles.btnPerfil} type="submit"/>
+                    <input className={styles.btnPerfil} />
                 </div>
-                <div className={styles.camposTXS}> 
+                <div className={styles.camposTXS}>
+                <input className={styles.camposTX} type="text" placeholder='Titulo Libro' {...register('Nombre', { required: true })}/>
                 {
                     placeHolder.map((titulo, i) => {
                         return(
@@ -21,8 +33,8 @@ function CreateFotoLibro(){
                     })
                 }
                 </div>
-                <textarea name="" id="" cols="30" rows="10" placeholder='Descripción del Foro' className={styles.description}></textarea>
-                <button className={styles.btnCrear}>Crear</button>
+                <textarea name="" id="" cols="30" rows="10" placeholder='Descripción del Foro' className={styles.description} {...register('Descripcion', { required: true })}></textarea>
+                <button type="submit" className={styles.btnCrear}>Crear</button>
             </form>
         </div>
     )

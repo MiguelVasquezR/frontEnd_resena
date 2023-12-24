@@ -14,7 +14,7 @@ function ItemInformationBook(props){
     const imagenes = () => {
         const fetchUploadImage = async () =>{   
             console.log("hola");         
-            await fetch(`http://192.168.1.67:9000/image/${urlImg}`, {method: 'GET'});                        
+            await fetch(`http://192.168.100.6:9000/image/${urlImg}`, {method: 'GET'});                        
         }    
 
         fetchUploadImage();
@@ -28,7 +28,7 @@ function ItemInformationBook(props){
                 <h3 className={styles.h3_autor}>{editorial}</h3>
             </div>
             <div className={styles.imgContainer}>
-                <img src={"http://192.168.1.67:9000/" + urlImg + ".png"} alt={"fotoPerfil-"+titulo} className={styles.img}/>
+                <img src={"http://192.168.100.6:9000/" + urlImg + ".png"} alt={"fotoPerfil-"+titulo} className={styles.img}/>
             </div>
         </div>        
     )

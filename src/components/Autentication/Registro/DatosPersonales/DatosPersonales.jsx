@@ -6,7 +6,7 @@ function DatosPersonales({clickHijo}){
     const { register, handleSubmit, formState: { erros } } = useForm();
 
     const handleClic = async (data) =>{                
-        await axios.post('http://192.168.1.67:4567/usuario-personales', data);
+        await axios.post('http://192.168.100.6:4567/usuario-personales', data);
         clickHijo(1);
     }
 
