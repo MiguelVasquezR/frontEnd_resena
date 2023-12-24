@@ -28,8 +28,14 @@
 
 .li{
     padding: 15px 10px;
+    width: 100%;
+    text-align: center;
 }
 
 .container{
     width: 100%;
+}
+
+.selected{
+    background-color: var(--colorW2);
 }

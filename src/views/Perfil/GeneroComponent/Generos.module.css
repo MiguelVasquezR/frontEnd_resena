@@ -1,5 +1,8 @@
 .generos{
-    margin-top: 10px;
+    margin-top: 10px;    
+    width: 100%;    
+    display: flex;
+    flex-direction: column;        
 }
 
 .generos>*{
@@ -7,7 +10,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: start;
-    list-style: none;       
+    list-style: none;           
 }
 
 .h2Generos{
@@ -17,12 +20,15 @@
 }
 
 .ul{
-    margin-left: 20px
+    margin-left: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    list-style: none;    
 }
 
 .li{
-    margin: 5px 10px;
-    padding: 5px 10px;
+    margin: 5px 0px;
+    padding: 5px 0px;
     color: white;
     background-color: var(--colorW1);
     border-radius: 20px;

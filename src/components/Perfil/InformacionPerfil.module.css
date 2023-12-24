@@ -16,6 +16,13 @@
     margin: 10px 12px;
 }
 
+.img{
+    width: 110px;
+    height: 110px;
+    border-radius: 90px;
+    object-fit: cover;
+}
+
 .informationUserContainer{    
     height: 100%;
 }

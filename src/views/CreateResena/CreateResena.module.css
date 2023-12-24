@@ -1,10 +1,11 @@
 .containerMain>*{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center;        
 }
 
 .btnPublicar{
+    background-color: #000;
     width: 40%;
     padding: 10px;
     font-size: 15px;
@@ -17,7 +18,18 @@
 }
 
 .btnContainer{
+    display: flex;
     justify-content: end;
+    width: 100%;
 }
 
+.containerA{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    
+}
 
+.containerA > *{
+    margin: 0px auto;
+}

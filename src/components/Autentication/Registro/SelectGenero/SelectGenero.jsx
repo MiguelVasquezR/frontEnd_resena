@@ -11,12 +11,12 @@ function SelectGenero() {
         "../../img/generos/poesia.png",
         "../../img/generos/memorias.png",
         "../../img/generos/romance.png",
-        "../../img/generos/teatro.svg",
+        "../../img/generos/teatro.png",
         "../../img/generos/ciencia_ficcion.png",
         "../../img/generos/no_ficcion.svg",
     ];
 
-    const titulos = ["Novela", "Cuento", "Poesia", "Memorias", "Romance", "Teatro", "Ciencia Ficción", "No ficción"];
+    const titulos = ["Novela", "Cuento", "Poesía", "Memorias", "Romance", "Teatro", "Ciencia Ficción", "No ficción"];
     const [seleccionados, setSeleccionados] = useState([]);    
     
     const handleSelectionClic = (nombre) => {
@@ -35,7 +35,7 @@ function SelectGenero() {
         }else{
             await axios.post('http://192.168.1.67:4567/usuario-genero', seleccionados);
         }        
-        navigate('/login');
+        window.location.reload();
     }
 
     const navigate = useNavigate();
