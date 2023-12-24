@@ -1,18 +1,17 @@
 import styles from './Autentication.module.css';
 import Header from '../../components/Header/Header';
 import Logo from '../../../public/img/logo.png';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Login from '../../components/Autentication/Login/Login';
 import Registro from '../../components/Autentication/Registro/Registro';
 
-function Autentication() {
-    /*
-        Login -> true
-        Registrar -> false
+function Autentication() {    
+    const [option, setOption] = useState(true); 
     
-    */
-    const [option, setOption] = useState(true);
+    useEffect(() => {
+
+    }, [])
 
     const handleClicOption = (e) =>{
         if (e.target.id === "login"){
@@ -28,8 +27,8 @@ function Autentication() {
             <div className={styles.mainContainer}>
                 <img src={Logo} alt="Logo de Sistema" className={styles.logo} />
                 <ul className={styles.ul}>
-                    <li id='login' className={styles.li} onClick={handleClicOption}>Iniciar Sesión</li>
-                    <li id='registrar' className={styles.li} onClick={handleClicOption}>Registrarse</li>
+                    <li id='login' className={`${styles.li} ${option ? styles.selected : ''}`} onClick={handleClicOption}>Iniciar Sesión</li>
+                    <li id='registrar' className={`${styles.li} ${option ? '' : styles.selected}`} onClick={handleClicOption}>Registrarse</li>
                 </ul>
                 <div className={styles.container}>
                     {option === true && <Login />}

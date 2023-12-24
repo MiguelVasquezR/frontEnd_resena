@@ -38,7 +38,7 @@ function RedSocial() {
     };
 
     useEffect(() => {
-        GetRedSocial();
+        GetRedSocial();        
     }, [])
 
 
@@ -46,7 +46,7 @@ function RedSocial() {
         <div className={styles.socialRedes}>
             <h2 className={styles.h2Red}>Redes Sociales</h2>
             <div className={styles.optionRedesContainer}>
-                {redes ? <div >{redes.map((red) => { return <a target="_blank" key={red.URL} href={red.URL} className={styles.urls}> {selectLogo(red.URL)} </a> })}</div> : 'Nones'}
+                {redes ? <div >{redes.map((red) => { return <a target="_blank" key={red.URL} href={red.URL} className={styles.urls}> {selectLogo(red.URL)} </a> })}</div> : <h3>Agrega tus redes</h3>}
             </div>
         </div>
     )

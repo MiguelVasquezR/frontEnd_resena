@@ -9,13 +9,23 @@ import { CiSettings, CiLogin } from 'react-icons/ci';
 import { MdForum } from 'react-icons/md';
 import { IoIosHelpCircleOutline } from 'react-icons/io';
 import { RiMoonClearLine } from 'react-icons/ri';
-import { getUser, logout } from "../../hooks/Aut";
+import { getPersona, getUser, logout } from "../../hooks/Aut";
 
-function Header() {
+function Header({actualizar}) {
     const navigate = useNavigate();
-    const [open, setOpen] = useState(false);        
-    const lasOption = getUser() ? "LogOut" : "Login";            
+    const [open, setOpen] = useState(false);
+    const lasOption = getUser() ? "LogOut" : "Login";
     const options = ["Perfil", "Ajustes", "Foros", "Tema", "Ayuda", lasOption];
+
+    const [isLogin, setIsLogin] = useState(false);
+
+    useEffect(() => {
+        if (getPersona() && getUser()) {
+            setIsLogin(true);
+        } else {
+            setIsLogin(false);
+        }
+    }, [])
 
 
     const iconosPorTitulo = {
@@ -26,42 +36,57 @@ function Header() {
         Ayuda: IoIosHelpCircleOutline,
         LogOut: CiLogin,
         Login: CiLogin,
-    };    
+    };
 
 
-    const handleNotification = () => {
-        navigate("/notification");
+    const handleNotification = () => {        
+        if (isLogin) {
+            navigate("/notification");
+        }
     }
 
     const handleMessage = () => {
-        navigate("/message");
+        if (isLogin) {
+            navigate("/message");
+        }
     }
+
+
+    const actualizarPadre = () => {
+        actualizar('Nuevo estado')
+    }
+
 
     const handleHome = () => {
         navigate("/");
     }
 
-    const handleMenuModal = (e) => {                
+    const handleMenuModal = (e) => {
         setOpen(!open);
     }
 
     const handleClicOptionModal = (e) => {
-        if (e.target.id === "Perfil") {
-            navigate("/perfil");
-        } else if (e.target.id === "Ajustes") {
-            navigate("/configuracion");
+
+        if (isLogin) {            
+            if (e.target.id === "Perfil") {
+                navigate("/perfil");
+            } else if (e.target.id === "Ajustes") {
+                navigate("/configuracion");
+            }
+            else if (e.target.id === "Foros") {
+                navigate("/Foro");
+            } else if (e.target.id === "Ayuda") {
+                navigate("/Ayuda");
+            } else if (e.target.id === "LogOut") {
+                logout();
+                setOpen(!open)     
+                actualizarPadre();           
+                navigate(`/`);      
+            }
         }
-        else if (e.target.id === "Foros") {
-            navigate("/Foro");
-        }
-        else if (e.target.id === "Login") {
-            navigate("/Autentication");
-        } else if (e.target.id === "Ayuda") {
-            navigate("/Ayuda");
-        }else if (e.target.id === "LogOut") {            
-            logout();
-            setOpen(!open)
-            navigate("/");            
+
+        if (e.target.id === "Login") {
+            navigate("/Autentication");                
         }
 
     }
@@ -99,5 +124,6 @@ function Header() {
         </div>
     );
 }
+
 
 export default Header;

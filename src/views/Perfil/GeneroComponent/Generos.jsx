@@ -14,9 +14,7 @@ function Generos() {
         "../../img/generos/teatro.png",
         "../../img/generos/ciencia_ficcion.png",
         "../../img/generos/no_ficcion.svg",
-    ];
-
-    const titulos = ["Novela", "Cuento", "Poesia", "Memorias", "Romance", "Teatro", "Ciencia Ficción", "No ficción"];
+    ];    
 
 
     useEffect(() => {
@@ -26,9 +24,8 @@ function Generos() {
     const handleGetGeneros = () =>{
         const user = getUser();
         const fetchGeneros = async () =>{
-            const res = await fetch(`http://192.168.100.6:4567/generos-usuario?IDUsuario=${user.IDUsuario}`);
-            const data = await res.json();        
-            console.log(data);    
+            const res = await fetch(`http://192.168.1.67:4567/generos-usuario?IDUsuario=${user.IDUsuario}`);
+            const data = await res.json();                    
             setGeneros(data);
         }
         fetchGeneros();
@@ -41,7 +38,7 @@ function Generos() {
             return "Cuento";
         } else if (IDGenero === 'ensayo') {
             return "Ensayo";
-        } else if (IDGenero === 'memoria') {
+        } else if (IDGenero === 'memorias') {
             return "Memorias";
         } else if (IDGenero === 'no_ficcion') {
             return "No ficción";
@@ -60,8 +57,8 @@ function Generos() {
         <div className={styles.generos}>
             <h2 className={styles.h2Generos}>Géneros Favoritos</h2>
             <ul className={styles.ul}>
-                {generos ? generos.map((genero) => {
-                    return (<div className={styles.containerGenerosFav}>
+                {generos ? generos.map((genero, i) => {
+                    return (<div key={i} className={styles.containerGenerosFav}>
                             <img src={"../../img/generos/"+ genero.IDGenero + ".png"} alt='Imagen del genero' className={styles.img}/> 
                             <p style={{fontSize: 12}}>{nm(genero.IDGenero)}</p> 
                         </div>);

@@ -34,21 +34,21 @@ function Formulario({onClick}) {
                 value={datos.libro}                
                 type="text"
                 placeholder="Nombre del libro"
-                className={styles.input}
+                className={styles.input}                
             />
             <input                
                 onChange={(e) => handleCampoChange('autor', e.target.value)}
                 value={datos.autor}
                 type="text"
                 placeholder="Nombre del autor"
-                className={styles.input}
+                className={styles.input}                
             />
             <input                
                 onChange={(e) => handleCampoChange('idioma', e.target.value)}
                 value={datos.idioma}
                 type="text"
                 placeholder="Idioma del libro"
-                className={styles.input}
+                className={styles.input}                
             />
 
             <input                
@@ -56,7 +56,7 @@ function Formulario({onClick}) {
                 value={datos.editorial}
                 type="text"
                 placeholder="Editorial"
-                className={styles.input}
+                className={styles.input}                
             />
         </form>
     );

@@ -6,25 +6,71 @@ import Publicacion from "../../components/Publicacion/Publicacion";
 import styles from './Home.module.css';
 import imgLogo from '../../../public/img/pluma.png';
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { IsLoging } from "../../hooks/IsLogin";
+import IS from "../../Alerts/IniciaSesión/IS";
 
 function Home() {
-
+    const [isLogin, setIsLogin] = useState(false);
     const navigate = useNavigate();
+    const [estadoPadre, setEstadoPadre] = useState('Inicial');
+    const [usuarios, setUsuarios] = useState(null);
+
+
+    const handleUsuario = (usuarios) => {
+        setUsuarios(usuarios);
+    }
+
+    const actualizarEstado = (nuevoEstado) => {
+        setEstadoPadre(nuevoEstado)
+    }
 
     const handleClicResena = () => {
-        navigate('/Create-resena');
+        if (isLogin) {
+            navigate('/Create-resena');
+        } else {
+            navigate('/Autentication');
+        }
     }
+
+    useEffect(() => {
+        if (IsLoging()) {
+            setIsLogin(true);
+        } else {
+            setIsLogin(false);
+        }
+    }, [estadoPadre])
 
     return (
         <>
-            <Header />
-            <BarraBusqueda b="usuario" />
-            <MenuGeneros />
-            <MenuAutores />
+            <Header actualizar={actualizarEstado} />
+            <BarraBusqueda b="usuario" search={handleUsuario} />
 
-            <Publicacion />
-            <Publicacion />
-            <Publicacion />
+            <div>
+                {usuarios ?
+                    <div>
+                        {usuarios.map((usuario) => {                                                        
+                            return (
+                                <div>
+                                    <p>{usuario.IDUsuario}</p>
+                                    <p>{p.nombre}</p>
+                                    <p>{p.Paterno}</p>
+                                </div>
+
+
+                            )
+                        })}
+                    </div>
+                    :
+                    <div>
+                        <MenuGeneros />
+                        <MenuAutores />
+                        {
+                            isLogin ? <div> </div> : <IS />
+                        }
+                    </div>
+                }
+            </div>
 
             <div className={styles.container}>
                 <div onClick={handleClicResena} className={styles.btnResena}><img className={styles.img} src={imgLogo} alt="" /></div>
