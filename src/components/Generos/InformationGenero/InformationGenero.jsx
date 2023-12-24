@@ -7,7 +7,7 @@ function InformationGenero(props) {
 
     useEffect(() => {
         const fetchEvents = async () => {
-            const res = await fetch(`http://localhost:4567/genero?Nombre=${nombre}`);
+            const res = await fetch(`http://192.168.100.6:4567/genero?Nombre=${nombre}`);
             const data = await res.json();
             setDatos(data);
         }
@@ -25,7 +25,14 @@ function InformationGenero(props) {
                 </div>
             </div>
             <div className={styles.information}>
-                <p className={styles.p}>{datos.Descripcion}</p>
+
+                <details>                    
+                    <p className={styles.p}>{datos.Descripcion}</p>    
+                    <summary style={{fontSize: "18px"}}>¿Qué es el género {datos.Nombre}?</summary>
+                </details>
+
+                
+
             </div>
         </div>
     )

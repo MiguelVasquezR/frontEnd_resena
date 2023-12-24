@@ -18,7 +18,7 @@ function Home() {
     return (
         <>
             <Header />
-            <BarraBusqueda />
+            <BarraBusqueda b="usuario" />
             <MenuGeneros />
             <MenuAutores />
 

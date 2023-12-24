@@ -1,47 +1,45 @@
 @import '../../../../index.css';
 
-.ul{            
+.ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px; 
+    gap: 15px;
     list-style: none;
     width: max-content;
     margin: 20px auto;
-    padding: 0;     
+    padding: 0;
 
     align-items: center;
-    justify-content: center;    
+    justify-content: center;
 }
 
-.container{ 
-    background-color: var(--colorW2);   
-    width: 100%;  
-    display: flex; 
+.container {
+    background-color: var(--colorW2);
+    width: 100%;
+    display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
 }
 
 .input {
-    display: none;
+    width: 60px;
+    height: 60px;
 }
 
-.label {
-    display: inline-block;
-    width: 60px;    
-    height: 60px;    
-    background-size: cover;
-    background-repeat: no-repeat;
-    cursor: pointer;
+.estilos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 0;
 }
 
-.input:checked + .label {
-    border: 2px solid #000;    
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    transform: scale(1.1);
+.seleccionado{    
+    background-color: rgba(255, 255, 255, .2);    
 }
 
-.btn{
+.btn {
     width: 50%;
     padding: 10px;
     border-radius: 20px;
@@ -52,14 +50,14 @@
     margin: 20px 0;
 }
 
-.tituloImage{
+.tituloImage {
     font-size: 12px;
     text-align: center;
     color: white;
     margin: 5px 0;
 }
 
-.p{
+.p {
     color: white;
     font-size: 12px;
     text-decoration: underline;

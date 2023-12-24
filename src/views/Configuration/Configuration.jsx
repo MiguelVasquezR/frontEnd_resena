@@ -1,89 +1,143 @@
 import Header from "../../components/Header/Header";
 import styles from './Configuration.module.css';
+import UpdateUserForm from "./UpdateUser/UpdateUserForm";
+import UpdatePersona from "./UpdatePersona/UpdatePersona";
+import axios from "axios";
+import PhotoPerfil from "../../components/SelectPerfilPhoto/PhotoPerfil";
+
 import { RiMoonClearLine, RiMoonClearFill } from 'react-icons/ri';
-import { IoAddCircleOutline } from 'react-icons/io5';
-import { useForm } from "react-hook-form";
+import { IoAddCircleOutline, IoEyeOutline } from 'react-icons/io5';
 import { useEffect, useState } from "react";
-import { getPersona, getUser } from "../../hooks/Aut";
+import { logout, getUser } from "../../hooks/Aut";
+import {FaSquareXTwitter,FaGithub} from 'react-icons/fa6'
+import {IoLogoLinkedin} from 'react-icons/io'
+import { FaInstagram, FaFacebook} from 'react-icons/fa'
+import {TiSocialAtCircular} from 'react-icons/ti';
+import { useNavigate } from "react-router-dom";
 
-function Configuration() {
-    const { register, handleSubmit, formState: { erros } } = useForm();
-    const [persona, setPersona] = useState([]);
-    const [usuario, setUsuario] = useState([]);
-    const [fecha, setFecha] = useState("");
+function Configuration() {    
+    const [open, setOpen] = useState(false);
+    const [option, setOption] = useState(false);    
+    const [url, setUrl] = useState('');    
+    const [redes, setRedes] = useState([]);
+    const navigate = useNavigate();        
 
-    const handleNewDatos = (data) => {
-        console.log(data);
+    const handleRenderAddRed = () => {
+        setOpen(!open);
     }
 
-    // const handleNewRedSocial = (data) =>{
-    //     alert("data")
-    //     console.log(data);
-    // }
+    const handleChoseOption = (e) => {
+        const opt = e.target.id;
+        if (opt === "dPersonales") {
+            setOption("dPersonales");
+        } else if (opt === "dCuenta") {
+            setOption("dCuenta")
+        }
+    }
 
-    // const handleAddRedSocial = (data) =>{
-    //     console.log(data);
-    // }
+    // --------------------------------------- Redes Sociales
+    const handleChangeRedSocial = (e) => {
+        const url = e.target.value;
+        setUrl(url);
+    }
+
+    const handleAddRed = (e) => {
+        e.preventDefault();
+        const fetchAddRed = async () =>{
+            try {
+                const user = getUser();
+                const datos={
+                    IDUsuario: user.IDUsuario,
+                    URL: url,
+                }
+                const res  = await fetch(`http://192.168.100.6:4567/red-social`, {method: 'POST', body: JSON.stringify(datos)});                                
+            } catch (error) {                
+                console.log(error);
+            }
+        }            
+        fetchAddRed();
+
+        setUrl('');
+    }
+
+    const GetRedSocial = () =>{        
+        const fetchGetRed = async () =>{
+            const user = getUser();
+            const res = await axios.get('http://192.168.100.6:4567/red-social', {params: user});
+            setRedes(res.data);     
+            setOpen(false);
+        }
+        fetchGetRed();
+    }
 
     useEffect(() => {
-        const persona = getPersona();
-        setPersona(persona);
-        parseFecha(persona.fNacimiento);
-        const usuario = getUser();
-        setUsuario(usuario);
-    }, []);
+        GetRedSocial();
+    }, [])
 
-    const parseFecha = (fNac) => {        
-        const meses = {
-            jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12
-        };
-        let partesFecha = fNac.split(" ");        
-        let numeroMes = meses[partesFecha[0].toLowerCase()];        
-        let dia = partesFecha[1].replace(",", "");
-        let ano = partesFecha[2];        
-        let fechaFormateada = `${dia}/${numeroMes}/${ano}`;
-        console.log(fechaFormateada);
-        setFecha(fechaFormateada);
-        console.log(fecha);
-    }
+    const handleLogout = () =>{        
+        logout();
+        navigate("/");
+    }    
 
-
+    const selectLogo = (url) => {
+        const lowercaseUrl = url.toLowerCase();
+        const tam = 50;
+        if (lowercaseUrl.includes('github')) {
+            return <FaGithub size={tam} color="#4183C4"/>;
+        } else if (lowercaseUrl.includes('twitter')) {
+            return <FaSquareXTwitter size={tam} color="#1DA1F2"/>;
+        } else if (lowercaseUrl.includes('linkedin')) {
+            return <IoLogoLinkedin size={tam} color="#0077B5"/>;
+        } else if (lowercaseUrl.includes('instagram')) {
+            return <FaInstagram size={tam} color="#C13584"/>;
+        } else if (lowercaseUrl.includes('facebook')) {
+            return <FaFacebook size={tam} color="#1879F2"/>;
+        } else {            
+            return <TiSocialAtCircular size={tam} />
+        }
+    };    
 
     return (
         <>
             <Header />
 
             <div className={styles.informationContainer}>
-                <h2 style={{ fontSize: 40 }}>Información</h2>
-                <form action="" className={styles.form} onSubmit={handleSubmit(handleNewDatos)}>
-                    <fieldset style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "50%", padding: "5px" }}>
-                        <legend style={{ padding: "0 20px", fontSize: 24 }}>Datos Personales</legend>
-                        <input type="text" className={styles.input} placeholder="Escribe tu nombre" value={persona.nombre} />
-                        <input type="text" className={styles.input} placeholder="Escribe tu Apellido Paterno" value={persona.paterno} />
-                        <input type="text" className={styles.input} placeholder="Escribe tu Apellido Materno" value={persona.materno} />
-                        <input type="date" className={styles.input} value={fecha} />
-                    </fieldset>
-
-                    <fieldset style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "50%", padding: "5px", margin: "20px 0" }}>
-                        <legend style={{ padding: "0 20px", fontSize: 24 }}>Datos De Cuenta</legend>
-                        <input type="text" className={styles.input} placeholder="Escribe tu Usuario" value={usuario.usuario} />
-                        <input type="text" className={styles.input} placeholder="Escribe tu Password" value={usuario.password} />
-                    </fieldset>
-
-                    <button type="submit" className={styles.btnPlus}>Actualizar</button>
-                </form>
+            <h2 style={{ fontSize: 30 }}>Cambiar tu foto</h2>
+                <br />
+                <PhotoPerfil />
             </div>
 
-            {/* <div className={styles.redesContainer}>
-                <h2>Redes Sociales</h2>
-                <IoAddCircleOutline size={60}/>
-                <div>
-                    <form action="" onSubmit={handleSubmit(handleNewRedSocial)} className={styles.form}>
-                        <input type="text" placeholder="Ingresa URL de tu red" {...register('link', {required: true})} className={styles.input}/>
-                        <button type="submit" className={styles.btnPlus}>Agregar</button>
-                    </form>
+            <div className={styles.informationContainer}>
+                <h2 style={{ fontSize: 30 }}>Información</h2>
+                <ul className={styles.ulContainer}>
+                    <li className={styles.btns} id="dPersonales" onClick={handleChoseOption}>Datos Personales</li>
+                    <li className={styles.btns} id="dCuenta" onClick={handleChoseOption}>Datos de Cuenta</li>
+                </ul>
+                <div className={styles.renderContainer}>
+                    {option === "dPersonales" && <UpdatePersona />}
+                    {option === "dCuenta" && <UpdateUserForm />}
                 </div>
-            </div> */}
+            </div>
+
+            <div className={styles.redesContainer}>
+
+                <h2 style={{ fontSize: 30, margin: "5px 0" }}>Redes Sociales</h2>
+                
+                <div className={styles.optionRedesContainer}>
+                    {redes ? <div>{ redes.map((red) => {return <a target="_blank" key={red.URL} href={red.URL} className={styles.urls}> {selectLogo(red.URL)} </a>})}</div> : ''}
+                    <IoAddCircleOutline size={60} onClick={handleRenderAddRed} />
+                </div>
+
+                {open === true &&
+                    <div>
+                        <form action="" onSubmit={handleAddRed} className={styles.form}>
+                            <input value={url}  type="text" placeholder="Ingresa URL de tu red" className={styles.input} onChange={handleChangeRedSocial} />
+                            <button type="submit" className={styles.btns}>Agregar</button>
+                        </form>
+                    </div>
+                }
+
+            </div>
 
             {/* <div className={styles.temaContainer}>
                 <h2>Tema</h2>
@@ -94,8 +148,8 @@ function Configuration() {
             </div> */}
 
             <div className={styles.btnsPlus}>
-                <button className={styles.btnPlus}>Ayuda</button>
-                <button className={styles.btnPlus}>Cerrar Sesión</button>
+                <button className={styles.btns}>Ayuda</button>
+                <button className={styles.btnLogOut} onClick={handleLogout}>Cerrar Sesión</button>
             </div>
 
         </>

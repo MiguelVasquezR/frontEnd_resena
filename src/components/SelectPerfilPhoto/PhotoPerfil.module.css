@@ -1,0 +1,25 @@
+.selectContainer,
+.containerFalseImg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgPerfil {
+    width: 140px;
+    height: 140px;  
+    border-radius: 100px; 
+    object-fit: cover; 
+    border: 1px solid #ccc;    
+}
+
+.btnPerfil {
+    width: 200px;
+    height: 30px;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    background-color: var(--colorW1);
+    margin: 16px 0;    
+}

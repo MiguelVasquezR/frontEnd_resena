@@ -1,62 +1,100 @@
+import React from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import styles from './MenuAutores.module.css';
 import ItemOption from '../../ItemOption/ItemOption';
 import { useNavigate } from 'react-router-dom';
 
-function MenuAutores(){    
+function MenuAutores() {
+
     const autores = [
-        "../../img/foto_autores/AmparoD.jpeg",
-        "../../img/foto_autores/borges.jpeg",
-        "../../img/foto_autores/CarlosF.jpeg",
-        "../../img/foto_autores/Cervantes.jpeg",
-        "../../img/foto_autores/Cortazar.jpeg",
-        "../../img/foto_autores/ElenaGarro.jpeg",
-        "../../img/foto_autores/ElenaPoniarowka.jpeg",
-        "../../img/foto_autores/Flaubert.jpeg",
-        "../../img/foto_autores/Gabo.jpeg",
-        "../../img/foto_autores/GiocondaBelli.jpeg",
-        "../../img/foto_autores/JuanRulfo.jpeg",
-        "../../img/foto_autores/OctavioPaz.jpeg",
-        "../../img/foto_autores/Pizarnik.jpeg",
-        "../../img/foto_autores/Poe.jpeg",
-        "../../img/foto_autores/TitaValencia.jpeg",
-        "../../img/foto_autores/WilliamS.jpeg",        
+        "../../img/foto_autores/GMarquez.png",
+        "../../img/foto_autores/ICalvino.png",
+        "../../img/foto_autores/JSteinbeck.png",
+        "../../img/foto_autores/CDrummond.png",
+        "../../img/foto_autores/IAllende.png",
+        "../../img/foto_autores/JBorges.png",
+        "../../img/foto_autores/VWoolf.png",
+        "../../img/foto_autores/JCortazar.gif",
+        "../../img/foto_autores/AStorni.png",
+        "../../img/foto_autores/WSoyinka.png",
+        "../../img/foto_autores/LHughes.png",
+        "../../img/foto_autores/JRulfo.png",
+        "../../img/foto_autores/MUnamuno.png",
+        "../../img/foto_autores/MCervantes.png",
+        "../../img/foto_autores/OPaz.png",
+        "../../img/foto_autores/FKafka.png",
+        "../../img/foto_autores/ATan.png",
+        "../../img/foto_autores/JRiberyro.png",
+        "../../img/foto_autores/APizarnik.png",
+        "../../img/foto_autores/AFrank.png",
+        "../../img/foto_autores/CFuentes.png",
+        "../../img/foto_autores/MVargas.png",
+        "../../img/foto_autores/AChristie.png",
+        "../../img/foto_autores/PNeruda.png",
+        "../../img/foto_autores/RCastellanos.png",
+        "../../img/foto_autores/LEsquivel.png",
+        "../../img/foto_autores/GMistral.png"
     ];
 
     const nombres = [
-        "Amparo Davila",
-        "Luis Borges",
-        "Carlos Fuentes",
-        "Miguel Cervantes",
+        "Gabriel García",
+        "Italo Calvino",
+        "John Steinbeck",
+        "Carlos	Drummond",
+        "Isabel	Allende",
+        "Jorge Borges",
+        "Virginia Woolf",
         "Julio Cortázar",
-        "Elena Garro",
-        "Elena Poniatowska",
-        "Gustave Flaubert",
-        "Gabriel Marquez", 
-        "Gioconda Belli",
+        "Alfonsina Storni",
+        "Wole Soyinka",
+        "Langston Hughes",
         "Juan Rulfo",
+        "Miguel Unamuno",
+        "Miguel	Cervantes",
         "Octavio Paz",
+        "Franz Kafka",
+        "Amy Tan",
+        "Julio Ribeyro",
         "Alejandra Pizarnik",
-        "Allan Poe",
-        "Tita Valencia",
-        "William Shakespeare"
-    ];        
+        "Anne Frank",
+        "Carlos Fuentes",
+        "Mario Vargas",
+        "Agatha Christie",
+        "Pablo Neruda",
+        "Rosario Castellanos",
+        "Laura Esquivel",
+        "Gabriela Mistral"
+
+    ];
 
     const navigate = useNavigate();
-    const handleClic = () =>{
-        navigate("/genero");
+
+    const settings = {
+        infinite: true,
+        speed: 200,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+    };
+
+    const handleClic = () => {
+        navigate("/autor");
+    }
+
+    const handleAutor = (url, nombre) => {
+        navigate(`/autor?img=${url}&nombre=${nombre}`);
     }
 
     return (
-        <>
-            <div className={styles.autorsContainer}>
-                <h2 style={{fontSize: "50px", textAlign: "center", color:"white"}}>Autores</h2>
-                <ul className={styles.ul}>
-                    {autores.map((url, index) => (
-                        <ItemOption key={index} imgUrl={url} nombre={nombres[index]} />
-                    ))}
-                </ul>
-            </div>
-        </>
+        <div className={styles.autorsContainer}>
+            <h2 className={styles.title}>Autores</h2>
+            <Slider className={styles.carrusel} {...settings}>
+                {autores.map((url, index) => (
+                    <ItemOption imgUrl={url} nombre={nombres[index]} handleGenero={() => handleAutor(url, nombres[index])} />
+                ))}
+            </Slider>
+        </div>
     );
 }
 

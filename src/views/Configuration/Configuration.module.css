@@ -59,9 +59,9 @@
     border: none;
     border-bottom: 1px solid #000;
     margin: 15px 0;
-    width: 80%;
+    width: 90%;
     padding: 8px;
-    font-size: 20px;
+    font-size: 16px;
     outline: none;
 }
 
@@ -70,4 +70,62 @@
     display: flex;
     align-items: center;
     justify-content: center;    
+}
+
+.ulContainer{    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    margin-top: 12px;
+}
+
+.renderContainer, .formContainer, .passwordContainer{    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formContainer{
+    flex-direction: column;
+    width: 80%;
+}
+
+.passwordContainer{
+    flex-direction: row;
+    width: 97%;    
+}
+
+.btns, .btnLogOut{
+    padding: 10px 20px;
+    background-color: var(--colorW3);
+    color: white;    
+    margin: 10px 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 10ms ease-in;
+}
+
+.btnLogOut{
+    background-color: rgba(255, 0, 0, .7);
+}
+
+.btnUpdate{
+    width: 300px;
+}
+
+.optionRedesContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.urls{
+    text-decoration: none;
+    color: inherit;
+    margin: 0 10px;
 }

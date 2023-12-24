@@ -1,0 +1,24 @@
+.containter, .btnContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+}
+
+.btnContainer{        
+    align-items: center;
+}
+
+.btn{    
+    width: 150px;
+    height: 30px;
+    border-radius: 12px;
+    border: none;
+    background-color: var(--colorW1);
+    color: white;
+    padding: 5px 0;
+    font-size: 16px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}

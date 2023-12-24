@@ -25,7 +25,7 @@ function ItemForo(props) {
 
     const { nombre, cantUsuarios, descripcion } = props;
     return (
-        <div className={styles.container} onClick={handleClicForo}>
+        <div key={nombre} className={styles.container} onClick={handleClicForo}>
             <div className={styles.imgContainer}>
                 <div className={styles.superior}>
                     <img src="" alt="" className={styles.img} />

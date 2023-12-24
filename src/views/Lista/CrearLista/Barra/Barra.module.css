@@ -1,0 +1,31 @@
+.form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--colorW1);
+    width: 100%;  
+    margin: 10px auto;  
+}
+
+.form, .form>*{
+    border-radius: 20px;
+}
+
+.busqueda{
+    border: none;
+    background-color: transparent;    
+    width: 85%;    
+    padding: 5px 10px;
+    color: white;
+    outline: none;
+}
+
+.busqueda::placeholder{
+    color: white;
+}
+
+.search{
+    width: 14%;    
+}

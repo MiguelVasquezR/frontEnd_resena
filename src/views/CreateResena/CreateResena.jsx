@@ -1,67 +1,80 @@
 import styles from './CreateResena.module.css';
 import Header from "../../components/Header/Header";
-import { CiStar } from 'react-icons/ci';
+
 import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useState, useRef, useImperativeHandle, useEffect } from 'react';
+import { getUser } from '../../hooks/Aut';
 
-function CreateResena() {    
-    const navigate = useNavigate();    
-    const start = ["s1", "s2", "s3", "s4", "s5"];    
-    const { register, handleSubmit, formState: { erros } } = useForm();
-    const [resena, setResena] = useState([]);
+import PhotoPerfil from '../../components/SelectPerfilPhoto/PhotoPerfil';
+import Formulario from './Formulario/Formulario';
+import Calificacion from './Calificacion/Calificacion';
+import Resena from './CampoResena/Resena';
 
-    const handleClic = (datos) =>{
-        try{
-            setResena(datos);
-        }catch(error){
-            console.log(error);
-        }                
-        
-        // navigate('/');
+function CreateResena() {        
+    const navigate = useNavigate();
+    const [dataResena, setDataResena] = useState('');
+    const [dataFormulario, setDataFormulario] = useState(null);
+    const [dataCalificacion, setDataCalificacion] = useState(0);
+
+    const resenaData = (resena) =>{
+        setDataResena(resena);
     }
 
-    const handleRellenarEstrella = (e) => {
-        e.stopPropagation();
-        const id = e.target.id                
-    }    
-    
+    const formularioData = (resena) =>{
+        setDataFormulario(resena);
+    }
 
+    const calificacionData = (resena) =>{
+        setDataCalificacion(resena);
+    }
+
+    const handleClic = () =>{    
+        const fotoID = localStorage.getItem('IDImagen')   
+        const contenido = dataResena;     
+
+        const IDUsuario = getUser();
+
+        const rensenaCompleta = {
+            FotoID: fotoID, 
+            contenido: dataResena,
+            nombreLibro: dataFormulario.libro,
+            nombreAutor: dataFormulario.autor,
+            idioma: dataFormulario.idioma,
+            editorial: dataFormulario.editorial,
+            calificacion: dataCalificacion
+        }
+
+
+        const fetchResena = async () => {
+            const res = await fetch(`http://192.168.100.6:4567/crear-resena?IDUsuario=${IDUsuario.IDUsuario}`, {method: 'POST', body: JSON.stringify(rensenaCompleta)});
+            const data = await res.json();
+
+            if (data.Msj === 'Guardado'){
+                navigate("/")
+            }else{
+                alert("Hubo un error");
+            }
+
+        }
+
+        fetchResena();
+        
+
+    }
+        
     return (
         <div className={styles.containerMain}>
             <Header />
-            <h2 style={{ margin: '12px', fontSize: "40px" }}>Escribe tu reseña</h2>
 
-            <div className={styles.fotoContainer}>
-                <img src="" alt="" className={styles.img} />
-                <button className={styles.btnFoto}>Subir Foto</button>
-            </div>
+            <h2 style={{ margin: '20px', fontSize: "30px" }}>Escribe tu reseña</h2>
 
-            <form action="" className={styles.form} onSubmit={handleSubmit(handleClic)}>
-                <input type="text" placeholder='Nombre del Libro' {...register('libro', {required: true})} className={styles.input}/>
-                <input type="text" placeholder='Nombre del autor' {...register('libro', {required: true})} className={styles.input}/>
-                <input type="text" placeholder='Idioma' {...register('libro', {required: true})} className={styles.input}/>
-                <input type="text" placeholder='Editorial' {...register('libro', {required: true})} className={styles.input}/>
-            </form>
-
-            <div className={styles.calificationContainer}>
-                <h2 style={{ margin: '12px' }}>Calificación</h2>
-                <div className={styles.calification}>                                    
-                    <ul className={styles.ul}>
-                        {
-                         start.map((id, i) => { return <li className={styles.li} key={i}><CiStar key={i} id={id} size={100} style={{ margin: "2px" }} onClick={handleRellenarEstrella}/></li>})   
-                        }
-                    </ul>                                        
-                </div>
-            </div>
-
-            <div className={styles.resenaContainer}>
-                <h2 style={{ margin: '12px', fontSize: "30px" }}>Contenido de Reseña</h2>
-                <textarea className={styles.textResena} placeholder='Escribe tu reseña' {...register('contenidoResena', {required: true})}></textarea>
-            </div>
+            <PhotoPerfil />
+            <Formulario onClick={formularioData}/>
+            <Calificacion onClick={calificacionData} />
+            <Resena onClick={resenaData}/>
 
             <div className={styles.btnContainer}>
-                <button type='submit' className={styles.btnPublicar}>Publicar</button>
+                <button onClick={handleClic} className={styles.btnPublicar}>Publicar</button>
             </div>
 
         </div>

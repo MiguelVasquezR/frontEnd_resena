@@ -1,0 +1,35 @@
+
+.resenaContainer{
+    margin: 20px auto;
+    width: 80%;
+    flex-direction: column;
+    background-color: var(--colorW1);
+    color: white;
+    text-align: center;
+}
+
+.writingContainer{    
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.optionResena{
+    width: 100%;
+    height: 30px;    
+}
+
+.textResena{
+    width: 90%;
+    height: 200px;
+    outline: none;
+    resize: none;
+    overflow: none;
+    padding: 10px;
+    margin: 10px 0 50px 0;
+    border-radius: 10px;
+    font-size: 16px;    
+    font-family: 'Georgia';
+}

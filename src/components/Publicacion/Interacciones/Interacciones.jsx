@@ -37,10 +37,10 @@ function Interacciones() {
 
     return (
         <div className={styles.reactionContainer}>
-            <FaHeart id="like" size={33} color='white' onClick={handleClic} />
-            <FaHeartBroken id="dislike" size={33} color='white' onClick={handleClic} />
-            <FaComment size={33} style={{ margin: "10px 0" }} color='white' onClick={handleClicOpenComments} />
-            <IoMdShare size={33} style={{ margin: "10px 0" }} color='white' onClick={handleClicShare} />
+            <FaHeart id="like" size={30} color='white' onClick={handleClic} />
+            <FaHeartBroken id="dislike" size={30} color='white' onClick={handleClic} />
+            <FaComment size={30} style={{ margin: "10px 0" }} color='white' onClick={handleClicOpenComments} />
+            <IoMdShare size={30} style={{ margin: "10px 0" }} color='white' onClick={handleClicShare} />
         </div>
     )
 }

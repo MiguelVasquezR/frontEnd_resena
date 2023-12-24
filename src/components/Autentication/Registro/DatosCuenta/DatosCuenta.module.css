@@ -45,3 +45,7 @@
     font-size: 15px;
     margin: 15px 0;
 }
+
+.error{
+    border-bottom: 1px solid red;
+}

@@ -1,38 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './ItemList.module.css'
 import {FaHeart} from 'react-icons/fa';
+import {MdDelete } from 'react-icons/md';
 
 function ItemList(props){
-    const {urlPortada, nombre, cantidad, visibilidad} = props;
-    const [band, setBand] = useState(false);
-    const [color, setColor] = useState('white');
+    const {nombre, cantidad, visibilidad, IDImage, onDelete} = props;               
 
-
-    const handleLike = (e) =>{
+    const handleClicList = (e) =>{
         e.stopPropagation();
-        if(band === false){
-            setColor('red');
-            setBand(true);
-        }else if(band ===  true){
-            setColor('white');
-            setBand(false);
-        }
+        alert("Abrir lista")
     }
 
-    const handleClicList = () =>{
-        alert("Entrar a lista");
-    }
-
+    const handleDelete  = (e) =>{
+        e.stopPropagation();
+        onDelete();        
+    }    
 
     return(
         <div className={styles.container} onClick={handleClicList}>
-            <img src={urlPortada} alt={"lista_"+nombre} className={styles.img}/>
+            <img src={"http://localhost:9000/" + IDImage} alt={"lista_"+nombre} className={styles.img}/>
             <section className={styles.information}>
                 <h2 className={styles.h2}>{nombre}</h2>
                 <h2 className={styles.h2}>{cantidad + " Libros"}</h2>
                 <h2 className={styles.h2}>{visibilidad}</h2>
             </section>
-            <FaHeart size={30} onClick={handleLike} color={color}/>
+            <MdDelete  size={30} onClick={handleDelete} color='white'/>
         </div>
     )
 }
