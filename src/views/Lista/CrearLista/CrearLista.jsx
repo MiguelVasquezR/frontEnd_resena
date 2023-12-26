@@ -40,7 +40,7 @@ function CrearLista() {
             IDUsuario: user.IDUsuario,
         }
         const enviarDatos = async () => {
-            const res = await fetch('http://192.168.1.67:4567/crear-lista', { method: 'POST', body: JSON.stringify(lista) });
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/crear-lista`, { method: 'POST', body: JSON.stringify(lista) });
             const respuesta = await res.json();
             if (respuesta.MSJ === 'Guardado') {
                 console.log(respuesta);

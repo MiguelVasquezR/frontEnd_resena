@@ -2,10 +2,12 @@ import styles from './ItemChat.module.css';
 import { MdDelete } from 'react-icons/md';
 import { FaRegEye } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function ItemChat(props){
     const {nombre, mensaje} = props;
     const img = '../../../public/img/persona.jpg';
+    const navigate = useNavigate();        
 
     const handleDelete = (e) =>{
         e.stopPropagation();
@@ -15,10 +17,7 @@ function ItemChat(props){
     const handleWatchPerfil = (e) =>{
         e.stopPropagation();
         alert("Ver Perfil");
-    }
-
-
-    const navigate = useNavigate();
+    }    
 
     const handleOpenChat = (e) =>{
         e.stopPropagation();        

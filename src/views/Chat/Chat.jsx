@@ -2,8 +2,6 @@ import Header from "../../components/Header/Header";
 import OptionsChats from "../../components/Chat/OptionsChats/OptionsChats";
 import styles from './Chat.module.css';
 import ItemChat from "../../components/Chat/ItemChat/ItemChat";
-
-
 import { IsLoging } from "../../hooks/IsLogin";
 import IS from "../../Alerts/IniciaSesión/IS";
 
@@ -27,8 +25,7 @@ function Chat() {
                         </div>
                         <div className={styles.chats}>
                             <ItemChat nombre="Miguel Vásquez" mensaje="Tú: Hola, cómo estas?" />
-                            <ItemChat nombre="Xanery Landeros" mensaje="Xanery: Hola" />
-                            <ItemChat nombre="Lewis Hamilton" mensaje="Lewis: Hoy corro en Dubai" />
+                            
                         </div>
 
                     </div>

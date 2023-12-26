@@ -25,7 +25,7 @@ function Genero() {
     const handleGetLibros = () => {
         try {
             const fetchBook = async (genero) => {
-                const res = await fetch(`http://192.168.1.67:4567/libros/genero?genero=${genero}`);
+                const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/libros/genero?genero=${genero}`);
                 const data = await res.json();
                 setLibros(data);
                 setIsLoging(false)
