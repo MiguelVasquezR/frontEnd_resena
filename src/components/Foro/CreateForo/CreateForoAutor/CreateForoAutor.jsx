@@ -2,6 +2,7 @@ import styles from './CreateForoAutor.module.css';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import axios from 'axios';
+import { getUser } from '../../../../hooks/Aut';
 
 function CreateForoAutor(){
     const { register, handleSubmit, formState: { erros } } = useForm();

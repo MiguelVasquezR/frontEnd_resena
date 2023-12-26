@@ -16,7 +16,7 @@ function ForoMain(){
 
     useEffect(() => {
         handleGetForos();
-        console.log(foros);
+        // console.log(foros);
     }, [setForos])
 
     const handleGetForos = () => {
@@ -24,7 +24,7 @@ function ForoMain(){
             const data = await axios.get('http://192.168.100.6:4567/foros');
             const fors = await data.data;
             setForos(fors);
-            console.log(foros);
+            // console.log(foros);
         }
         functForos();
         /*console.log("data", data.data);
@@ -34,17 +34,13 @@ function ForoMain(){
     return (
         <div>
             <h2 style={{textAlign: 'center', fontSize: '30px', margin: '10px'}}>Foros</h2>
-            <ItemForo nombre = "100 años de soledad" cantUsuarios='1500' descripcion='foro con el objetivo de hacer muchas aclaraciones sobre este libro'/>
-            <ItemForo nombre = "100 años de soledad" cantUsuarios='1500' descripcion='foro con el objetivo de hacer muchas aclaraciones sobre este libro'/>
-            <ItemForo nombre = "100 años de soledad" cantUsuarios='1500' descripcion='foro con el objetivo de hacer muchas aclaraciones sobre este libro'/>
-            <ItemForo nombre = "100 años de soledad" cantUsuarios='1500' descripcion='foro con el objetivo de hacer muchas aclaraciones sobre este libro'/>
             <div className={styles.btnContainer}>
                 <div className={styles.btn} onClick={handleClic}><MdForum color='white' size={30}/></div>
             </div>
 
             {foros ? foros.map((foro) => {
                 return (
-                    <ItemForo foro={foro} nombre={foro.Nombre}/>
+                    <ItemForo IDForo={foro.IDForo} foro={foro} nombre={foro.Nombre} cantUsuarios="1500" descripcion={foro.Descripcion}/>
                 )
             }) : ""}
         </div>        
