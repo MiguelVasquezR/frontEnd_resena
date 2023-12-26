@@ -19,6 +19,7 @@ import E404 from "../views/Error/E404.JSX";
 import ChoseBook from '../views/Lista/CrearLista/ChoseBook';
 import Autor from "../views/Autor/Autor";
 import SeeLista from "../views/Lista/SeeLista/SeeLista";
+import AddBook from "../views/Lista/AddBook/AddBook";
 
 
 const router = createBrowserRouter([
@@ -92,9 +93,13 @@ const router = createBrowserRouter([
         element: <ChoseBook />
     },
     {
+        path: "/add-book",
+        element: <AddBook />
+    },
+    {
         path: "/vista-lista",
         element: <SeeLista />
-    }
+    },    
 
 ]);
 

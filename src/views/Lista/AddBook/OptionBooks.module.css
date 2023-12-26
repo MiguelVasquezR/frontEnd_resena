@@ -1,0 +1,46 @@
+.container{
+    background-color: var(--colorW1);
+    color: white;
+
+    width: 90%;    
+    height: 130px;
+    border-radius: 12px;
+    margin: 10px auto;
+}
+
+.container, .containerImg{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.containerImg{
+    margin: 0px 5px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.img{    
+    border-radius: 8px;
+    width: 80px;
+    height: 110px;    
+}
+
+.h2{
+    font-size: 14px;
+}
+
+.h3{
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+.infoContainer{
+    padding: 5px;    
+    width: 45%;
+}
+
+.mark{
+    margin: 0px 8px;
+}

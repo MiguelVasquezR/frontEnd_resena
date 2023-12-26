@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import { IoEyeOutline } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom';
 import { addPersonne } from '../../../hooks/Aut';
+import React from 'react';
+
 
 function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -18,11 +20,12 @@ function Login() {
   const [click, setClick] = useState(true);
 
 
-  const handleLogin = (datos) => {
+  const handleLogin = (datos) => {          
     setBand(false);
     const useLogin = async (datos) => {
       try {
-        const respuesta = await fetch('http://192.168.1.67:4567/usuario', {
+        
+        const respuesta = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/usuario`,{
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(datos)
@@ -30,19 +33,17 @@ function Login() {
 
         if (respuesta.ok) {
           const data = await respuesta.json();
-          setUsuario(data);      
-          console.log(usuario);    
+          setUsuario(data);                 
 
           if (click === true) {
             buttonRef.current.click();
             setClick(false);
           } else {
-            if (usuario.password === datos.password) {   
-              console.log(usuario);           
+            if (usuario.password === datos.password) {                 
               window.localStorage.setItem('localUserStorage', JSON.stringify(usuario));
               addPersonne();              
               navigate(`/`);            
-            } else {              
+            } else {                      
               setBand(true);
             }
           }

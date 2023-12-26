@@ -15,12 +15,90 @@
     width: 120px;
     height: 120px;
     border-radius: 100px;
+    object-fit: cover;
 }
 
 
 .text{
     text-align: start;
     font-size: 12px;
-    margin: 2px 10px;
+    margin: 4px 10px;
 }
 
+.titulo{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* Estilos del OptionBook */
+
+.containerOption{
+    background-color: var(--colorW1);
+    width: 95%;
+    border-radius: 20px;
+    margin: 10px auto;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.imagenContainer{
+    height: 130px;
+    width: 100px;
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.imgBook{
+    width: 100px;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    
+}
+
+.texto{
+    font-size: 12px;        
+    margin: 4px 0;
+    color: white;
+}
+
+.autor{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.container {
+    position: relative;
+    outline: none;
+    border-radius: 50px;
+}
+
+.btnResena {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;    
+    background-color: var(--colorW3);
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    cursor: none;
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+
+.imgAdd{
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;    
+}

@@ -9,7 +9,7 @@ function ItemList(props){
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://192.168.1.67:9000/getImages`).catch(err => {console.log("ERROR AL OBTENER LA FOTO");})
+        fetch(`http://${import.meta.env.VITE_DIR_IP}:9000/getImages`).catch(err => {console.log("ERROR AL OBTENER LA FOTO");})
     }, [])
 
 
@@ -26,7 +26,7 @@ function ItemList(props){
 
     return(
         <div className={styles.container} onClick={handleClicList}>
-            <img src={"http://192.168.1.67:9000/" + IDImage + ".png"} alt={"lista_"+nombre} className={styles.img}/>
+            <img src={`http://${import.meta.env.VITE_DIR_IP}:9000/` + IDImage + ".png"} alt={"lista_"+nombre} className={styles.img}/>
             <section className={styles.information}>
                 <h2 className={styles.h2}>{nombre}</h2>
                 <h2 className={styles.h2}>{cantidad + " Libros"}</h2>

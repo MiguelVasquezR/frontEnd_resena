@@ -13,7 +13,7 @@ function ItemsBook({libro}) {
 
     useEffect(() => {
         const nameA = async () => {            
-            const res = await fetch(`http://192.168.1.67:4567/nombre-autores?id=${IDAutor}`, {method: 'GET'});            
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/nombre-autores?id=${IDAutor}`, {method: 'GET'});            
             const data = await res.json();            
             setPersona(data);
         }
@@ -26,7 +26,7 @@ function ItemsBook({libro}) {
 
 
             <div className={styles.izquierdo}>
-                <img src={'http://192.168.1.67:9000/'+ foto + ".png"} alt={foto} className={styles.img} />                        
+                <img src={`http://${import.meta.env.VITE_DIR_IP}:9000/`+ foto + ".png"} alt={foto} className={styles.img} />                        
             </div>
 
             <div className={styles.derecho}>

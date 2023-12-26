@@ -10,7 +10,7 @@ function DatosCuenta({ clickHijo }) {
     const handleClic = async (data) => {    
         setError(false);
         if(data.rPassword === data.password){
-            await axios.post('http://192.168.100.6:4567/usuario-cuenta', data);
+            await axios.post(`http://${import.meta.env.VITE_DIR_IP}:4567/usuario-cuenta`, data);
             clickHijo(2);            
         }else{
             setError(true);

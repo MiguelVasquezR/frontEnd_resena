@@ -33,7 +33,7 @@ function Autor() {
 
     const datosAutor = () => {
         const fetchAutor = async () => {
-            const res = await fetch(`http://192.168.1.67:4567/autor-datos?nombre=${nombreA}`, { method: 'POST' });
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/autor-datos?nombre=${nombreA}`, { method: 'POST' });
             const data = await res.json();
             setAutor(data);
             setIsLoging(false);
@@ -45,7 +45,7 @@ function Autor() {
 
     const datosLibros = (ID) => {
         const fetchLibros = async (ID) => {
-            const res = await fetch(`http://192.168.1.67:4567/libros/autor?autor=${ID}`);
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/libros/autor?autor=${ID}`);
             const data = await res.json();
             setLibros(data);
         }

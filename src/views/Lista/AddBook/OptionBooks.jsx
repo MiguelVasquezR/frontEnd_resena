@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { MdBookmarkAdded, MdBookmarkAdd } from 'react-icons/md';
-import styles from './OptionsBooks.module.css';
+import styles from './OptionBooks.module.css';
 
 
-function OptionsBooks({ IDLibro, titulo, foto, idioma, editorial, IDAutor }) {
+function OptionsBooks({ IDLibro, titulo, foto, idioma, editorial, IDAutor, IDLista}) {
     const [add, setAdd] = useState(true);
     const [autor, setAutor] = useState({});
 
@@ -13,11 +13,10 @@ function OptionsBooks({ IDLibro, titulo, foto, idioma, editorial, IDAutor }) {
 
     const handleAddBook = () => {
         setAdd(!add)        
-        const id = JSON.parse(localStorage.getItem('IDLista'));
         if (add) {
-            fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/agregar-libros?idlista=${id.ID}&idLibro=${IDLibro}`, { method: 'POST' }).then(respuesta => { if (respuesta.ok) { console.log("Se ha agregado"); } }).catch(err => { console.log("Error al momento de hacer la petición"); })
+            fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/agregar-libros?idlista=${IDLista}&idLibro=${IDLibro}`, { method: 'POST' }).then(respuesta => { if (respuesta.ok) { console.log("Se ha agregado"); } }).catch(err => { console.log("Error al momento de hacer la petición"); })
         } else {
-            fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/eliminar-libros?idlista=${id.ID}&idLibro=${IDLibro}`, { method: 'DELETE' }).then(respuesta => { }).catch(err => { })
+            fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/eliminar-libros?idlista=${IDLista}&idLibro=${IDLibro}`, { method: 'DELETE' }).then(respuesta => { }).catch(err => { })
         }
 
     }

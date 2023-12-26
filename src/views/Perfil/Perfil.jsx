@@ -50,8 +50,8 @@ function Perfil() {
     const getPublications = () => {
         const user = getUser();
         const fetchPublication = async () => {
-            fetch(`http://192.168.1.67:9000/image/getImages`).catch(err => { console.log("ERROR AL OBTENER LA FOTO"); })
-            const res = await fetch(`http://192.168.1.67:4567/get-resenas?IDUsuario=${user.IDUsuario}`, { method: 'GET' });
+            fetch(`http://${import.meta.env.VITE_DIR_IP}:9000/image/getImages`).catch(err => { console.log("ERROR AL OBTENER LA FOTO");})
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/get-resenas?IDUsuario=${user.IDUsuario}`, { method: 'GET' });
             const data = await res.json();
             setResenas(data);
             setIsLoading(false);
@@ -111,7 +111,11 @@ function Perfil() {
                                     }
 
                                 </div>}
-                                {option === false && <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}><Lista /></div>}
+                                {
+                                    option === false 
+                                    && 
+                                    <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}><Lista /></div>
+                                }
                             </div>
                         </div>
 

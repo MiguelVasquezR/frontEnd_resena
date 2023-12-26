@@ -11,7 +11,7 @@ function ItemInformationUser() {
 
     useEffect(() => {        
         if  (user){                        
-            fetch(`http://192.168.1.67:9000/image/${user.Foto}`)
+            fetch(`http://${import.meta.env.VITE_DIR_IP}:9000/image/${user.Foto}`)
             .catch(err => {console.log("ERROR AL OBTENER LA FOTO");})
             setBandImg(true);
         }else{
@@ -22,7 +22,7 @@ function ItemInformationUser() {
     return (
         <div className={styles.container}>
             <div className={styles.imgContainer}>
-                {bandImg ? <img src={"http://192.168.1.67:9000/" + user.Foto + ".png"} alt={'Pergil de ' + persona.nombre} className={`${styles.img}`} /> : <FaRegUserCircle size={90} color='white' />}
+                {bandImg ? <img src={`http://${import.meta.env.VITE_DIR_IP}:9000/` + user.Foto + ".png"} alt={'Pergil de ' + persona.nombre} className={`${styles.img}`} /> : <FaRegUserCircle size={90} color='white' />}
             </div>
             <div className={styles.informationUserContainer}>
                 <h3 className={`${styles.h3}`}>{persona.nombre + " " + persona.paterno + " " + persona.materno}</h3>

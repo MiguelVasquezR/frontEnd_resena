@@ -8,7 +8,7 @@ function CreateForoGenero() {
     const [error, setError] = useState(false);
 
     const handleClic = async (data) => {
-        await axios.post('http://192.168.100.6:4567/foro-crear', data);
+        await axios.post(`http://${import.meta.env.VITE_DIR_IP}:4567/foro-crear`, data);
         window.location.reload(false);
     }
 
