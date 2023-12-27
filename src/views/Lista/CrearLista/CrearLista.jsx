@@ -7,6 +7,10 @@ import OptionsBooks from '../OptionsBooks/OptionsBooks'
 import { getUser } from '../../../hooks/Aut';
 import { useNavigate } from 'react-router-dom';
 
+import { IsLoging } from "../../../hooks/IsLogin";
+import IS from "../../../Alerts/IniciaSesión/IS";
+
+
 function CrearLista() {
     const [datos, setDatos] = useState({ nombre: '', descripcion: '', privacidad: '', IDUsuario: '' });
     const [selectedOption, setSelectedOption] = useState('');
@@ -36,58 +40,54 @@ function CrearLista() {
             IDUsuario: user.IDUsuario,
         }
         const enviarDatos = async () => {
-            const res = await fetch('http://localhost:4567/crear-lista', { method: 'POST', body: JSON.stringify(lista) });
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/crear-lista`, { method: 'POST', body: JSON.stringify(lista) });
             const respuesta = await res.json();
             if (respuesta.MSJ === 'Guardado') {
-                localStorage.removeItem('IDImagen');
-                navigate("/perfil");                
+                console.log(respuesta);
+                localStorage.removeItem('IDImagen');                
+                localStorage.setItem('IDLista', JSON.stringify(respuesta));
+                navigate("/seleccion-libros");
             } else {
                 localStorage.removeItem('IDImagen');
-                alert('Erro al crear la lista');                
+                alert('Erro al crear la lista');
             }
         }
         enviarDatos();
         setDatos({ nombre: '', descripcion: '', privacidad: '', IDUsuario: '' });
-        setSelectedOption('');
-
-        navigate("/seleccion-libros");
+        setSelectedOption('');        
     }
 
     return (
         <div className={styles.mainContainer}>
             <Header />
-            <h2 className={styles.titulo}>Crea tu lista</h2>
-            <PhotoPerfil />
 
-            <form className={styles.form} onSubmit={handleDatos}>
-                <input name='nombre' value={datos.nombre} type="text" placeholder='Nombre de Lista' className={styles.nombre} onChange={handleOnChange} required />
+            {
+                IsLoging() ?
+                    <div>
+                        <h2 className={styles.titulo}>Crea tu lista</h2>
+                        <PhotoPerfil />
 
-                <select name="nombre" id="nombre" className={styles.nombre} onChange={handleChangeOption} value={selectedOption} required>
-                    <option value="" selected={!selectedOption}>
-                        Selecciona
-                    </option>
-                    <option value="publico">Público</option>
-                    <option value="privado">Privado</option>
-                </select>
+                        <form className={styles.form} onSubmit={handleDatos}>
+                            <input name='nombre' value={datos.nombre} type="text" placeholder='Nombre de Lista' className={styles.nombre} onChange={handleOnChange} required />
 
-                <textarea name='descripcion' value={datos.descripcion} id="" cols="30" rows="10" placeholder='Descripción de tu lista' className={styles.descripcion} onChange={handleOnChange} required />
-                <button type='submit' className={styles.btn}>Siguiente</button>
-            </form>
+                            <select name="nombre" id="nombre" className={styles.nombre} onChange={handleChangeOption} value={selectedOption} required>
+                                <option value="" selected={!selectedOption}>
+                                    Selecciona
+                                </option>
+                                <option value="publico">Público</option>
+                                <option value="privado">Privado</option>
+                            </select>
 
+                            <textarea name='descripcion' value={datos.descripcion} id="" cols="30" rows="10" placeholder='Descripción de tu lista' className={styles.descripcion} onChange={handleOnChange} required />
+                            <button type='submit' className={styles.btn}>Siguiente</button>
+                        </form>
+
+                    </div>
+                    :
+                    <IS />
+            }
         </div>
     );
 }
 
 export default CrearLista;
-
-
-{/* <Barra />
-                
-                <div className={styles.optionBookContainer}>
-                    <h2 style={{textAlign: 'center', margin: '16px 0'}}>Agregar Libros</h2>
-                    <OptionsBooks />
-                    <OptionsBooks />
-                    <OptionsBooks />
-                    <OptionsBooks />
-                    <OptionsBooks />
-                </div> */}

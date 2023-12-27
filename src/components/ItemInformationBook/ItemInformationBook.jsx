@@ -1,36 +1,45 @@
 import styles from './ItemInformationBook.module.css';
-import imgP from '../../../public/img/portada_libros/quijote.jpg';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-function ItemInformationBook(props){
-    const {urlImg, titulo, autor, editorial} = props;
+function ItemInformationBook(props) {
+    const { urlImg, titulo, autor, editorial } = props;
+    const [isUpload, setIsUpload] = useState(false);    
 
     useEffect(() => {
+        fetch(`http://${import.meta.env.VITE_DIR_IP}:9000/image/${urlImg}`, { method: 'GET' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error en la red");
+                } else {
+                    setIsUpload(true);
+                }
+            }).catch(error => {
+                if (error.message === 'Failed to fetch') {
+                    console.error('Error de red: No se pudo completar la solicitud');
+                } else {
+                    console.error('Error de fetch:', error);
+                }
+                setIsUpload(false);
+            })
+            
+    }, []);
 
-        imagenes();
-    }, []);    
 
-
-    const imagenes = () => {
-        const fetchUploadImage = async () =>{   
-            console.log("hola");         
-            await fetch(`http://192.168.100.6:9000/image/${urlImg}`, {method: 'GET'});                        
-        }    
-
-        fetchUploadImage();
-    }
-
-    return(        
-        <div className={styles.informationContainer}>            
+    return (
+        <div className={styles.informationContainer}>
             <div className={styles.informationBookContainer}>
                 <h3 className={styles.h3_titulo}>{titulo}</h3>
-                <h3 className={styles.h3_autor}>{autor}</h3>                
+                <h3 className={styles.h3_autor}>{autor}</h3>
                 <h3 className={styles.h3_autor}>{editorial}</h3>
             </div>
             <div className={styles.imgContainer}>
-                <img src={"http://192.168.100.6:9000/" + urlImg + ".png"} alt={"fotoPerfil-"+titulo} className={styles.img}/>
+                <img
+                    src={isUpload ? `http://${import.meta.env.VITE_DIR_IP}:9000/${urlImg}` + '.png' : ''}
+                    alt={`fotoPerfil-${titulo}`}
+                    className={styles.img}
+                />
             </div>
-        </div>        
+        </div>
     )
 }
 

@@ -1,44 +1,62 @@
 import styles from './Login.module.css';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { IoEyeOutline } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom';
 import { addPersonne } from '../../../hooks/Aut';
+import React from 'react';
+
 
 function Login() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    usuario: '',
+    password: ''
+  });
   const [band, setBand] = useState(false);
   const [type, setType] = useState('password');
   const [usuario, setUsuario] = useState({});
   const navigate = useNavigate();
+  const buttonRef = useRef(null);
+  const [click, setClick] = useState(true);
 
-  const handleLogin = (datos) => {
+
+  const handleLogin = (datos) => {          
     setBand(false);
-
     const useLogin = async (datos) => {
       try {
-        const res = await fetch('http://192.168.100.6:4567/usuario', {
+        
+        const respuesta = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/usuario`,{
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(datos)
         });
-        const data = await res.json();
-        setUsuario(data);        
-        if (usuario.password === datos.password) {          
-          window.localStorage.setItem('localUserStorage', JSON.stringify(usuario));          
-          addPersonne();
-          navigate("/");
-        } else {
-          setBand(true);
-        }
 
+        if (respuesta.ok) {
+          const data = await respuesta.json();
+          setUsuario(data);                 
+
+          if (click === true) {
+            buttonRef.current.click();
+            setClick(false);
+          } else {
+            if (usuario.password === datos.password) {                 
+              window.localStorage.setItem('localUserStorage', JSON.stringify(usuario));
+              addPersonne();              
+              navigate(`/`);            
+            } else {                      
+              setBand(true);
+            }
+          }
+
+        } else {
+          console.error(`Error en la respuesta: ${respuesta.status}`);
+        }
       } catch (error) {
         console.error("Error en la llamada fetch:", error);
+        setBand(true);
       }
     }
-
     useLogin(datos);
-
   };
 
   const handleSeePassword = () => {
@@ -59,13 +77,14 @@ function Login() {
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
+            width: '90%',
           }
         }>
           <input className={styles.input} type={type} placeholder='Contraseña' {...register('password', { required: true })} />
           <IoEyeOutline size={30} color='white' style={{ borderBottom: "1px solid #fff" }} onClick={handleSeePassword} />
         </div>
         {band === true && <h2>Tus datos son incorrectos</h2>}
-        <input className={styles.btn} type="submit" value='Entrar' />
+        <input ref={buttonRef} className={styles.btn} type="submit" value='Entrar' />
       </form>
     </div>
   );

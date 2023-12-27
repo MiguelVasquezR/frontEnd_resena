@@ -11,12 +11,12 @@ function SelectGenero() {
         "../../img/generos/poesia.png",
         "../../img/generos/memorias.png",
         "../../img/generos/romance.png",
-        "../../img/generos/teatro.svg",
+        "../../img/generos/teatro.png",
         "../../img/generos/ciencia_ficcion.png",
         "../../img/generos/no_ficcion.svg",
     ];
 
-    const titulos = ["Novela", "Cuento", "Poesia", "Memorias", "Romance", "Teatro", "Ciencia Ficción", "No ficción"];
+    const titulos = ["Novela", "Cuento", "Poesía", "Memorias", "Romance", "Teatro", "Ciencia Ficción", "No ficción"];
     const [seleccionados, setSeleccionados] = useState([]);    
     
     const handleSelectionClic = (nombre) => {
@@ -31,11 +31,11 @@ function SelectGenero() {
 
     const handleRegister = async () => {
         if(seleccionados.length === 0){
-            await axios.post('http://192.168.100.6:4567/usuario-genero', "Sin genero");    
+            await axios.post(`http://${import.meta.env.VITE_DIR_IP}:4567/usuario-genero`, "Sin genero");    
         }else{
-            await axios.post('http://192.168.100.6:4567/usuario-genero', seleccionados);
+            await axios.post(`http://${import.meta.env.VITE_DIR_IP}:4567/usuario-genero`, seleccionados);
         }        
-        navigate('/login');
+        window.location.reload();
     }
 
     const navigate = useNavigate();

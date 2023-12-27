@@ -43,7 +43,7 @@ function MenuAutores() {
         "Italo Calvino",
         "John Steinbeck",
         "Carlos	Drummond",
-        "Isabel	Allende",
+        "Isabel Allende",
         "Jorge Borges",
         "Virginia Woolf",
         "Julio Cortázar",
@@ -66,7 +66,6 @@ function MenuAutores() {
         "Rosario Castellanos",
         "Laura Esquivel",
         "Gabriela Mistral"
-
     ];
 
     const navigate = useNavigate();
@@ -78,10 +77,6 @@ function MenuAutores() {
         slidesToScroll: 3,
     };
 
-    const handleClic = () => {
-        navigate("/autor");
-    }
-
     const handleAutor = (url, nombre) => {
         navigate(`/autor?img=${url}&nombre=${nombre}`);
     }
@@ -91,7 +86,7 @@ function MenuAutores() {
             <h2 className={styles.title}>Autores</h2>
             <Slider className={styles.carrusel} {...settings}>
                 {autores.map((url, index) => (
-                    <ItemOption imgUrl={url} nombre={nombres[index]} handleGenero={() => handleAutor(url, nombres[index])} />
+                    <ItemOption key={index} imgUrl={url} nombre={nombres[index]} handleGenero={() => handleAutor(url, nombres[index])} />
                 ))}
             </Slider>
         </div>

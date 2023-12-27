@@ -1,8 +1,7 @@
 import styles from './Message.module.css';
 
-function Message(props) {    
-    const { urlImg, message, position} = props;
-
+function Message(props) {
+    const { urlImg, message, position } = props;    
     if (position === 'propiedad') {
         return (
             <div className={styles.messageContainer}>

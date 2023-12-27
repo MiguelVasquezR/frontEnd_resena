@@ -1,17 +1,28 @@
 import styles from './InformacionPerfil.module.css';
-import { getPersona, getUser } from '../../hooks/Aut';
+import { addPersonne, getUser, getPersona } from '../../hooks/Aut';
 import { FaRegUserCircle } from 'react-icons/fa'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function ItemInformationUser() {
     const [bandImg, setBandImg] = useState(false);
-    const persona = getPersona();
-    const user = getUser();    
+    const user = getUser();
+    const persona = getPersona();    
+
+
+    useEffect(() => {        
+        if  (user){                        
+            fetch(`http://${import.meta.env.VITE_DIR_IP}:9000/image/${user.Foto}`)
+            .catch(err => {console.log("ERROR AL OBTENER LA FOTO");})
+            setBandImg(true);
+        }else{
+            setBandImg(false);
+        }
+    }, [])    
 
     return (
         <div className={styles.container}>
             <div className={styles.imgContainer}>
-                {bandImg ? <img src='' alt={'Pergil de ' + persona.nombre} className={`${styles.img}`} /> : <FaRegUserCircle size={90} color='white' />}
+                {bandImg ? <img src={`http://${import.meta.env.VITE_DIR_IP}:9000/` + user.Foto + ".png"} alt={'Pergil de ' + persona.nombre} className={`${styles.img}`} /> : <FaRegUserCircle size={90} color='white' />}
             </div>
             <div className={styles.informationUserContainer}>
                 <h3 className={`${styles.h3}`}>{persona.nombre + " " + persona.paterno + " " + persona.materno}</h3>

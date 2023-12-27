@@ -13,11 +13,24 @@ export const getPersona = () =>{
 export const addPersonne = () =>{  
   const fetchEvent = async () =>{
     try{
-      const user = getUser();
-      const res = await fetch(`http://192.168.100.6:4567/persona?id=${user.IDPersona}`, {method: 'GET'});  
+      const user = getUser();      
+      const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/persona?id=${user.IDPersona}`, {method: 'GET'});  
       const persona = await res.json();           
-      console.log(persona);
       window.localStorage.setItem('localPersonneStorage', JSON.stringify(persona));      
+    }catch(error){
+      console.log("Erro obtener persona" , error);
+    }
+  }
+  fetchEvent();
+}
+
+export const addUser = () =>{  
+  const fetchEvent = async () =>{
+    try{
+      const user = getPersona();
+      const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/usuarioUpload?IDPersona=${user.IDPersona}`, {method: 'GET'});  
+      const persona = await res.json();           
+      window.localStorage.setItem('localUserStorage', JSON.stringify(persona));      
     }catch(error){
       console.log("Erro obtener persona" , error);
     }
@@ -29,12 +42,11 @@ export const upload = () =>{
   const fetchEvent = async () =>{
     try{
       const user = getUser();
-      const res = await fetch(`http://192.168.100.6:4567/persona?id=${user.IDPersona}`, {method: 'GET'});  
+      const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/persona?id=${user.IDPersona}`, {method: 'GET'});  
       const persona = await res.json();                             
       let localData = window.localStorage.getItem('localPersonneStorage');                  
       let existingData = localData ? JSON.parse(localData) : {};      
-      Object.assign(existingData, persona);
-      console.log(existingData)      
+      Object.assign(existingData, persona);        
       window.localStorage.setItem('localPersonneStorage', JSON.stringify(existingData));
     }catch(error){
       console.log("Erro obtener persona" , error);

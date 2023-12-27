@@ -4,6 +4,8 @@ import ItemsBook from "../../components/Libro/ItemsBook";
 import BarraBusqueda from "../../components/BarraBusqueda/BarraBusqueda";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Loading from "../../components/Loading/Loading";
+
 
 function Genero() {
     const location = useLocation();
@@ -12,36 +14,48 @@ function Genero() {
     const url = searchParams.get('img');
     const [libros, setLibros] = useState([]);
     const [nombres, setNombre] = useState([]);
+    const [isLoging, setIsLoging] = useState(true);
 
     useEffect(() => {
-        handleGetLibros();
-    }, [])
+        if (isLoging) {
+            handleGetLibros();
+        }
+    }, [isLoging])
 
     const handleGetLibros = () => {
-        const fetchBook = async () => {
-            const res = await fetch(`http://192.168.100.6:4567/libros/genero?genero=${genero}`);
-            const data = await res.json();
-            setLibros(data);
-        }
-        fetchBook(genero);
-    }
+        try {
+            const fetchBook = async (genero) => {
+                const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/libros/genero?genero=${genero}`);
+                const data = await res.json();
+                setLibros(data);
+                setIsLoging(false)
+            }
+            fetchBook(genero);
 
-    const getNombre = async (id) =>{        
-        const res = await fetch(`http://192.168.100.6:4567/nombre-autores?id=${id}`);
-        const data = await res.json();        
-        return data;
+        } catch (err) {
+            console.log("Error en petición", ett);
+        }
     }
 
     return (
         <>
             <Header />
             <InformationGenero imgUrl={url} nombre={genero} />
-            <BarraBusqueda b="libro"/>
-            {libros ? libros.map((libro) => {                                           
-                return (
-                    <ItemsBook libro={libro} nombre= "Miguel de Cervantes Avedra"/>
-                )
-            }) : ""}
+            <BarraBusqueda b="libro" />
+
+            {
+                isLoging ?
+                    <Loading />
+                    :
+
+                    libros ? libros.map((libro, i) => {
+                        return (
+                            <ItemsBook key={i} libro={libro} />
+                        )
+                    }) : ""
+
+            }
+
         </>
     )
 }

@@ -9,15 +9,15 @@ function MenuGeneros() {
         "../../img/generos/poesia.png",
         "../../img/generos/memorias.png",
         "../../img/generos/romance.png",
-        "../../img/generos/teatro.svg",
+        "../../img/generos/teatro.png",
         "../../img/generos/ciencia_ficcion.png",
         "../../img/generos/no_ficcion.svg",
     ];
 
-    const titulos = ["Novela", "Cuento", "Poesia", "Memoria", "Romance", "Teatro", "Ciencia Ficción", "No Ficción"];
+    const titulos = ["Novela", "Cuento", "Poesia", "Memorias", "Romance", "Teatro", "Ciencia Ficción", "No Ficción"];
 
     const navigate = useNavigate();
-    const handleGenero = (url, nombre) =>{        
+    const handleGenero = (url, nombre) =>{           
         navigate(`/novela?img=${url}&genero=${nombre}`);
     }    
 

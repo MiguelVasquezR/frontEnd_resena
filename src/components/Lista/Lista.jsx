@@ -17,31 +17,24 @@ function Lista() {
     const getLists = () => {
         const user = getUser();        
         const cons = async () => {
-            const res = await fetch(`http://localhost:4567/get-listas?IDUsuario=${user.IDUsuario}`, { method: 'POST'});
-            const datos = await res.json();      
-            setLista(datos);     
-            getImages(user.IDUsuario);
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/get-listas?IDUsuario=${user.IDUsuario}`, { method: 'POST'});
+            const datos = await res.json();                  
+            setLista(datos);                 
         }
         cons();                                        
     }    
 
     useEffect(() => {
         getLists();
-    }, []);
-
-    const getImages = async (ID) =>{        
-        const res = await fetch(`http://192.168.100.6:9000/image/get/${ID}`);
-        const data = await res.json();                
-        setImagenes(data);                      
-    }
+    }, []);    
 
     const handleDeleteList = (listID, IDImangen) => {        
         const fetchDeleteList = async () => {
-            await fetch(`http://192.168.100.6:4567/eliminar-lista?id=${listID}`, { method: 'DELETE' });            
+            await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/eliminar-lista?id=${listID}`, { method: 'DELETE' });            
         }
         fetchDeleteList();
         const fetchDeleteImage = async () => {
-            await fetch(`http://192.168.100.6:9000/image/delete/${IDImangen}`, { method: 'DELETE' });            
+            await fetch(`http://${import.meta.env.VITE_DIR_IP}:9000/image/delete/${IDImangen}`, { method: 'DELETE' });            
         }
         fetchDeleteImage();
         setLista(prevLista => prevLista.filter(lista => lista.ID !== listID));
@@ -50,10 +43,11 @@ function Lista() {
 
     function renderLists() {
         return (
-            lista.map((listaItem, index) => {
+            lista.map((listaItem, index) => {                                
                 return (
                     <ItemList
-                        IDImage={imagenes[index]}
+                        ID = {listaItem.ID}
+                        IDImage={listaItem.IDImagen}
                         key={listaItem.ID} 
                         id={listaItem.ID}
                         onDelete={() => handleDeleteList(listaItem.ID, imagenes[index])}

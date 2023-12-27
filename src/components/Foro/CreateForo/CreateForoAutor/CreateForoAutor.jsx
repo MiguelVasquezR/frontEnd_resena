@@ -11,8 +11,7 @@ function CreateForoAutor(){
     const placeHolder = ["Género", "Idioma"];
 
     const handleClic = async (data) => {
-        const id = getUser();
-        await axios.post('http://192.168.100.6:4567/foro-crear?id=${}', data);
+        await axios.post(`http://${import.meta.env.VITE_DIR_IP}:4567/foro-crear`, data);
         window.location.reload(false);
     }
 

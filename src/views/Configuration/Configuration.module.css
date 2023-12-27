@@ -129,3 +129,8 @@
     color: inherit;
     margin: 0 10px;
 }
+
+.redesOptionGet{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+}
