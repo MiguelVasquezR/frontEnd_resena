@@ -4,6 +4,7 @@ import { FaHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 
+
 function ItemForo(props) {
     const [color, setColor] = useState('white');
     const [pres, setPres] = useState(false);
@@ -19,11 +20,13 @@ function ItemForo(props) {
         }
     }
 
+    const { nombre, cantUsuarios, descripcion, IDForo} = props;
+
     const handleClicForo = () => {
-        navigate("/foro-main")
+        navigate(`/foro-main?nombre=${nombre}&cant=${cantUsuarios}&des=${descripcion}&IDFoto={IDFoto}`)
     }
 
-    const { nombre, cantUsuarios, descripcion } = props;
+    
     return (
         <div key={nombre} className={styles.container} onClick={handleClicForo}>
             <div className={styles.imgContainer}>

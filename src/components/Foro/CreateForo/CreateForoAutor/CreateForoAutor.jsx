@@ -2,6 +2,7 @@ import styles from './CreateForoAutor.module.css';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import axios from 'axios';
+import { getUser } from '../../../../hooks/Aut';
 
 function CreateForoAutor(){
     const { register, handleSubmit, formState: { erros } } = useForm();
@@ -10,7 +11,8 @@ function CreateForoAutor(){
     const placeHolder = ["Género", "Idioma"];
 
     const handleClic = async (data) => {
-        await axios.post('http://192.168.100.6:4567/foro-crear', data);
+        const id = getUser();
+        await axios.post('http://192.168.100.6:4567/foro-crear?id=${}', data);
         window.location.reload(false);
     }
 
