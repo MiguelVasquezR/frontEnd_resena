@@ -19,7 +19,7 @@ function ForoMain(props){
         const data = {
             IDUsuario: user.IDUsuario,
             IDForo: IDFo,
-            Descripcion: publicacion,
+            Comentario: publicacion,
             Like: 0,
             Dislike: 0,
         };
