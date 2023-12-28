@@ -9,13 +9,22 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { IsLoging } from "../../hooks/IsLogin";
 import IS from "../../Alerts/IniciaSesión/IS";
+import { getUser } from "../../hooks/Aut";
+import Loading from '../../components/Loading/Loading'
+
 
 function Home() {
     const [isLogin, setIsLogin] = useState(false);
     const navigate = useNavigate();
     const [estadoPadre, setEstadoPadre] = useState('Inicial');
-    const [usuarios, setUsuarios] = useState(null);
+    const [usuarios, setUsuarios] = useState(null);        
 
+    const [resenas, setResenas] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        handleGetResenas();
+    }, [])
 
     const handleUsuario = (usuarios) => {
         setUsuarios(usuarios);
@@ -41,6 +50,41 @@ function Home() {
         }
     }, [estadoPadre])
 
+    const renderOptionUser = (item, i) => {
+
+        const handleClic = () => {
+            navigate(`/perfil?id=${item.IDUsuario}`);
+        }        
+
+        return(
+            <div key={item.IDUsuario + "-" +i} className={styles.userContainer} onClick={handleClic}>
+                <div className={styles.containerImg}>
+                    <img src={`http://${import.meta.env.VITE_DIR_IP}:9000/`+ item.IDFoto + ".png"} alt="" className={styles.imgUser} />
+                </div>
+
+                <div className={styles.containerInfor}>
+                    <h2 className={styles.texto}>{item.nombre + " " + item.paterno + " " + item.materno}</h2>                    
+                    <h2 className={styles.usuario}>{"@"+item.usuario}</h2>                    
+                </div>
+            </div>
+        );
+    }
+
+
+    const handleGetResenas = () => {
+        const user = getUser();
+        const fetchGetResenas = async() => {
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/resenas-follow?id=${user.IDUsuario}`);
+            if(res.ok){
+                const data = await res.json();
+                setResenas(data);
+                setIsLoading(false);
+            }        
+        }    
+        fetchGetResenas();
+    }
+
+
     return (
         <>
             <Header actualizar={actualizarEstado} />
@@ -48,19 +92,15 @@ function Home() {
 
             <div>
                 {usuarios ?
+
                     <div>
-                        {usuarios.map((usuario) => {                                                        
+                        {usuarios.map((usuario, i) => {                               
                             return (
-                                <div>
-                                    <p>{usuario.IDUsuario}</p>
-                                    <p>{p.nombre}</p>
-                                    <p>{p.Paterno}</p>
-                                </div>
-
-
+                                renderOptionUser(usuario, i)
                             )
                         })}
                     </div>
+
                     :
                     <div>
                         <MenuGeneros />
@@ -71,6 +111,30 @@ function Home() {
                     </div>
                 }
             </div>
+
+
+            <div>
+                {
+                    isLoading ? 
+                    <Loading />
+                    :
+                    resenas.map((resena) => {
+                        return(
+                            <Publicacion 
+                                idUser={resena.IDUsuario}
+                                contenido={resena.contenido} 
+                                titulo={resena.nombreLibro}
+                                autor={resena.nombreAutor}
+                                editorial={resena.editorial}
+                                foto={resena.fotoID}
+                            
+                            />
+                        )
+                    }).reverse()
+                }   
+            </div>
+
+
 
             <div className={styles.container}>
                 <div onClick={handleClicResena} className={styles.btnResena}><img className={styles.img} src={imgLogo} alt="" /></div>

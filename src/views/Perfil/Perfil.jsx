@@ -4,7 +4,7 @@ import Header from '../../components/Header/Header';
 import Publicacion from '../../components/Publicacion/Publicacion';
 import Lista from '../../components/Lista/Lista';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useBeforeUnload, useNavigate } from 'react-router-dom';
 import { getUser, getPersona } from '../../hooks/Aut';
 import InformacionPerfil from '../../components/Perfil/InformacionPerfil'
 
@@ -14,24 +14,33 @@ import Biografia from './Biografia/Biografia';
 import IS from '../../Alerts/IniciaSesión/IS';
 import Loading from '../../components/Loading/Loading';
 
-function Perfil() {
+function Perfil({ idusuario }) {
     const [option, setOption] = useState(true);
     const [select, setSelect] = useState(true);
-    const [isFollow, setIsFollow] = useState(false);
-    const [resenas, setResenas] = useState([]);
+    const [resenas, setResenas] = useState();
     const [isLogin, setIsLogin] = useState(false);
     const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);    
+    const user = getUser();
+    const [follow, setFollow] = useState('');
+    const [IFollow, setIFollow] = useState('Seguir')
 
-
+    const [seguidos, setSeguidos] = useState([]);
+    
     useEffect(() => {
         if (getPersona() && getUser()) {
-            getPublications();
+            getPublications();            
+            actCantidad();
+            validarSeg();
             setIsLogin(true);
         } else {
             setIsLogin(false);
         }
     }, [])
+
+    useEffect(()=>{
+        actCantidad();
+    }, [IFollow])
 
     const handleClicOption = (e) => {
         if (e.target.id === "resena") {
@@ -44,21 +53,70 @@ function Perfil() {
     }
 
     const handleClicFollow = () => {
-        navigate('/follows')
+        navigate(`/follows?id=${idusuario}`)
     }
 
     const getPublications = () => {
-        const user = getUser();
         const fetchPublication = async () => {
-            fetch(`http://${import.meta.env.VITE_DIR_IP}:9000/image/getImages`).catch(err => { console.log("ERROR AL OBTENER LA FOTO");})
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/get-resenas?IDUsuario=${user.IDUsuario}`, { method: 'GET' });
+            fetch(`http://${import.meta.env.VITE_DIR_IP}:9000/image/getImages`).catch(err => { console.log("ERROR AL OBTENER LA FOTO"); })
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/get-resenas?IDUsuario=${idusuario}`, { method: 'GET' });
             const data = await res.json();
             setResenas(data);
             setIsLoading(false);
         }
         fetchPublication();
     }
+    
+    const handleFollow = () => {
+        const datos = {
+            IDUserFollow: idusuario,
+            IDUserOrigin: user.IDUsuario 
+        }
+        const fetchFollow = async () => {
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/follow`, {method: 'POST', body: JSON.stringify(datos)});
+            if(res.ok){
+                const data = await res.json();
+                console.log(data);   
+                setIFollow('Siguiendo') ;
+            }
+        }
+        fetchFollow();
+    }
 
+
+    const actCantidad = () => {        
+        const fetchAct = async () => {
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/count1?id=${idusuario}`);
+            if(res.ok){
+                const data = await res.json();                
+                setFollow(data);
+            }            
+        }
+        fetchAct();
+    }
+
+    const getSeguidores = () => {        
+        const fetchSeg = async () => {
+            const user = getUser();
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/getFollow?id=${user.IDUsuario}`);
+            if(res.ok){
+                const data = await res.json(); 
+                setSeguidos(data);                
+            }            
+        }
+        fetchSeg();
+    }
+
+    function validarSeg(){
+        getSeguidores();        
+        const band = seguidos.find(elemento => elemento.IDUserFollow === idusuario);
+        if(band){
+            setIFollow('Seguiendo');
+            console.log(seguidos);
+        }
+
+        console.log(seguidos);
+    }
 
 
     return (
@@ -68,28 +126,30 @@ function Perfil() {
                 isLogin ?
                     <div>
                         <div className={styles.userConteiner}>
-                            <InformacionPerfil />
-                            <button className={styles.btnFollow}>Seguir</button>
+                            <InformacionPerfil idUser={idusuario} />
+                            {
+                                user.IDUsuario !== idusuario ?
+                                <button onClick={handleFollow} className={styles.btnFollow}>{IFollow}</button>
+                                :
+                                ""
+                            }
+                            
                         </div>
 
                         <div className={styles.follow} onClick={handleClicFollow}>
                             <div>
                                 <h2 className={styles.h2}>Seguidores</h2>
-                                <p className={styles.p}>30,130,200</p>
+                                <p className={styles.p}>{follow.Seguidores}</p>
                             </div>
                             <div>
                                 <h2 className={styles.h2}>Seguidos</h2>
-                                <p className={styles.p}>456</p>
+                                <p className={styles.p}>{follow.Seguidos}</p>
                             </div>
                         </div>
 
-
-
-                        <Biografia />
-                        <Generos />
-                        <RedSocial />
-
-
+                        <Biografia idUser={idusuario} />
+                        <Generos idUser={idusuario} />
+                        <RedSocial idUser={idusuario} />
 
                         <div className={styles.contenidoContainer}>
 
@@ -106,20 +166,18 @@ function Perfil() {
                                             <Loading />
                                             :
                                             resenas.map((resena, i) => {
-                                                return <Publicacion key={i} contenido={resena.contenido} titulo={resena.nombreLibro} autor={resena.nombreAutor} editorial={resena.editorial} foto={resena.FotoID} />
+                                                return <Publicacion idUser={idusuario} key={i} contenido={resena.contenido} titulo={resena.nombreLibro} autor={resena.nombreAutor} editorial={resena.editorial} foto={resena.FotoID} />
                                             })
                                     }
 
                                 </div>}
                                 {
-                                    option === false 
-                                    && 
-                                    <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}><Lista /></div>
+                                    option === false
+                                    &&
+                                    <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}><Lista idUser={idusuario} /></div>
                                 }
                             </div>
                         </div>
-
-
 
                     </div>
                     :

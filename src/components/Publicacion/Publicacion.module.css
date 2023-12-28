@@ -3,8 +3,7 @@
 .post{
     background-color: var(--colorW1);
     width: 95%;
-    margin: 0 auto;
-    margin-top: 28px;
+    margin: 28px auto;        
     border-radius: 12px;
 }
 

@@ -29,20 +29,27 @@ function ItemForo(props) {
     
     return (
         <div key={nombre} className={styles.container} onClick={handleClicForo}>
+
             <div className={styles.imgContainer}>
+
                 <div className={styles.superior}>
+
                     <img src="" alt="" className={styles.img} />
+
                     <div className={styles.izquierda}>
                         <h2 className={styles.titulo}>{nombre}</h2>
                         <h2 className={styles.cant}>{cantUsuarios + " usuarios"}</h2>
                     </div>
+                    
                 </div>                                
+
                 <div className={styles.infoContainer}>
                     <p className={styles.descripcion}>{descripcion}</p>
                 </div>
+
             </div>                
 
-            <FaHeart color={color} size={60} style={{margin: '0px 10px'}} onClick={handleLike}/>
+            <FaHeart color={color} size={50} style={{margin: '0px 10px'}} onClick={handleLike}/>
         </div>
     )
 }

@@ -3,10 +3,12 @@ import styles from './ItemList.module.css'
 import {FaHeart} from 'react-icons/fa';
 import {MdDelete } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import { getUser } from '../../../hooks/Aut';
 
 function ItemList(props){
-    const {ID, nombre, cantidad, visibilidad, IDImage, onDelete} = props;               
+    const {IDUSUARIO, ID, nombre, cantidad, visibilidad, IDImage, onDelete} = props;               
     const navigate = useNavigate();
+    const user = getUser();
 
     useEffect(() => {
         fetch(`http://${import.meta.env.VITE_DIR_IP}:9000/getImages`).catch(err => {console.log("ERROR AL OBTENER LA FOTO");})
@@ -15,7 +17,7 @@ function ItemList(props){
 
     const handleClicList = (e) =>{
         e.stopPropagation();
-        navigate(`/vista-lista?id=${ID}`);        
+        navigate(`/vista-lista?id=${ID}&IDUSER=${IDUSUARIO}`);
     }
 
     const handleDelete  = (e) =>{
@@ -32,7 +34,14 @@ function ItemList(props){
                 <h2 className={styles.h2}>{cantidad + " Libros"}</h2>
                 <h2 className={styles.h2}>{visibilidad}</h2>
             </section>
-            <MdDelete  size={30} onClick={handleDelete} color='white'/>
+
+            {
+                user.IDUsuario === IDUSUARIO ? 
+                <MdDelete  size={30} onClick={handleDelete} color='white'/>
+                :
+                ""
+            }
+            
         </div>
     )
 }

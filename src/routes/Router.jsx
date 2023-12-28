@@ -20,7 +20,7 @@ import ChoseBook from '../views/Lista/CrearLista/ChoseBook';
 import Autor from "../views/Autor/Autor";
 import SeeLista from "../views/Lista/SeeLista/SeeLista";
 import AddBook from "../views/Lista/AddBook/AddBook";
-
+import Select from "../views/Perfil/SelectPerfil/Select";
 
 const router = createBrowserRouter([
     {
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/perfil",
-        element: <Perfil />,
+        element: <Select />,
     },
     {
         path: "/configuracion",

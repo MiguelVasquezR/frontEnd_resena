@@ -6,12 +6,12 @@ import InformationContainer from './InformationContainer/InformationContainer';
 import { MdOutlinePlaylistAdd } from 'react-icons/md';
 
 function Publicacion(props) {
-    const { contenido, titulo, autor, editorial, foto } = props;    
+    const { idUser, contenido, titulo, autor, editorial, foto } = props;    
 
     return (
         <div className={styles.post}>
             <div className={styles.information}>
-                <ItemInformationUser />
+                <ItemInformationUser idUser={idUser}/>
                 <ItemInformationBook titulo={titulo} autor={autor} editorial={editorial} urlImg={foto}/>
             </div>
             <InformationContainer contenido= {contenido} />
