@@ -1,72 +1,86 @@
-.infoContainer {
-    border: 3px solid var(--colorW1);
+.infoContainer{
+    margin: 10px auto;
+    border: 1px solid var(--colorW1);
     width: 95%;
     border-radius: 10px;
-    margin: 10px auto;
-    padding: 5px;
+    padding: 10px;
+
     text-align: center;
 }
 
-.titulo {
-    margin: 10px 0;
-    font-size: 30px;
-}
-
-.cant {
-    text-decoration: underline;
-    color: rgba(0, 0, 0, .5);
-    margin: 5px 0;
-    font-size: 15px;
-}
-
-.descripcion {
-    line-height: 22px;
-    text-align: justify;
-}
-
-
-.publicationContainer {
-    width: 95%;
-    margin: 10px auto;
-    margin-bottom: 20px;
-
-    background-color: var(--colorW1);
+.img{
+    width: 60px;
+    height: 80px;
     border-radius: 10px;
+    box-shadow: 2px 2px rgba(0, 0, 0, .5);
+    text-align: center;
+}
+
+.containerInfo{    
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.tx {
-    padding: 5px;
+.containerInfo > section { 
+    margin: 0px 10px;
+    text-align: start;
+}
+
+.descripcion{
+    margin: 12px 0;
+}
+
+.containerBTNAgregar{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.btn{
+    color: white;
+    background-color: var(--colorW1);
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-right: 16px;
+}
+
+.publicationContainer{
+    background-color: var(--colorW1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    border-radius: 10px;
+    margin: 5px auto;
+
+}
+
+.tx{
+    width: 80%;
+    height: 120px;
     margin: 10px 0;
-    width: 90%;
-    height: 100px;
-    overflow: scroll;
+    padding: 5px;    
     border-radius: 10px;
     border: none;
     outline: none;
 }
 
-.btnPublica {
+.btnPublica{
+    margin: 5px 0;
+    padding: 10px 15px;
+    border-radius: 10px;
     width: 100px;
-    height: 32px;
-    background-color: var(--colorW3);
-    color: white;
-    border-radius: 20px;
-    border: 1px solid #fff;
-    margin: 10px 0;
+    border: none;
+    background-color: white;
+    color: var(--colorW2);
 }
 
-.btn {
-    width: 100px;
-    height: 32px;
-    border-radius: 20px;
-    border: none;
-    background-color: var(--colorW1);
-    color: white;
-    font-size: 15px;
-    position: absolute;             
-    margin-left: 55px;    
+.containerPublication{    
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 20px;
 }

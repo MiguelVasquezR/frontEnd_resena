@@ -7,14 +7,16 @@ import { useEffect, useState } from 'react';
 import { getUser } from '../../../hooks/Aut';
 import axios from 'axios';
 
-function RedSocial() {
+function RedSocial({idUser}) {
     const [redes, setRedes] = useState([]);
 
     const GetRedSocial = () => {
-        const fetchGetRed = async () => {
-            const user = getUser();
-            const res = await axios.get(`http://${import.meta.env.VITE_DIR_IP}:4567/red-social`, { params: user });
-            setRedes(res.data);
+        const fetchGetRed = async () => {            
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/getRedes?id=${idUser}`)
+            if (res.ok){
+                const data = await res.json();
+                setRedes(data);
+            }                        
         }
         fetchGetRed();
     }

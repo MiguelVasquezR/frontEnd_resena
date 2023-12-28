@@ -21,7 +21,7 @@ function ForoMain(){
 
     const handleGetForos = () => {
         const functForos = async () => {
-            const data = await axios.get('http://192.168.100.6:4567/foros');
+            const data = await axios.get(`http://${import.meta.env.VITE_DIR_IP}:4567/foros`);
             const fors = await data.data;
             setForos(fors);
             // console.log(foros);

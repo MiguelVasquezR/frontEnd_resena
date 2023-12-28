@@ -17,10 +17,10 @@ function BarraBusqueda({ b, search }) {
         }
     }
 
-    const getUsuariosOpciones = async () => {        
+    const getUsuariosOpciones = async () => {               
         const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/getUsuarios?usuario=${value}`, { method: 'GET' })
         if (res.ok) {
-            const data = await res.json();
+            const data = await res.json();            
             search(data);
         }
     }

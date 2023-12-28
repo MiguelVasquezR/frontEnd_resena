@@ -20,8 +20,7 @@ function Autor() {
 
     useEffect(() => {
         if (isLoging) {
-            datosAutor();
-            console.log(nombreA);
+            datosAutor();            
         }
     }, [isLoging])
 
@@ -54,7 +53,7 @@ function Autor() {
 
     const cargando = () => {
         return (
-            <div className={styles.cargando}>
+            <div key={1} className={styles.cargando}>
                 <RiseLoader
                     color={'#006edf'}
                     loading={isLoging}

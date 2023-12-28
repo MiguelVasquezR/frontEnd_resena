@@ -2,7 +2,7 @@ import styles from './Generos.module.css'
 import { getUser } from '../../../hooks/Aut';
 import { useEffect, useState } from 'react';
 
-function Generos() {    
+function Generos({idUser}) {
     const [generos, setGeneros] = useState(null);
 
     const imagenes = [
@@ -21,10 +21,9 @@ function Generos() {
         handleGetGeneros();
     }, [])
 
-    const handleGetGeneros = () =>{
-        const user = getUser();
+    const handleGetGeneros = () =>{        
         const fetchGeneros = async () =>{
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/generos-usuario?IDUsuario=${user.IDUsuario}`);
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/generos-usuario?IDUsuario=${idUser}`);
             const data = await res.json();                    
             setGeneros(data);
         }
