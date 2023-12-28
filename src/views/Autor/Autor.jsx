@@ -19,9 +19,9 @@ function Autor() {
     const [isLoging, setIsLoging] = useState(true);
 
     useEffect(() => {
-        fetch(`http://${import.meta.env.VITE_DIR_IPP}/getImages`).then(res => {console.log(res);}).catch(err=>console.log("Error", err));
+        fetch(`http://${import.meta.env.VITE_DIR_IPP}/getImages`).then(res => { console.log(res); }).catch(err => console.log("Error", err));
         if (isLoging) {
-            datosAutor();            
+            datosAutor();
         }
     }, [isLoging])
 
@@ -100,16 +100,20 @@ function Autor() {
                                 <h3>Biografía</h3>
                                 <p className={styles.biografia}>{autor.biografia}</p>
                             </div>
-                        </div>                        
+                        </div>
 
                         <div className={styles.booksOptions}>
-                            {libros.map((libro) => {
-                                return (<ItemsBook key={libros.IDLibro} libro={libro} />)
-                            })}
+                            {libros ?
+                                libros.map((libro) => {
+                                    return (<ItemsBook key={libros.IDLibro} libro={libro} />)
+                                })
+                                :
+                                ""
+                            }
                         </div>
                     </div>
             }
-            
+
         </div>
     )
 }
