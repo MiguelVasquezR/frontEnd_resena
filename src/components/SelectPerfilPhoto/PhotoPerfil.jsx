@@ -18,7 +18,7 @@ function PhotoPerfil({band}) {
         const formData = new FormData();
         formData.set('image', file);            
         const fetchUploadImage = async () =>{            
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:9000/image/post`, {method: 'POST', body: formData});                        
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IPP}/image/post`, {method: 'POST', body: formData});                        
             const respuesta = await res.json();            
             window.localStorage.setItem('IDImagen', respuesta.IDImagen);            
         }
@@ -28,7 +28,7 @@ function PhotoPerfil({band}) {
     const handleSavedImage = () => {
         const user = getUser();                
         const han = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/foto-usuario?IDUsuario=${user.IDUsuario}&Foto=${localStorage.getItem('IDImagen')}`, {method: 'PUT'});
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/foto-usuario?IDUsuario=${user.IDUsuario}&Foto=${localStorage.getItem('IDImagen')}`, {method: 'PUT'});
             if  (res.ok){
                 const data = await res.json();
                 localStorage.removeItem('localUserStorage')

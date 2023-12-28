@@ -15,16 +15,16 @@ function OptionsBooks({ IDLibro, titulo, foto, idioma, editorial, IDAutor }) {
         setAdd(!add)        
         const id = JSON.parse(localStorage.getItem('IDLista'));
         if (add) {
-            fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/agregar-libros?idlista=${id.ID}&idLibro=${IDLibro}`, { method: 'POST' }).then(respuesta => { if (respuesta.ok) { console.log("Se ha agregado"); } }).catch(err => { console.log("Error al momento de hacer la petición"); })
+            fetch(`http://${import.meta.env.VITE_DIR_IP}/agregar-libros?idlista=${id.ID}&idLibro=${IDLibro}`, { method: 'POST' }).then(respuesta => { if (respuesta.ok) { console.log("Se ha agregado"); } }).catch(err => { console.log("Error al momento de hacer la petición"); })
         } else {
-            fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/eliminar-libros?idlista=${id.ID}&idLibro=${IDLibro}`, { method: 'DELETE' }).then(respuesta => { }).catch(err => { })
+            fetch(`http://${import.meta.env.VITE_DIR_IP}/eliminar-libros?idlista=${id.ID}&idLibro=${IDLibro}`, { method: 'DELETE' }).then(respuesta => { }).catch(err => { })
         }
 
     }
 
     const getAutor = () => {
         const fetchAutor = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/nombre-autores?id=${IDAutor}`);
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/nombre-autores?id=${IDAutor}`);
             const data = await res.json();
             setAutor(data);
         }
@@ -34,7 +34,7 @@ function OptionsBooks({ IDLibro, titulo, foto, idioma, editorial, IDAutor }) {
     return (
         <div className={styles.container}>
             <div className={styles.containerImg}>
-                <img src={`http://${import.meta.env.VITE_DIR_IP}:9000/` + foto + '.png'} alt="Portada Libro" className={styles.img} />
+                <img src={`http://${import.meta.env.VITE_DIR_IPP}/` + foto + '.png'} alt="Portada Libro" className={styles.img} />
             </div>
 
             <div className={styles.infoContainer}>

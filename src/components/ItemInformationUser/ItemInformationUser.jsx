@@ -14,7 +14,7 @@ function ItemInformationUser({ idUser }) {
 
     const getDatos = () => {
         const fetchDato = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/get-perfil-user?IDuser=${idUser}`, { method: 'POST' })
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/get-perfil-user?IDuser=${idUser}`, { method: 'POST' })
             if (res.ok) {
                 const data = await res.json();
                 setDatos(data);
@@ -32,7 +32,7 @@ function ItemInformationUser({ idUser }) {
                 :
                 <div className={styles.informationContainer}>
                     <div className={styles.imgContainer}>
-                        {datos.foto ? <img src={`http://${import.meta.env.VITE_DIR_IP}:9000/` + datos.foto + ".png"} alt={'Pergil de ' + datos.nombre} className={styles.img} /> : <FaRegUserCircle size={40} color='white' />}
+                        {datos.foto ? <img src={`http://${import.meta.env.VITE_DIR_IPP}/` + datos.foto + ".png"} alt={'Pergil de ' + datos.nombre} className={styles.img} /> : <FaRegUserCircle size={40} color='white' />}
                     </div>
                     <div className={styles.informationUserContainer}>
                         <h3 className={styles.h3_nombre}>{datos.nombre + " " + datos.paterno + " " + datos.materno}</h3>

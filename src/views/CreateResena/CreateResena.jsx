@@ -46,7 +46,7 @@ function CreateResena() {
         }        
 
         const fetchResena = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/crear-resena?IDUsuario=${IDUsuario.IDUsuario}`, { method: 'POST', body: JSON.stringify(rensenaCompleta) });
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/crear-resena?IDUsuario=${IDUsuario.IDUsuario}`, { method: 'POST', body: JSON.stringify(rensenaCompleta) });
             const data = await res.json();
 
             if (data.Msj === 'Guardado') {

@@ -15,20 +15,16 @@ function ForoMain(){
     }
 
     useEffect(() => {
-        handleGetForos();
-        // console.log(foros);
+        handleGetForos();        
     }, [setForos])
 
     const handleGetForos = () => {
         const functForos = async () => {
-            const data = await axios.get(`http://${import.meta.env.VITE_DIR_IP}:4567/foros`);
+            const data = await axios.get(`http://${import.meta.env.VITE_DIR_IP}/foros`);
             const fors = await data.data;
-            setForos(fors);
-            // console.log(foros);
+            setForos(fors);            
         }
-        functForos();
-        /*console.log("data", data.data);
-        setForos(data.data);*/
+        functForos();        
     }
 
     return (
@@ -38,9 +34,9 @@ function ForoMain(){
                 <div className={styles.btn} onClick={handleClic}><MdForum color='white' size={30}/></div>
             </div>
 
-            {foros ? foros.map((foro) => {
+            {foros ? foros.map((foro) => {                
                 return (
-                    <ItemForo IDForo={foro.IDForo} foro={foro} nombre={foro.Nombre} cantUsuarios="1500" descripcion={foro.Descripcion}/>
+                    <ItemForo foro={foro}/>
                 )
             }) : ""}
         </div>

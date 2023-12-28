@@ -7,7 +7,7 @@ function InformationGenero(props) {
 
     useEffect(() => {
         const fetchEvents = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/genero?Nombre=${nombre}`);
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/genero?Nombre=${nombre}`);
             const data = await res.json();
             setDatos(data);
         }

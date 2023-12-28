@@ -37,7 +37,7 @@ export default function SeeLista() {
     // Rellena el setInforLista de la tabla Lista
     const handleGetBooks = () => {
         const fetchBooks = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/libros-lista?IDLista=${IDLista}`, { method: 'GET' });
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/libros-lista?IDLista=${IDLista}`, { method: 'GET' });
             const data = await res.json();
             if (res.ok) {
                 setInfoLista(data);
@@ -49,7 +49,7 @@ export default function SeeLista() {
 
     const handlelist = () => {
         const fetchPerfil = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/get-lista-info?id=${IDLista}`, { method: 'GET' });
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/get-lista-info?id=${IDLista}`, { method: 'GET' });
             const data = await res.json();
             setLista(data);
             setIsLoading(false);
@@ -60,7 +60,7 @@ export default function SeeLista() {
     //Traer informacion de los liibros para rellenarlos
     const handleInfoList = () => {
         const fetchPerfil = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/optionBook?id=${IDLista}`, { method: 'GET' });
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/optionBook?id=${IDLista}`, { method: 'GET' });
             const data = await res.json();
             setInfoOptionBook(data);
             setLoading(false);
@@ -73,7 +73,7 @@ export default function SeeLista() {
     const renderOptionBook = (item, i) => {
 
         const handleDelte = () => {
-            fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/eliminar-libros?idlista=${IDLista}&idLibro=${item.IDLibro}`, { method: 'DELETE' }).then(() => { setDeletedIndex(i) }).catch(err => { })
+            fetch(`http://${import.meta.env.VITE_DIR_IP}/eliminar-libros?idlista=${IDLista}&idLibro=${item.IDLibro}`, { method: 'DELETE' }).then(() => { setDeletedIndex(i) }).catch(err => { })
         }
 
         if (i === deletedIndex) {
@@ -83,7 +83,7 @@ export default function SeeLista() {
         return (
             <div key={i} className={styles.containerOption}>
                 <section className={styles.imagenContainer}>
-                    <img src={`http://${import.meta.env.VITE_DIR_IP}:9000/` + item.Foto + ".png"} alt="Imagen Portada del Libro" className={styles.imgBook} />
+                    <img src={`http://${import.meta.env.VITE_DIR_IPP}/` + item.Foto + ".png"} alt="Imagen Portada del Libro" className={styles.imgBook} />
                 </section>
 
                 <section className={styles.informationContainer}>
@@ -119,7 +119,7 @@ export default function SeeLista() {
                     <div>
                         <div className={styles.containerInformacion}>
                             <div>
-                                <img className={styles.img} src={lista ? `http://${import.meta.env.VITE_DIR_IP}:9000/` + lista.IDImagen + ".png" : ""} alt="Foto de perfil del foro" />
+                                <img className={styles.img} src={lista ? `http://${import.meta.env.VITE_DIR_IPP}/` + lista.IDImagen + ".png" : ""} alt="Foto de perfil del foro" />
                             </div>
 
                             <div>

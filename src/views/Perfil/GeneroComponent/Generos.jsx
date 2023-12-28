@@ -23,7 +23,7 @@ function Generos({idUser}) {
 
     const handleGetGeneros = () =>{        
         const fetchGeneros = async () =>{
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/generos-usuario?IDUsuario=${idUser}`);
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/generos-usuario?IDUsuario=${idUser}`);
             const data = await res.json();                    
             setGeneros(data);
         }

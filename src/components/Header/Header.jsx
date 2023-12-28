@@ -12,6 +12,7 @@ import { RiMoonClearLine } from 'react-icons/ri';
 import { getPersona, getUser, logout } from "../../hooks/Aut";
 import {IoChevronBackOutline} from 'react-icons/io5'
 import { useLocation } from "react-router-dom";
+import { IsLoging } from "../../hooks/IsLogin";
 
 
 function Header({actualizar}) {
@@ -60,8 +61,8 @@ function Header({actualizar}) {
     }
 
 
-    const actualizarPadre = () => {
-        actualizar('Nuevo estado')
+    const actualizarPadre = (ho) => {
+        actualizar(ho)
     }
 
 
@@ -88,13 +89,13 @@ function Header({actualizar}) {
             } else if (e.target.id === "LogOut") {
                 logout();
                 setOpen(!open)     
-                actualizarPadre();           
+                actualizarPadre("Nuevo");           
                 navigate(`/`);      
             }
         }
 
-        if (e.target.id === "Login") {
-            navigate("/Autentication");                
+        if (e.target.id === "Login") {            
+            navigate("/Autentication");                            
         }
 
     }

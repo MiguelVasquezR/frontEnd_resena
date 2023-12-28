@@ -5,6 +5,7 @@ import { IoEyeOutline } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom';
 import { addPersonne } from '../../../hooks/Aut';
 import React from 'react';
+import { IsLoging } from '../../../hooks/IsLogin';
 
 
 function Login() {
@@ -25,9 +26,8 @@ function Login() {
     const useLogin = async (datos) => {
       try {
         
-        const respuesta = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/usuario`,{
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+        const respuesta = await fetch(`http://${import.meta.env.VITE_DIR_IP}/usuario`,{
+          method: 'POST',          
           body: JSON.stringify(datos)
         });
 
@@ -41,8 +41,10 @@ function Login() {
           } else {
             if (usuario.password === datos.password) {                 
               window.localStorage.setItem('localUserStorage', JSON.stringify(usuario));
-              addPersonne();              
-              navigate(`/`);            
+              addPersonne();    
+              setTimeout(()=> {
+                navigate(`/`);    
+              }, 1500)                                            
             } else {                      
               setBand(true);
             }

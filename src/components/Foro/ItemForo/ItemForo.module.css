@@ -8,6 +8,7 @@
     width: 95%;
     margin: 20px auto;
     border-radius: 15px;
+    box-shadow: 4px 4px rgba(0, 0, 0, .5);
 
 }
 
@@ -22,19 +23,21 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    text-align: center;    
 }
 
 .img{
-    width: 60px;
-    height: 80px;
-    border-radius: 10px;
-    background-color: #fff;    
+    width: 80px;
+    height: 100px;
+    border-radius: 10px;    
+    object-fit: cover;
 }
 
 .infoContainer{    
     color: white;
     text-align: center; 
     padding: 10px;     
+    width: 100%;    
 }
 
 .titulo{
@@ -46,8 +49,8 @@
 }
 
 .descripcion{
-    font-size: 15;
-    text-align: justify;
+    font-size: 15px;
+    text-align: justify;    
 }
 
 .titulo, .cant, .descripcion{

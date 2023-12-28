@@ -4,8 +4,7 @@
     width: 95%;
     border-radius: 10px;
     padding: 10px;
-
-    text-align: center;
+    text-align: center
 }
 
 .img{
@@ -19,7 +18,7 @@
 .containerInfo{    
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -63,10 +62,11 @@
     width: 80%;
     height: 120px;
     margin: 10px 0;
-    padding: 5px;    
+    padding: 10px;    
     border-radius: 10px;
     border: none;
     outline: none;
+    color: black;
 }
 
 .btnPublica{
