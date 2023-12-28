@@ -19,6 +19,7 @@ function Autor() {
     const [isLoging, setIsLoging] = useState(true);
 
     useEffect(() => {
+        fetch(`http://${import.meta.env.VITE_DIR_IPP}/getImages`).then(res => {console.log(res);}).catch(err=>console.log("Error", err));
         if (isLoging) {
             datosAutor();            
         }
@@ -32,7 +33,7 @@ function Autor() {
 
     const datosAutor = () => {
         const fetchAutor = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/autor-datos?nombre=${nombreA}`, { method: 'POST' });
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/autor-datos?nombre=${nombreA}`, { method: 'POST' });
             const data = await res.json();
             setAutor(data);
             setIsLoging(false);
@@ -44,7 +45,7 @@ function Autor() {
 
     const datosLibros = (ID) => {
         const fetchLibros = async (ID) => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/libros/autor?autor=${ID}`);
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/libros/autor?autor=${ID}`);
             const data = await res.json();
             setLibros(data);
         }
@@ -99,8 +100,7 @@ function Autor() {
                                 <h3>Biografía</h3>
                                 <p className={styles.biografia}>{autor.biografia}</p>
                             </div>
-                        </div>
-                        <BarraBusqueda b="libro" />
+                        </div>                        
 
                         <div className={styles.booksOptions}>
                             {libros.map((libro) => {

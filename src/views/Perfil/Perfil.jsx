@@ -28,6 +28,7 @@ function Perfil({ idusuario }) {
     const [seguidos, setSeguidos] = useState([]);
     
     useEffect(() => {
+        fetch(`http://${import.meta.env.VITE_DIR_IPP}/getImages`).then(res => {console.log(res);}).catch(err=>console.log("Error", err));
         if (getPersona() && getUser()) {
             getPublications();            
             actCantidad();
@@ -58,8 +59,8 @@ function Perfil({ idusuario }) {
 
     const getPublications = () => {
         const fetchPublication = async () => {
-            fetch(`http://${import.meta.env.VITE_DIR_IP}:9000/image/getImages`).catch(err => { console.log("ERROR AL OBTENER LA FOTO"); })
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/get-resenas?IDUsuario=${idusuario}`, { method: 'GET' });
+            fetch(`http://${import.meta.env.VITE_DIR_IPP}/image/getImages`).catch(err => { console.log("ERROR AL OBTENER LA FOTO"); })
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/get-resenas?IDUsuario=${idusuario}`, { method: 'GET' });
             const data = await res.json();
             setResenas(data);
             setIsLoading(false);
@@ -73,7 +74,7 @@ function Perfil({ idusuario }) {
             IDUserOrigin: user.IDUsuario 
         }
         const fetchFollow = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/follow`, {method: 'POST', body: JSON.stringify(datos)});
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/follow`, {method: 'POST', body: JSON.stringify(datos)});
             if(res.ok){
                 const data = await res.json();
                 console.log(data);   
@@ -86,7 +87,7 @@ function Perfil({ idusuario }) {
 
     const actCantidad = () => {        
         const fetchAct = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/count1?id=${idusuario}`);
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/count1?id=${idusuario}`);
             if(res.ok){
                 const data = await res.json();                
                 setFollow(data);
@@ -98,7 +99,7 @@ function Perfil({ idusuario }) {
     const getSeguidores = () => {        
         const fetchSeg = async () => {
             const user = getUser();
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/getFollow?id=${user.IDUsuario}`);
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/getFollow?id=${user.IDUsuario}`);
             if(res.ok){
                 const data = await res.json(); 
                 setSeguidos(data);                

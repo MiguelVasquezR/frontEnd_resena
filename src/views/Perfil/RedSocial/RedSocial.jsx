@@ -12,7 +12,7 @@ function RedSocial({idUser}) {
 
     const GetRedSocial = () => {
         const fetchGetRed = async () => {            
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/getRedes?id=${idUser}`)
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/getRedes?id=${idUser}`)
             if (res.ok){
                 const data = await res.json();
                 setRedes(data);

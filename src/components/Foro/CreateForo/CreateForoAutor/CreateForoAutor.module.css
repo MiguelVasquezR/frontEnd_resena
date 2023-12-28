@@ -78,3 +78,28 @@
     font-size: 15px;
     margin: 10px 0 30px 0;
 }
+
+
+.containerMain{
+    width: 95%;    
+    margin: 10px auto;
+}
+
+
+.selectContainer{    
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;        
+}
+
+.imgPerfil{
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+}
+
+.btnPerfil{
+    background-color: var(--colorW2);    
+}

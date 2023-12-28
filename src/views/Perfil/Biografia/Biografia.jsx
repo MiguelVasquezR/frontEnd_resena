@@ -24,7 +24,7 @@ function Biografia({idUser}) {
 
     const handleSaveBiografia = () =>{
         const fetchBiografia = async () =>{
-            const res =await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/add-biografia?biografia=${biografia}&IDPersona=${idUser}`, {method: 'POST'});            
+            const res =await fetch(`http://${import.meta.env.VITE_DIR_IP}/add-biografia?biografia=${biografia}&IDPersona=${idUser}`, {method: 'POST'});            
         }                
         fetchBiografia();                                                                
         setIsEditing(false);        
@@ -33,7 +33,7 @@ function Biografia({idUser}) {
 
     const getDataPersona = () =>{
         const fetchBiografia = async () =>{
-            const res =await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/get-biografia?IDPersona=${idUser}`, {method: 'GET'});            
+            const res =await fetch(`http://${import.meta.env.VITE_DIR_IP}/get-biografia?IDPersona=${idUser}`, {method: 'GET'});            
             if(res.ok){
                 const data = await res.json();                                
                 setPersona(data);

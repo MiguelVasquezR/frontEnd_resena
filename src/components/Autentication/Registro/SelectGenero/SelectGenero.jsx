@@ -31,9 +31,9 @@ function SelectGenero() {
 
     const handleRegister = async () => {
         if(seleccionados.length === 0){
-            await axios.post(`http://${import.meta.env.VITE_DIR_IP}:4567/usuario-genero`, "Sin genero");    
+            await axios.post(`http://${import.meta.env.VITE_DIR_IP}/usuario-genero`, "Sin genero");    
         }else{
-            await axios.post(`http://${import.meta.env.VITE_DIR_IP}:4567/usuario-genero`, seleccionados);
+            await axios.post(`http://${import.meta.env.VITE_DIR_IP}/usuario-genero`, JSON.stringify(seleccionados));
         }        
         window.location.reload();
     }

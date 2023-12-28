@@ -59,7 +59,7 @@ function Configuration() {
                     IDUsuario: user.IDUsuario,
                     URL: url,
                 }
-                const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/red-social`, { method: 'POST', body: JSON.stringify(datos) });
+                const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/red-social`, { method: 'POST', body: JSON.stringify(datos) });
             } catch (error) {
                 console.log(error);
             }
@@ -73,7 +73,7 @@ function Configuration() {
     const GetRedSocial = () => {
         const fetchGetRed = async () => {
             const user = getUser();
-            const res = await axios.get(`http://${import.meta.env.VITE_DIR_IP}:4567/red-social`, { params: user });
+            const res = await axios.get(`http://${import.meta.env.VITE_DIR_IP}/red-social`, { params: user });
             setRedes(res.data);
             setOpen(false);
         }

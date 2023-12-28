@@ -17,6 +17,7 @@ function Genero() {
     const [isLoging, setIsLoging] = useState(true);
 
     useEffect(() => {
+        fetch(`http://${import.meta.env.VITE_DIR_IPP}/getImages`).then(res => {console.log(res);}).catch(err=>console.log("Error", err));
         if (isLoging) {
             handleGetLibros();
         }
@@ -25,7 +26,7 @@ function Genero() {
     const handleGetLibros = () => {
         try {
             const fetchBook = async (genero) => {
-                const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/libros/genero?genero=${genero}`);
+                const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/libros/genero?genero=${genero}`);
                 const data = await res.json();
                 setLibros(data);
                 setIsLoging(false)
@@ -40,8 +41,7 @@ function Genero() {
     return (
         <>
             <Header />
-            <InformationGenero imgUrl={url} nombre={genero} />
-            <BarraBusqueda b="libro" />
+            <InformationGenero imgUrl={url} nombre={genero} />            
 
             {
                 isLoging ?

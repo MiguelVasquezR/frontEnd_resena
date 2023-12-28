@@ -17,7 +17,7 @@ function Lista({ idUser }) {
 
     const getLists = () => {
         const cons = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/get-listas?IDUsuario=${idUser}`, { method: 'POST' });
+            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/get-listas?IDUsuario=${idUser}`, { method: 'POST' });
             const datos = await res.json();
             setLista(datos);
         }
@@ -30,11 +30,11 @@ function Lista({ idUser }) {
 
     const handleDeleteList = (listID, IDImangen) => {
         const fetchDeleteList = async () => {
-            await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/eliminar-lista?id=${listID}`, { method: 'DELETE' });
+            await fetch(`http://${import.meta.env.VITE_DIR_IP}/eliminar-lista?id=${listID}`, { method: 'DELETE' });
         }
         fetchDeleteList();
         const fetchDeleteImage = async () => {
-            await fetch(`http://${import.meta.env.VITE_DIR_IP}:9000/image/delete/${IDImangen}`, { method: 'DELETE' });
+            await fetch(`http://${import.meta.env.VITE_DIR_IPP}/image/delete/${IDImangen}`, { method: 'DELETE' });
         }
         fetchDeleteImage();
         setLista(prevLista => prevLista.filter(lista => lista.ID !== listID));

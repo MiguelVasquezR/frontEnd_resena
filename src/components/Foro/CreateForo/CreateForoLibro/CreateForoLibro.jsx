@@ -2,16 +2,18 @@ import styles from './CreateForoLibro.module.css';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function CreateFotoLibro(){
     const { register, handleSubmit, formState: { erros } } = useForm();
     const [error, setError] = useState(false);
+    const navigate = useNavigate();
 
     const placeHolder = ["Nombre Autor", "Género", "Idioma", "Editorial"];
 
     const handleClic = async (data) => {
-        await axios.post(`http://${import.meta.env.VITE_DIR_IP}:4567/foro-crear`, data);
-        window.location.reload(false);
+        await axios.post(`http://${import.meta.env.VITE_DIR_IP}/foro-crear`, data);
+        navigate("/Foro");
     }
 
     return(

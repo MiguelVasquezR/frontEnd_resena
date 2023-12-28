@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import styles from './CreateForo.module.css';
-import CreateForoLibro from './CreateForoLibro/CreateForoLibro';
-import CreateForoAutor from './CreateForoAutor/CreateForoAutor';
 import CreateForoGenero from './CreateForoGenero/CreateForoGenero';
 import Header from '../../Header/Header';
 
@@ -41,9 +39,9 @@ function CreateForo() {
                         </select>
                         <div className={styles.formContainer}>
                             {option === '' && <h2 className={styles.titulo}>Selecciona un Objetivo</h2>}
-                            {option === 'Autor' && <CreateForoAutor />}
-                            {option === 'Libro' && <CreateForoLibro />}
-                            {option === 'Genero' && <CreateForoGenero />}
+                            {option === 'Autor' && <CreateForoGenero option={'Autor'} />}                            
+                            {option === 'Libro' && <CreateForoGenero option={'Libro'} />}                            
+                            {option === 'Genero' && <CreateForoGenero option={'Género'} />}                            
                         </div>
                     </div>
                     :
