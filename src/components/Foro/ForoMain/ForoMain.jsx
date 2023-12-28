@@ -43,7 +43,7 @@ function ForoMain(){
                     <ItemForo IDForo={foro.IDForo} foro={foro} nombre={foro.Nombre} cantUsuarios="1500" descripcion={foro.Descripcion}/>
                 )
             }) : ""}
-        </div>        
+        </div>
     )
 }
 
