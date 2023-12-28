@@ -16,6 +16,10 @@ function CrearLista() {
     const [selectedOption, setSelectedOption] = useState('');
     const navigate = useNavigate();
 
+    const searchParams = new URLSearchParams(location.search);
+    const idUser = searchParams.get('id');
+
+
     const handleChangeOption = (e) => {
         setSelectedOption(e.target.value);
     };
@@ -37,7 +41,7 @@ function CrearLista() {
             nombre: datos.nombre,
             descripcion: datos.descripcion,
             IDImagen: localStorage.getItem('IDImagen'),
-            IDUsuario: user.IDUsuario,
+            IDUsuario: idUser,
         }
         const enviarDatos = async () => {
             const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/crear-lista`, { method: 'POST', body: JSON.stringify(lista) });

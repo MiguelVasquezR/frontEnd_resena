@@ -7,34 +7,34 @@ import Message from "../../../components/Chat/Message/Message";
 import Interaction from '../../../components/Chat/Interaction/Interaction';
 import IS from "../../../Alerts/IniciaSesión/IS";
 import styles from './InteractionMessage.module.css';
-const socket = io("/");
+// const socket = io("/");
 
 function InteractionMessage() {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
             
-    useEffect(() => {
-      socket.on("message", receiveMessage)            
-      return () => {
-        socket.off("message", receiveMessage);
-      };
-    }, []);
+    // useEffect(() => {
+    //   socket.on("message", receiveMessage)            
+    //   return () => {
+    //     socket.off("message", receiveMessage);
+    //   };
+    // }, []);
   
-    const receiveMessage = (message) => setMessages(state => [message, ...state]);
+    // const receiveMessage = (message) => setMessages(state => [message, ...state]);
   
-    const handleSubmit = () => {      
-      const newMessage = {
-        body: message,
-        from: "Me",
-      };
-      setMessages(state => [newMessage, ...state]);
-      setMessage("");
-      socket.emit("message", newMessage.body);      
-    };
+    // const handleSubmit = () => {      
+    //   const newMessage = {
+    //     body: message,
+    //     from: "Me",
+    //   };
+    //   setMessages(state => [newMessage, ...state]);
+    //   setMessage("");
+    //   socket.emit("message", newMessage.body);      
+    // };
 
-    useEffect(()=>{
-        handleSubmit();            
-    }, [message])
+    // useEffect(()=>{
+    //     handleSubmit();            
+    // }, [message])
   
 
     const handleMessage = (mensaje) => {

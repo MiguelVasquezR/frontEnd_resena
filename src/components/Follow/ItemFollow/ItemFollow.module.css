@@ -1,24 +1,34 @@
 .container{
     background-color: var(--colorW1);
-    margin: 10px 0;
-    padding: 10px 0;
+    margin: 12px auto;
+    padding: 10px;
+
+    width: 95%;
+    border-radius: 10px;
 
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
-.imgContainer{
-    background-color: #fff;
-    width: 60px;
-    height: 60px;
+.imgContainer{    
+    width: 90px;
+    height: 90px;
     border-radius: 50px;
     margin: 0 1px;
 }
 
+.img{
+    width: 90px;
+    height: 90px;
+    border-radius: 100px;
+    object-fit: cover;
+    text-align: center;
+}
+
+
 .infoContainer{    
-    color: white;
-    margin-left: 10px;
-    margin-right: 52px;    
+    color: white;        
+    margin-left: 20px;
 }

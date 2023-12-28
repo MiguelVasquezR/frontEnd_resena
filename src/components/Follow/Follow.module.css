@@ -1,15 +1,27 @@
 .ul{
     background-color: var(--colorW1);
     color: white;
-    font-size: 18px;
-    margin-top: 12px;
+    font-size: 18px;    
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
     list-style: none;
+    
+    margin: 10px auto;    
+    border-radius: 10px;
+
+    width: 95%;    
 }
 
-.ul>li{
-    padding: 20px;
+.selected{
+    background-color: var(--colorW2);
+}
+
+.ul > li{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
 }

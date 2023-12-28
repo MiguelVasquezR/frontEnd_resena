@@ -1,26 +1,59 @@
 import styles from './Follow.module.css';
 import Header from '../Header/Header';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ItemFollow from './ItemFollow/ItemFollow';
 
 import { IsLoging } from "../../hooks/IsLogin";
 import IS from "../../Alerts/IniciaSesión/IS";
+import Loading from '../Loading/Loading';
 
 
 function Follow() {
-    /*
-        Seguidos -> false
-        seguidores -> true
-    */
     const [option, setOption] = useState(false);
+    const searchParams = new URLSearchParams(location.search);
+    const id = searchParams.get('id')
+    const [seguidores, setSeguidores] = useState([]);
+    const [seguidos, setSeguidos] = useState([]);
+
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleClicOption = (e) => {
         if (e.target.id === 'seguidos') {
             setOption(false)
         } else if (e.target.id === 'seguidores') {
             setOption(true)
+        }        
+    }    
+
+    useEffect(()=>{
+        setIsLoading(true);
+        getData();
+    }, [option])
+
+    const getData = () => {
+        if (option) {
+            const seg = async () => {
+                const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/seguidos?id=${id}`)
+                if (res.ok) {
+                    const data = await res.json();
+                    setSeguidos(data);
+                    setIsLoading(false);
+                }
+            }
+            seg();            
+        } else {
+            const seg = async () => {
+                const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:4567/seguidores?id=${id}`)
+                if (res.ok) {
+                    const data = await res.json();
+                    setSeguidores(data);
+                    setIsLoading(false);                    
+                }
+            }
+            seg();            
         }
-    }
+    }    
+
 
     return (
         <>
@@ -29,13 +62,24 @@ function Follow() {
                 IsLoging() ?
                     <div>
                         <ul className={styles.ul}>
-                            <li id='seguidos' onClick={handleClicOption}>Seguidos</li>
-                            <li id='seguidores' onClick={handleClicOption}>Seguidores</li>
+                            <li className={`${!option ? styles.selected : ""}`} id='seguidos' onClick={handleClicOption}>Seguidos</li>
+                            <li className={`${!option ? "" : styles.selected}`} id='seguidores' onClick={handleClicOption}>Seguidores</li>
                         </ul>
 
                         <div className={styles.followsContainer}>
-                            {option && <ItemFollow nombre='Miguel Vásquez' usuario='@Miguel_VR12' />}
-                            {!option && <h2>Seguidos</h2>}
+                            {
+                                isLoading ?
+                                    <Loading /> :
+
+                                    option ?
+                                        seguidos.map((seguido, i) => {                                            
+                                            return <ItemFollow s={1} id={id} idUser={seguido.IDUsuario} key={i} foto={seguido.foto} nombre={seguido.nombre + " " + seguido.paterno + " " + seguido.materno} usuario={seguido.usuario} />
+                                        })
+                                        :
+                                        seguidores.map((seguidor, i) => {
+                                            return <ItemFollow s={0} id={id} idUser={seguidor.IDUsuario} key={i} foto={seguidor.foto} nombre={seguidor.nombre + " " + seguidor.paterno + " " + seguidor.materno} usuario={seguidor.usuario} />
+                                        })
+                            }
                         </div>
                     </div>
                     :

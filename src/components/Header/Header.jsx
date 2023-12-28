@@ -10,18 +10,22 @@ import { MdForum } from 'react-icons/md';
 import { IoIosHelpCircleOutline } from 'react-icons/io';
 import { RiMoonClearLine } from 'react-icons/ri';
 import { getPersona, getUser, logout } from "../../hooks/Aut";
+import {IoChevronBackOutline} from 'react-icons/io5'
+import { useLocation } from "react-router-dom";
+
 
 function Header({actualizar}) {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const lasOption = getUser() ? "LogOut" : "Login";
     const options = ["Perfil", "Ajustes", "Foros", "Tema", "Ayuda", lasOption];
-
     const [isLogin, setIsLogin] = useState(false);
 
-    useEffect(() => {
-        if (getPersona() && getUser()) {
-            setIsLogin(true);
+    const location = useLocation();
+
+    useEffect(() => {        
+        if (getPersona() && getUser()) {            
+            setIsLogin(true);            
         } else {
             setIsLogin(false);
         }
@@ -49,6 +53,10 @@ function Header({actualizar}) {
         if (isLogin) {
             navigate("/message");
         }
+    }
+
+    const handleBack = () => {
+        navigate(-1);                
     }
 
 
@@ -94,8 +102,14 @@ function Header({actualizar}) {
 
     return (
         <div className={styles.header}>
-            <div className={styles.logo} onClick={handleHome}>
-                <img src={logo} alt="Logo de la página" className={styles.img} />
+            <div className={styles.logo}>
+                {
+                    location.pathname === '/' ?
+                    ""
+                    :
+                    <IoChevronBackOutline  color="white" size={30} style={{margin: '0 10px'}} onClick={handleBack} />
+                }            
+                <img src={logo} alt="Logo de la página" className={styles.img}  onClick={handleHome}/>
             </div>
 
             <div className={styles.options}>

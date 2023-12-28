@@ -1,7 +1,7 @@
 .container {
     position: relative;
     outline: none;
-    border-radius: 50px;
+    border-radius: 50px;    
 }
 
 .btnResena {
@@ -27,4 +27,50 @@
     width: 30px;
     height: 30px;
     border-radius: 50px;    
+}
+
+/* User Option */
+
+.userContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    background-color: var(--colorW1);
+    width: 95%;
+    margin: 10px auto;
+    border-radius: 20px;
+    box-shadow: 6px 6px rgba(0, 0, 0, .6);
+}
+
+.imgUser{
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    margin: 10px;
+}
+
+.containerInfor{
+    color: white;
+    font-size: 16px;
+}
+
+.texto{
+    margin: 5px 0;    
+}
+
+.usuario{
+    font-size: 20px;
+    color: rgba(255, 255, 255, .7);
+}
+
+.texto, .usuario{
+    margin-right: 12px;
+}
+
+
+@media only screen and (min-width: 1025px){ 
+
+
 }
