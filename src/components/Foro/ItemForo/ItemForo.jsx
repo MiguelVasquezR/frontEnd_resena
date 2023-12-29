@@ -13,7 +13,7 @@ function ItemForo({ foro }) {
     }
 
     useEffect(() => {
-        fetch(`http://${import.meta.env.VITE_DIR_IPP}/getImages`).catch(err => { console.log("Error, ", err); })
+        fetch(`https://${import.meta.env.VITE_DIR_IPP}/getImages`).catch(err => { console.log("Error, ", err); })
     }, [Foto])
 
 
@@ -21,7 +21,7 @@ function ItemForo({ foro }) {
         <div key={Nombre} className={styles.container} onClick={handleClicForo}>
             <div className={styles.imgContainer}>
                 <div className={styles.superior}>
-                    <img src={`http://${import.meta.env.VITE_DIR_IPP}/` + Foto + '.png'} alt="Imagen Portada Foro" className={styles.img} />
+                    <img src={`https://${import.meta.env.VITE_DIR_IPP}/` + Foto + '.png'} alt="Imagen Portada Foro" className={styles.img} />
 
                     <div className={styles.izquierda}>
                         <h2 className={styles.titulo}>{Nombre}</h2>                    

@@ -9,7 +9,7 @@ function DatosPersonales({ clickHijo }) {
 
     const handleClic = async (data) => {
         try {
-            await axios.post(`http://${import.meta.env.VITE_DIR_IP}/usuario-personales`, JSON.stringify(data));          
+            await axios.post(`https://${import.meta.env.VITE_DIR_IP}/usuario-personales`, JSON.stringify(data));          
             clickHijo(1);
         } catch (err) {
             alert(err)

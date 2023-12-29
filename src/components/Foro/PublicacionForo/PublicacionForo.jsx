@@ -12,7 +12,7 @@ function PublicacionForo({ IDForo}) {
 
     const handleGetPublicaciones = () => {
         const functPublicaciones = async () => {
-            const data = await axios.get(`http://${import.meta.env.VITE_DIR_IP}/publicaciones?IDForo=${IDForo}`);
+            const data = await axios.get(`https://${import.meta.env.VITE_DIR_IP}/publicaciones?IDForo=${IDForo}`);
             const p = await data.data;
             setPublicaciones(p);
         }
@@ -27,7 +27,7 @@ function PublicacionForo({ IDForo}) {
                         <div className={styles.publicacionForo}>
                             <div className={styles.informationContainer}>
                                 <div className={styles.imgContainer}>
-                                    <img src={`http://${import.meta.env.VITE_DIR_IPP}/` + publicacion.foto + ".png"} alt="Img" className={styles.img} />
+                                    <img src={`https://${import.meta.env.VITE_DIR_IPP}/` + publicacion.foto + ".png"} alt="Img" className={styles.img} />
                                 </div>
                                 <div className={styles.infoContainer}>
                                     <h2 className={styles.h2}>{publicacion.nombre + " " + publicacion.paterno}</h2>

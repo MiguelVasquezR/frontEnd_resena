@@ -48,7 +48,7 @@ function UpdatePersona() {
         dataActualizada.biografia = persona.biografia ? persona.biografia : '';        
 
         const fetchUpdatePersonne = async () => {
-            await fetch(`http://${import.meta.env.VITE_DIR_IP}/persona`, { method: 'PUT', body: JSON.stringify(dataActualizada) });
+            await fetch(`https://${import.meta.env.VITE_DIR_IP}/persona`, { method: 'PUT', body: JSON.stringify(dataActualizada) });
         }
 
         fetchUpdatePersonne();

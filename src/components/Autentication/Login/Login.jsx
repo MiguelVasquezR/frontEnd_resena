@@ -26,7 +26,7 @@ function Login() {
     const useLogin = async (datos) => {
       try {
         
-        const respuesta = await fetch(`http://${import.meta.env.VITE_DIR_IP}/usuario`,{
+        const respuesta = await fetch(`https://${import.meta.env.VITE_DIR_IP}/usuario`,{
           method: 'POST',          
           body: JSON.stringify(datos)
         });

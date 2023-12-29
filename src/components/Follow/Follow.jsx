@@ -33,7 +33,7 @@ function Follow() {
     const getData = () => {
         if (option) {
             const seg = async () => {
-                const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/seguidos?id=${id}`)
+                const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}/seguidos?id=${id}`)
                 if (res.ok) {
                     const data = await res.json();
                     setSeguidos(data);
@@ -43,7 +43,7 @@ function Follow() {
             seg();            
         } else {
             const seg = async () => {
-                const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/seguidores?id=${id}`)
+                const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}/seguidores?id=${id}`)
                 if (res.ok) {
                     const data = await res.json();
                     setSeguidores(data);

@@ -24,7 +24,7 @@ function Home() {
 
     useEffect(() => {
         handleGetResenas();
-        fetch(`http://${import.meta.env.VITE_DIR_IPP}/getImages`).then(res => { console.log(res); }).catch(err => console.log("Error", err));
+        fetch(`https://${import.meta.env.VITE_DIR_IPP}/getImages`).then(res => { console.log(res); }).catch(err => console.log("Error", err));
     }, [])
 
     const handleUsuario = (usuarios) => {
@@ -58,7 +58,7 @@ function Home() {
         return (
             <div key={item.IDUsuario + "-" + i} className={styles.userContainer} onClick={handleClic}>
                 <div className={styles.containerImg}>
-                    <img src={`http://${import.meta.env.VITE_DIR_IPP}/` + item.IDFoto + ".png"} alt="" className={styles.imgUser} />
+                    <img src={`https://${import.meta.env.VITE_DIR_IPP}/` + item.IDFoto + ".png"} alt="" className={styles.imgUser} />
                 </div>
 
                 <div className={styles.containerInfor}>
@@ -73,7 +73,7 @@ function Home() {
     const handleGetResenas = () => {
         const user = getUser();
         const fetchGetResenas = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/resenas-follow?id=${user.IDUsuario}`);
+            const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}/resenas-follow?id=${user.IDUsuario}`);
             if (res.ok) {
                 const data = await res.json();
                 setResenas(data);

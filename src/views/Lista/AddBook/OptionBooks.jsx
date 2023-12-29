@@ -14,16 +14,16 @@ function OptionsBooks({ IDLibro, titulo, foto, idioma, editorial, IDAutor, IDLis
     const handleAddBook = () => {
         setAdd(!add)        
         if (add) {
-            fetch(`http://${import.meta.env.VITE_DIR_IP}/agregar-libros?idlista=${IDLista}&idLibro=${IDLibro}`, { method: 'POST' }).then(respuesta => { if (respuesta.ok) { console.log("Se ha agregado"); } }).catch(err => { console.log("Error al momento de hacer la petición"); })
+            fetch(`https://${import.meta.env.VITE_DIR_IP}/agregar-libros?idlista=${IDLista}&idLibro=${IDLibro}`, { method: 'POST' }).then(respuesta => { if (respuesta.ok) { console.log("Se ha agregado"); } }).catch(err => { console.log("Error al momento de hacer la petición"); })
         } else {
-            fetch(`http://${import.meta.env.VITE_DIR_IP}/eliminar-libros?idlista=${IDLista}&idLibro=${IDLibro}`, { method: 'DELETE' }).then(respuesta => { }).catch(err => { })
+            fetch(`https://${import.meta.env.VITE_DIR_IP}/eliminar-libros?idlista=${IDLista}&idLibro=${IDLibro}`, { method: 'DELETE' }).then(respuesta => { }).catch(err => { })
         }
 
     }
 
     const getAutor = () => {
         const fetchAutor = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/nombre-autores?id=${IDAutor}`);
+            const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}/nombre-autores?id=${IDAutor}`);
             const data = await res.json();
             setAutor(data);
         }
@@ -33,7 +33,7 @@ function OptionsBooks({ IDLibro, titulo, foto, idioma, editorial, IDAutor, IDLis
     return (
         <div className={styles.container}>
             <div className={styles.containerImg}>
-                <img src={`http://${import.meta.env.VITE_DIR_IPP}/` + foto + '.png'} alt="Portada Libro" className={styles.img} />
+                <img src={`https://${import.meta.env.VITE_DIR_IPP}/` + foto + '.png'} alt="Portada Libro" className={styles.img} />
             </div>
 
             <div className={styles.infoContainer}>

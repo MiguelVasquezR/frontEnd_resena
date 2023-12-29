@@ -6,7 +6,7 @@ function ItemInformationBook(props) {
     const [isUpload, setIsUpload] = useState(false);    
 
     useEffect(() => {
-        fetch(`http://${import.meta.env.VITE_DIR_IPP}/image/${urlImg}`, { method: 'GET' })
+        fetch(`https://${import.meta.env.VITE_DIR_IPP}/image/${urlImg}`, { method: 'GET' })
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Error en la red");
@@ -34,7 +34,7 @@ function ItemInformationBook(props) {
             </div>
             <div className={styles.imgContainer}>
                 <img
-                    src={isUpload ? `http://${import.meta.env.VITE_DIR_IPP}/${urlImg}` + '.png' : ''}
+                    src={isUpload ? `https://${import.meta.env.VITE_DIR_IPP}/${urlImg}` + '.png' : ''}
                     alt={`fotoPerfil-${titulo}`}
                     className={styles.img}
                 />

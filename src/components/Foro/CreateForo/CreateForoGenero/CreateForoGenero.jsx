@@ -26,7 +26,7 @@ function CreateForoGenero({option}) {
             Foto: localStorage.getItem('IDImagen'),
             IDUsuario: user.IDUsuario
         }        
-        await axios.post(`http://${import.meta.env.VITE_DIR_IP}/foro-crear`, JSON.stringify(form));
+        await axios.post(`https://${import.meta.env.VITE_DIR_IP}/foro-crear`, JSON.stringify(form));
         localStorage.removeItem('IDImagen');
         navigate("/Foro");
     }
@@ -56,7 +56,7 @@ function CreateForoGenero({option}) {
             const formData = new FormData();
             formData.set('image', file);
             const fetchUploadImage = async () => {
-                const res = await fetch(`http://${import.meta.env.VITE_DIR_IPP}/image/post`, { method: 'POST', body: formData }); //asdsa
+                const res = await fetch(`https://${import.meta.env.VITE_DIR_IPP}/image/post`, { method: 'POST', body: formData }); //asdsa
                 const respuesta = await res.json();
                 window.localStorage.setItem('IDImagen', respuesta.IDImagen);
             }
