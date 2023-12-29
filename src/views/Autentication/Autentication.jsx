@@ -1,6 +1,6 @@
 import styles from './Autentication.module.css';
 import Header from '../../components/Header/Header';
-import Logo from '../../../public/img/logo.png';
+import Logo from '../../../public/img/Logo.png';
 import { useEffect, useState } from 'react';
 
 import Login from '../../components/Autentication/Login/Login';
