@@ -15,12 +15,14 @@ function ForoMain(){
     }
 
     useEffect(() => {
+        fetch(`https://${import.meta.env.VITE_DIR_IPP}/getImages`).then(res => {console.log(res.status);}).catch(err => {console.log(err);})
         handleGetForos();        
     }, [setForos])
 
     const handleGetForos = () => {
         const functForos = async () => {
             const data = await axios.get(`https://${import.meta.env.VITE_DIR_IP}/foros`);
+            console.log(data);
             const fors = await data.data;
             setForos(fors);            
         }

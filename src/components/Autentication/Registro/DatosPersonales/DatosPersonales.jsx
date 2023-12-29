@@ -6,14 +6,21 @@ import { useState } from 'react';
 function DatosPersonales({ clickHijo }) {
     const { register, handleSubmit, formState: { erros } } = useForm();
     const [failed, setFailed] = useState(false);
+    const [bloqueo, setBloqueo] = useState(false);
 
-    const handleClic = async (data) => {
+    const handleClic = async (data) => {        
+        setBloqueo(true);        
         try {
-            await axios.post(`https://${import.meta.env.VITE_DIR_IP}/usuario-personales`, JSON.stringify(data));          
-            clickHijo(1);
+            const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}/usuario-personales`, {method: 'POST', body: JSON.stringify(data)} );                  
+            if(res.ok){                
+                clickHijo(1);
+            }
+            
         } catch (err) {
             alert(err)
             setFailed(true);
+            setBloqueo(false);
+            
         }
     }
 
@@ -26,7 +33,7 @@ function DatosPersonales({ clickHijo }) {
                 <input className={styles.input} type="text" placeholder='Apellido Paterno' {...register('paterno', { required: true })} />
                 <input className={styles.input} type="text" placeholder='Apellido Materno' {...register('materno', { required: true })} />
                 <input className={styles.input} type="date" {...register('nacimiento', { required: true })} />
-                <button type='submit' className={styles.btn}>Continuar</button>
+                <button disabled={bloqueo} type='submit' className={styles.btn}>Continuar</button>
             </form>
 
             {                

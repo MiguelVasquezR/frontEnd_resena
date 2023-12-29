@@ -44,37 +44,40 @@ function Lista({ idUser }) {
     function renderLists() {
         const user = getUser();
         return (
-            lista.map((listaItem, index) => {
-                if (user.IDUsuario !== idUser && listaItem.privacidad === 'publico') { //Usuarios visitantes
-                    return (
-                        <ItemList
-                            IDUSUARIO={idUser}
-                            ID={listaItem.ID}
-                            IDImage={listaItem.IDImagen}
-                            key={listaItem.ID}
-                            id={listaItem.ID}
-                            onDelete={() => handleDeleteList(listaItem.ID, imagenes[index])}
-                            nombre={listaItem.nombre}
-                            cantidad={listaItem.cantidad}
-                            visibilidad={listaItem.privacidad}
-                        />
-                    );
-                }else if(user.IDUsuario === idUser){
-                    return (
-                        <ItemList
-                            IDUSUARIO={idUser}
-                            ID={listaItem.ID}
-                            IDImage={listaItem.IDImagen}
-                            key={listaItem.ID}
-                            id={listaItem.ID}
-                            onDelete={() => handleDeleteList(listaItem.ID, imagenes[index])}
-                            nombre={listaItem.nombre}
-                            cantidad={listaItem.cantidad}
-                            visibilidad={listaItem.privacidad}
-                        />
-                    );
-                }
-            })
+            lista ?
+                lista.map((listaItem, index) => {
+                    if (user.IDUsuario !== idUser && listaItem.privacidad === 'publico') { //Usuarios visitantes
+                        return (
+                            <ItemList
+                                IDUSUARIO={idUser}
+                                ID={listaItem.ID}
+                                IDImage={listaItem.IDImagen}
+                                key={listaItem.ID}
+                                id={listaItem.ID}
+                                onDelete={() => handleDeleteList(listaItem.ID, imagenes[index])}
+                                nombre={listaItem.nombre}
+                                cantidad={listaItem.cantidad}
+                                visibilidad={listaItem.privacidad}
+                            />
+                        );
+                    } else if (user.IDUsuario === idUser) {
+                        return (
+                            <ItemList
+                                IDUSUARIO={idUser}
+                                ID={listaItem.ID}
+                                IDImage={listaItem.IDImagen}
+                                key={listaItem.ID}
+                                id={listaItem.ID}
+                                onDelete={() => handleDeleteList(listaItem.ID, imagenes[index])}
+                                nombre={listaItem.nombre}
+                                cantidad={listaItem.cantidad}
+                                visibilidad={listaItem.privacidad}
+                            />
+                        );
+                    }
+                })
+                :
+                ""
         )
     }
 

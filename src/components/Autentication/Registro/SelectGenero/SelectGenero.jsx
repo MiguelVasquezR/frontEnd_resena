@@ -5,6 +5,8 @@ import { useState } from 'react';
 
 function SelectGenero() {
 
+    const [bloqueo, setBloqueo] = useState(false);
+
     const imagenes = [
         "../../img/generos/novela.png",
         "../../img/generos/cuento.png",
@@ -27,18 +29,26 @@ function SelectGenero() {
                 return prevSeleccionados.filter(item => item !== nombre);
             }
         });        
-    }
-
-    const handleRegister = async () => {
-        if(seleccionados.length === 0){
-            await axios.post(`https://${import.meta.env.VITE_DIR_IP}/usuario-genero`, "Sin genero");    
-        }else{
-            await axios.post(`https://${import.meta.env.VITE_DIR_IP}/usuario-genero`, JSON.stringify(seleccionados));
-        }        
-        window.location.reload();
-    }
+    }    
 
     const navigate = useNavigate();
+
+    const handleRegister = async () => {
+        setBloqueo(true)
+        const headers ={
+            'Content-type': 'application/json; charset=UTF-8'
+        }
+        if(seleccionados.length === 0){
+            await axios.post(`https://${import.meta.env.VITE_DIR_IP}/usuario-genero`, "Sin genero", {headers});    
+        }else{
+            await axios.post(`https://${import.meta.env.VITE_DIR_IP}/usuario-genero`, JSON.stringify(seleccionados), {headers});
+        }                        
+        setTimeout(()=>{
+            navigate("/");
+        }, 1500);
+    }   
+    
+    
 
     return (
         <div className={styles.container}>
@@ -51,7 +61,7 @@ function SelectGenero() {
                 ))}
             </ul>
             <p className={styles.p}>No es necesario elegir un género</p>
-            <button onClick={handleRegister} className={styles.btn}>Registrar</button>
+            <button disabled={bloqueo} onClick={handleRegister} className={styles.btn}>Registrar</button>
         </div>
     )
 }
