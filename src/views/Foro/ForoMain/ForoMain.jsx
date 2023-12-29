@@ -119,7 +119,7 @@ function ForoMain(props) {
             <div className={styles.infoContainer}>
 
                 <div className={styles.containerInfo}>
-                    <img src={`https://${import.meta.env.VITE_DIR_IP}:9000/` + IDFoto + '.png'} alt="Imagen perfil" className={styles.img} />
+                    <img src={`https://${import.meta.env.VITE_DIR_IP}/` + IDFoto + '.png'} alt="Imagen perfil" className={styles.img} />
 
                     <section>
                         <h2 className={styles.titulo}>{nombre}</h2>                        

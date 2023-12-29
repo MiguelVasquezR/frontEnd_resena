@@ -46,13 +46,15 @@ function Header({actualizar}) {
 
     const handleNotification = () => {        
         if (isLogin) {
-            navigate("/notification");
+            // navigate("/notification");
+            alert("Estará disponible proximamente")
         }
     }
 
     const handleMessage = () => {
         if (isLogin) {
-            navigate("/message");
+            // navigate("/message");
+            alert("Estará disponible proximamente")
         }
     }
 

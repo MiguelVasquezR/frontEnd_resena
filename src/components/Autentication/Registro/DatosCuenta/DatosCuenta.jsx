@@ -6,14 +6,17 @@ import { useState } from 'react';
 function DatosCuenta({ clickHijo }) {
     const { register, handleSubmit, formState: { erros } } = useForm();
     const [error, setError] = useState(false)
+    const [bloqueo, setBloqueo] = useState(false);
 
     const handleClic = async (data) => {    
+        setBloqueo(true)
         setError(false);
         if(data.rPassword === data.password){
-            await axios.post(`https://${import.meta.env.VITE_DIR_IP}/usuario-cuenta`, JSON.stringify(data));
+            await axios.post(`https://${import.meta.env.VITE_DIR_IP}/usuario-cuenta`, JSON.stringify(data));            
             clickHijo(2);            
         }else{
             setError(true);
+            setBloqueo(false);
         }                 
     }
 
@@ -25,7 +28,7 @@ function DatosCuenta({ clickHijo }) {
                 <input className={styles.input} type="email" placeholder='Correo' {...register('correo', { required: true })} />
                 <input className={styles.input} type="password" placeholder='Contraseña' {...register('password', { required: true })} />
                 <input className={`${styles.input} ${error ? styles.error : ''}`} type="password" placeholder='Repite tu contraseña' {...register('rPassword', {required: true})}/>
-                <button type='submit' className={styles.btn}>Continuar</button>
+                <button disabled={bloqueo} type='submit' className={styles.btn}>Continuar</button>
             </form>            
         </div>
     )

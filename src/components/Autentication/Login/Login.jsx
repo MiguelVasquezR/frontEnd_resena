@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { addPersonne } from '../../../hooks/Aut';
 import React from 'react';
 import { IsLoging } from '../../../hooks/IsLogin';
+import Loading from '../../../components/Loading/Loading'
 
 
 function Login() {
@@ -19,10 +20,11 @@ function Login() {
   const navigate = useNavigate();
   const buttonRef = useRef(null);
   const [click, setClick] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
 
   const handleLogin = (datos) => {          
-    setBand(false);
+    setBand(false);    
     const useLogin = async (datos) => {
       try {
         

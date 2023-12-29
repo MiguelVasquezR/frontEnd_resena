@@ -26,7 +26,13 @@ function CreateForoGenero({option}) {
             Foto: localStorage.getItem('IDImagen'),
             IDUsuario: user.IDUsuario
         }        
-        await axios.post(`https://${import.meta.env.VITE_DIR_IP}/foro-crear`, JSON.stringify(form));
+
+        const headers = {
+            'Content-Type': 'application/json; charset=UTF-8',
+        }
+
+
+        await axios.post(`https://${import.meta.env.VITE_DIR_IP}/foro-crear`, JSON.stringify(form), {headers});
         localStorage.removeItem('IDImagen');
         navigate("/Foro");
     }

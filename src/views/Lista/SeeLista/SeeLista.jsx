@@ -62,6 +62,7 @@ export default function SeeLista() {
         const fetchPerfil = async () => {
             const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}/optionBook?id=${IDLista}`, { method: 'GET' });
             const data = await res.json();
+            console.log(data);
             setInfoOptionBook(data);
             setLoading(false);
         }
