@@ -10,7 +10,7 @@ function Autentication() {
     const [option, setOption] = useState(true); 
     
     useEffect(() => {
-        fetch(`http://${import.meta.env.VITE_DIR_IPP}/getImages`).then(res => {console.log(res);}).catch(err=>console.log("Error", err));
+        fetch(`https://${import.meta.env.VITE_DIR_IPP}/getImages`).then(res => {console.log(res);}).catch(err=>console.log("Error", err));
     }, [])
 
     const handleClicOption = (e) =>{

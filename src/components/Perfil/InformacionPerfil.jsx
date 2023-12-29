@@ -11,7 +11,7 @@ function ItemInformationUser({ idUser }) {
 
     const getDatos = () => {
         const fetchDato = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/get-perfil-user?IDuser=${idUser}`, { method: 'POST' })
+            const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}/get-perfil-user?IDuser=${idUser}`, { method: 'POST' })
 
             if (res.ok) {
                 const data = await res.json();
@@ -25,7 +25,7 @@ function ItemInformationUser({ idUser }) {
 
     useEffect(() => {
         getDatos();
-        fetch(`http://${import.meta.env.VITE_DIR_IPP}/image/${datos.Foto}`)
+        fetch(`https://${import.meta.env.VITE_DIR_IPP}/image/${datos.Foto}`)
             .catch(err => { console.log("ERROR AL OBTENER LA FOTO"); })        
     }, [isLoading])
 
@@ -37,7 +37,7 @@ function ItemInformationUser({ idUser }) {
                     :
                     <div className={styles.container}>
                         <div className={styles.imgContainer}>
-                            {datos.foto ? <img src={`http://${import.meta.env.VITE_DIR_IPP}/` + datos.foto + ".png"} alt={'Perfil de ' + datos.nombre} className={`${styles.img}`} /> : <FaRegUserCircle size={90} color='white' />}
+                            {datos.foto ? <img src={`https://${import.meta.env.VITE_DIR_IPP}/` + datos.foto + ".png"} alt={'Perfil de ' + datos.nombre} className={`${styles.img}`} /> : <FaRegUserCircle size={90} color='white' />}
                         </div>
                         <div className={styles.informationUserContainer}>
                             <h3 className={`${styles.h3}`}>{datos.nombre + " " + datos.paterno + " " + datos.materno}</h3>

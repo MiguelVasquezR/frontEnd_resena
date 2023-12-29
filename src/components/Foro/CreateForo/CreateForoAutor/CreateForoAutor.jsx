@@ -28,7 +28,7 @@ function CreateForoAutor(){
             Foto: localStorage.getItem('IDImagen'),
             IDUsuario: user.IDUsuario
         }        
-        await axios.post(`http://${import.meta.env.VITE_DIR_IP}:4567/foro-crear`, JSON.stringify(form));
+        await axios.post(`https://${import.meta.env.VITE_DIR_IP}:4567/foro-crear`, JSON.stringify(form));
         localStorage.removeItem('IDImagen');
         navigate("/Foro");
     }
@@ -46,7 +46,7 @@ function CreateForoAutor(){
             const formData = new FormData();
             formData.set('image', file);
             const fetchUploadImage = async () => {
-                const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}:9000/image/post`, { method: 'POST', body: formData });
+                const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}:9000/image/post`, { method: 'POST', body: formData });
                 const respuesta = await res.json();
                 window.localStorage.setItem('IDImagen', respuesta.IDImagen);
             }
@@ -67,7 +67,7 @@ function CreateForoAutor(){
 
 
     const handleClic1 = async (data) => {
-        await axios.post(`http://${import.meta.env.VITE_DIR_IP}:4567/foro-crear`, data);
+        await axios.post(`https://${import.meta.env.VITE_DIR_IP}:4567/foro-crear`, data);
         navigate("/Foro")
     }
 

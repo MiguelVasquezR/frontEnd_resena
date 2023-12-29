@@ -20,7 +20,7 @@ function ForoMain(){
 
     const handleGetForos = () => {
         const functForos = async () => {
-            const data = await axios.get(`http://${import.meta.env.VITE_DIR_IP}/foros`);
+            const data = await axios.get(`https://${import.meta.env.VITE_DIR_IP}/foros`);
             const fors = await data.data;
             setForos(fors);            
         }

@@ -12,7 +12,7 @@ function CreateFotoLibro(){
     const placeHolder = ["Nombre Autor", "Género", "Idioma", "Editorial"];
 
     const handleClic = async (data) => {
-        await axios.post(`http://${import.meta.env.VITE_DIR_IP}/foro-crear`, data);
+        await axios.post(`https://${import.meta.env.VITE_DIR_IP}/foro-crear`, data);
         navigate("/Foro");
     }
 

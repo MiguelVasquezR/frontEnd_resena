@@ -18,7 +18,7 @@ function BarraBusqueda({ b, search }) {
     }
 
     const getUsuariosOpciones = async () => {               
-        const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/getUsuarios?usuario=${value}`, { method: 'GET' })
+        const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}/getUsuarios?usuario=${value}`, { method: 'GET' })
         if (res.ok) {
             const data = await res.json();            
             search(data);

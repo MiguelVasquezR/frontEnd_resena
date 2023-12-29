@@ -18,7 +18,7 @@ function ForoMain(props) {
 
 
     useEffect(() => {
-        fetch(`http://${import.meta.env.VITE_DIR_IPP}/getImages`).then(res => {console.log(res);}).catch(err=>console.log("Error", err));
+        fetch(`https://${import.meta.env.VITE_DIR_IPP}/getImages`).then(res => {console.log(res);}).catch(err=>console.log("Error", err));
         handleGetUsuario1();
     }, [])
 
@@ -41,7 +41,7 @@ function ForoMain(props) {
 
     const handleGetUsuario1 = () => {
         const handleGetUsuario = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/participantes?IDForo=${IDForo}`);
+            const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}/participantes?IDForo=${IDForo}`);
             if (res.ok) {
                 const data = await res.json();
                 setParticipantes(data);
@@ -63,7 +63,7 @@ function ForoMain(props) {
                 Dislike: 0,
             };
             const sendPublicacion = async () => {
-                const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/crear-publicacion`, { method: 'POST', body: JSON.stringify(data) })
+                const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}/crear-publicacion`, { method: 'POST', body: JSON.stringify(data) })
                 if (res.ok) {
                     console.log('Exito');
                 }
@@ -87,7 +87,7 @@ function ForoMain(props) {
 
         if (participle === 'Unirse al foro') {
             const fetchAddGroup = async () => {
-                const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/agregar-participante?IDUser=${user.IDUsuario}&IDForo=${IDForo}`, { method: 'POST' });
+                const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}/agregar-participante?IDUser=${user.IDUsuario}&IDForo=${IDForo}`, { method: 'POST' });
                 if (res.ok) {
                     const data = await res.json()
                     console.log(data);
@@ -97,7 +97,7 @@ function ForoMain(props) {
             fetchAddGroup();
         } else if (participle === 'Salirse del foro') {
             const fetchAddGroup = async () => {
-                const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/delete-participante?IDUser=${user.IDUsuario}&IDForo=${IDForo}`, { method: 'DELETE' });
+                const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}/delete-participante?IDUser=${user.IDUsuario}&IDForo=${IDForo}`, { method: 'DELETE' });
                 if (res.ok) {
                     const data = await res.json()
                     console.log(data);
@@ -119,7 +119,7 @@ function ForoMain(props) {
             <div className={styles.infoContainer}>
 
                 <div className={styles.containerInfo}>
-                    <img src={`http://${import.meta.env.VITE_DIR_IP}:9000/` + IDFoto + '.png'} alt="Imagen perfil" className={styles.img} />
+                    <img src={`https://${import.meta.env.VITE_DIR_IP}:9000/` + IDFoto + '.png'} alt="Imagen perfil" className={styles.img} />
 
                     <section>
                         <h2 className={styles.titulo}>{nombre}</h2>                        

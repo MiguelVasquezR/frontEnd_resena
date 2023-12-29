@@ -13,7 +13,7 @@ function ItemFollow(props, {hand}){
     const handleClicUnFollow = (e) =>{
         e.stopPropagation();
         const fetchDelete = async () =>{
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/delete-follow?IDOrigen=${user.IDUsuario}&IDDes=${idUser}`, {method: 'DELETE'});
+            const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}/delete-follow?IDOrigen=${user.IDUsuario}&IDDes=${idUser}`, {method: 'DELETE'});
             if(res.ok){
                 const data = await res.json();
                 console.log(data);
@@ -28,7 +28,7 @@ function ItemFollow(props, {hand}){
             <div className={styles.imgContainer}>
                 {
                     foto ? 
-                    <img src={`http://${import.meta.env.VITE_DIR_IPP}/` + foto + ".png"} alt="Foto de perfil" className={styles.img} />  //asdsa
+                    <img src={`https://${import.meta.env.VITE_DIR_IPP}/` + foto + ".png"} alt="Foto de perfil" className={styles.img} />  //asdsa
                     :
                     <FaRegUserCircle size={90} color='white' />
                 }            

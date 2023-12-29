@@ -19,7 +19,7 @@ function Autor() {
     const [isLoging, setIsLoging] = useState(true);
 
     useEffect(() => {
-        fetch(`http://${import.meta.env.VITE_DIR_IPP}/getImages`).then(res => { console.log(res); }).catch(err => console.log("Error", err));
+        fetch(`https://${import.meta.env.VITE_DIR_IPP}/getImages`).then(res => { console.log(res); }).catch(err => console.log("Error", err));
         if (isLoging) {
             datosAutor();
         }
@@ -33,7 +33,7 @@ function Autor() {
 
     const datosAutor = () => {
         const fetchAutor = async () => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/autor-datos?nombre=${nombreA}`, { method: 'POST' });
+            const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}/autor-datos?nombre=${nombreA}`, { method: 'POST' });
             const data = await res.json();
             setAutor(data);
             setIsLoging(false);
@@ -45,7 +45,7 @@ function Autor() {
 
     const datosLibros = (ID) => {
         const fetchLibros = async (ID) => {
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/libros/autor?autor=${ID}`);
+            const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}/libros/autor?autor=${ID}`);
             const data = await res.json();
             setLibros(data);
         }

@@ -10,7 +10,7 @@ function DatosCuenta({ clickHijo }) {
     const handleClic = async (data) => {    
         setError(false);
         if(data.rPassword === data.password){
-            await axios.post(`http://${import.meta.env.VITE_DIR_IP}/usuario-cuenta`, JSON.stringify(data));
+            await axios.post(`https://${import.meta.env.VITE_DIR_IP}/usuario-cuenta`, JSON.stringify(data));
             clickHijo(2);            
         }else{
             setError(true);

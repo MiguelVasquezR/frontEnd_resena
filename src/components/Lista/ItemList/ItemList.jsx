@@ -11,7 +11,7 @@ function ItemList(props){
     const user = getUser();
 
     useEffect(() => {
-        fetch(`http://${import.meta.env.VITE_DIR_IPP}/getImages`).catch(err => {console.log("ERROR AL OBTENER LA FOTO");})
+        fetch(`https://${import.meta.env.VITE_DIR_IPP}/getImages`).catch(err => {console.log("ERROR AL OBTENER LA FOTO");})
     }, [])
 
 
@@ -28,7 +28,7 @@ function ItemList(props){
 
     return(
         <div className={styles.container} onClick={handleClicList}>
-            <img src={`http://${import.meta.env.VITE_DIR_IPP}/` + IDImage + ".png"} alt={"lista_"+nombre} className={styles.img}/>
+            <img src={`https://${import.meta.env.VITE_DIR_IPP}/` + IDImage + ".png"} alt={"lista_"+nombre} className={styles.img}/>
             <section className={styles.information}>
                 <h2 className={styles.h2}>{nombre}</h2>
                 <h2 className={styles.h2}>{cantidad + " Libros"}</h2>

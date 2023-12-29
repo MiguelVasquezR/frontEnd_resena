@@ -18,7 +18,7 @@ export default function AddBook(){
 
     const handleGetBook = () =>{
         const fetchBooks = async () =>{
-            const res = await fetch(`http://${import.meta.env.VITE_DIR_IP}/libros`);
+            const res = await fetch(`https://${import.meta.env.VITE_DIR_IP}/libros`);
             const data = await res.json();
             setLibros(data);                    
             setIsLoading(false);        

@@ -30,7 +30,7 @@ function UpdateUserForm() {
         dataActualizada.idPersona = usuario.IDPersona;
         
         const fetchUpdateUser = async () => {
-            await fetch(`http://${import.meta.env.VITE_DIR_IP}/usuario`, { method: 'PUT', body: JSON.stringify(dataActualizada) });
+            await fetch(`https://${import.meta.env.VITE_DIR_IP}/usuario`, { method: 'PUT', body: JSON.stringify(dataActualizada) });
         }
         fetchUpdateUser();
     }
